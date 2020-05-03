@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('titulo', 'Home')
+@section('searchHidden')
+    hidden
+@endsection
 
 @section('content')
 <div class="container">
@@ -14,7 +18,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Bienvenido al sistema
                 </div>
             </div>
         </div>

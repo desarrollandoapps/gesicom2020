@@ -1,10 +1,14 @@
-@extends( 'layouts.layout' )
+@extends( 'layouts.app' )
 
 @section( 'titulo' )
     Detalle del Grupo de Investigación 
 @endsection
 
-@section('contenido')
+@section('searchHidden')
+    hidden
+@endsection
+
+@section('content')
     <h1 class="text-center">Detalle del Grupo de Investigación</h1>
 
     <br><br>

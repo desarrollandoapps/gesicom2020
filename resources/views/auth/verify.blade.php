@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('titulo')
+    {{ __('Verify Your Email Address') }}
+@endsection
+@section('searchHidden')
+    hidden
+@endsection
 
 @section('content')
 <div class="container">

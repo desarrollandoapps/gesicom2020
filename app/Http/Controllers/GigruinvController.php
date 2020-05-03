@@ -48,7 +48,7 @@ class GigruinvController extends Controller
             'gicenfor'=>'required', 
             'ginombre'=>'required', 
             'gimescre'=>'required', 
-            'gianocre'=>'required' ] );
+            'gianocre'=>'required' ] )->withInput();
 
         // Se toma el modelo
         App\Gigruinv::create( $request->all() );

@@ -1,10 +1,14 @@
-@extends( 'layouts.layout' )
+@extends( 'layouts.app' )
 
 @section( 'titulo' )
     Modificar Grupo de Investigación 
 @endsection
 
-@section('contenido')
+@section('searchHidden')
+    hidden
+@endsection
+
+@section('content')
 <h1>Modificar Grupo de Investigación</h1>
 <br>
 @if ($errors->any())
@@ -74,7 +78,7 @@
         <input type="number" class="form-control" name="gianocre" value="{{$grupo->gianocre}}">
     </div>
 
-    <button type="submit">Guardar</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 
 </form>
 

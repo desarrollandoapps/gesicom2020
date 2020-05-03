@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('titulo')
+    {{ __('Login') }}
+@endsection
+@section('searchHidden')
+    hidden
+@endsection
 
 @section('content')
 <div class="container">
