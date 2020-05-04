@@ -28,8 +28,9 @@
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
     "All rights reserved.":  "Todos los derechos reservados.",
-    "Grupos de Investigación": "Grupos de Investigación",
     "User profile": "Perfil del usuario",
+    "Edit Profile": "Editar Perfil",
+    "User information": "Información del usuario",
     "User Management": "Administración de usuarios",
     "Users": "Usuarios",
     "Researchers": "Investigadores",
@@ -40,5 +41,12 @@
     "I agree with the ": "Estoy de acuerdo con las ",
     "Privacy Policy": "Políticas de privacidad",
     "Create account": "Crear cuenta",
-    "Search": "Buscar"
+    "Search": "Buscar",
+    "Save": "Guardar",
+    "Change password": "Cambiar contraseña",
+    "Current Password": "Contraseña actual",
+    "New Password": "Contraseña nueva",
+    "Confirm New Password": "Confirmación de la contraseña nueva",
+    "gigruinv": "Grupo de Investigación",
+    "gilininv": "Línea de investigación"
 }

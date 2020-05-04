@@ -18,13 +18,13 @@
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
           <i class="fas fa-users-cog"></i>
           <p>{{ __('Users') }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="laravelExample">
+        <div class="collapse hide" id="laravelExample">
           <ul class="nav">
             <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
@@ -44,15 +44,21 @@
       <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('gigruinv.index') }}">
           <i class="fas fa-flask"></i>
-            <p>{{ __('Grupos de Investigación') }}</p>
+            <p>{{ __('gigruinv') }}</p>
         </a>
       </li>
-      {{-- <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
+      <li class="nav-item{{ $activePage == 'gilininv' ? ' active' : '' }}">
+        <a class="nav-link" href="#">
+          <i class="fas fa-atom"></i>
+            <p>{{ __('gilininv') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('gigruinv.index') }}">
           <i class="fas fa-user-tie"></i>
             <p>{{ __('Researchers') }}</p>
         </a>
-      </li> --}}
+      </li>
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
