@@ -61,6 +61,10 @@ class CreateGiseminvTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('giseminvs');
+        Schema::table('giseminv', function (Blueprint $table) {
+            $table->dropForeign('giseminv_sicapaci_foreign');
+            $table->dropForeign('giseminv_sigruinv_foreign');
+        });
+        Schema::dropIfExists('giseminv');
     }
 }

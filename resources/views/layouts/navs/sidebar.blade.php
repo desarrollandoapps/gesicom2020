@@ -48,6 +48,30 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link {{ ($activePage == 'giproinv' || $activePage == 'gilinpro') ? ' active' : '' }}">
+              <i class="nav-icon fas fa-project-diagram"></i>
+              <p>
+                {{ __('proyectos') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item{{ $activePage == 'giproinv' ? ' active' : '' }}">
+                <a href="{{ route('giproinv.index') }}"" class="nav-link">
+                  <i class="fas fa-project-diagram nav-icon"></i>
+                  <p>{{ __('giproinv') }}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('gilinpro.index') }}"" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ __('gilinpro') }}</p>
+                  <span class="right badge badge-danger">Ojo</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ ($activePage == 'giseminv' || $activePage == 'gicapsem') ? ' active' : '' }}">
               <i class="nav-icon fas fa-child"></i>
               <p>
@@ -70,6 +94,7 @@
               </li>
             </ul>
           </li>
+          
           <li class="nav-item">
             <a href="../widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

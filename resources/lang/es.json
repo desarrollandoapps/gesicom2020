@@ -47,9 +47,12 @@
     "Current Password": "Contraseña actual",
     "New Password": "Contraseña nueva",
     "Confirm New Password": "Confirmación de la contraseña nueva",
+    "proyectos": "Proyectos",
     "gigruinv": "Grupo de Investigación",
     "gilininv": "Línea de investigación",
     "semilleros": "Semilleros",
     "giseminv": "Semillero de investigación",
-    "gicapsem": "Capacitación de semillero"
+    "gicapsem": "Capacitación de semillero",
+    "gilinpro": "Línea programática",
+    "giproinv": "Proyecto de Investigación"
 }

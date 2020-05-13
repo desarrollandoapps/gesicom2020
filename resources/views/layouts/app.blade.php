@@ -35,7 +35,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>{{$titlePage}}</h1>
+            <h5 class="text-muted">{{$titlePage}}</h5>
           </div>
         </div>
       </div><!-- /.container-fluid -->
