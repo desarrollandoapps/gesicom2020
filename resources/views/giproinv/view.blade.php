@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gigruinv', 'titlePage' => __('Detalle del Grupo de Investigación')])
+@extends('layouts.app', ['activePage' => 'giproinv', 'titlePage' => __('Detalle de Proyecto')])
 @section('searchHidden')
     hidden
 @endsection
@@ -9,21 +9,76 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h3 class="card-title">Detalle de {{ __('gicapsem') }}</h3>
-                            <h3 class="card-title">{{$capacitacion->csnombre}}</h3>
+                            <h3 class="card-title">Detalle de {{ __('giproinv') }}</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Nombre de {{ __('gicapsem') }}: </h5>
+                                    <h5>Nombre de {{ __('giproinv') }}: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$capacitacion->csnombre}}</h5>
+                                    <h5 class="lead">{{$proyecto->pinompro}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Regional: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->piregion}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Centro de formación: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->picenfor}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Año de formulación: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->pianofor}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Número de radicado: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->pinumrad}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Valor presupuestado: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->pivalpre}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Año de ejecución: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->pianoeje}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Línea programática: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$linea->lpnomlin}}</h5>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
-                                <a href="{{route('gicapsem.index')}}"><button class="btn btn-primary">Regresar</button></a>
+                                <a href="{{route('giproinv.index')}}"><button class="btn btn-primary">Regresar</button></a>
                             </div>
                         </div>
                     </div>

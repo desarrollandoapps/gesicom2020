@@ -42,6 +42,7 @@
     "Privacy Policy": "Políticas de privacidad",
     "Create account": "Crear cuenta",
     "Search": "Buscar",
+    "seleccione": "Seleccione...",
     "Save": "Guardar",
     "Change password": "Cambiar contraseña",
     "Current Password": "Contraseña actual",
@@ -54,5 +55,5 @@
     "giseminv": "Semillero de investigación",
     "gicapsem": "Capacitación de semillero",
     "gilinpro": "Línea programática",
-    "giproinv": "Proyecto de Investigación"
+    "giproinv": "Proyecto"
 }

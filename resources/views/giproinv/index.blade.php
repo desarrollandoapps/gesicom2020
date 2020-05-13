@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gilinpro', 'titlePage' => __('Líneas Programáticas')])
+@extends('layouts.app', ['activePage' => 'giproinv', 'titlePage' => __('Proyectos de investigación')])
 
 @section('content')
     <div class="content">
@@ -14,7 +14,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{ __('gilinpro') }}</h4>
+                          <h4 class="card-title ">{{ __('giproinv') }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -26,13 +26,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($lineas as $item)
+                                        @foreach ($proyectos as $item)
                                             <tr>
-                                                <td> {{$item->lpnomlin}}</td>
+                                                <td> {{$item->pinompro}}</td>
                                                 <td class="td-actions text-right">
-                                                    <a href="{{route('gilinpro.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
-                                                    <a href="{{route('gilinpro.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
-                                                    <form action="{{route('gilinpro.destroy', $item->id)}}" method="POST" class="d-inline">
+                                                    <a href="{{route('giproinv.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
+                                                    <a href="{{route('giproinv.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
+                                                    <form action="{{route('giproinv.destroy', $item->id)}}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de la capacitación?')"><i class="fas fa-trash"></i></button>
@@ -43,7 +43,7 @@
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <a href="{{route('gilinpro.create')}} "><button class="btn btn-primary">Crear {{ __('gilinpro') }}</button></a>
+                                    <a href="{{route('giproinv.create')}} "><button class="btn btn-primary">Crear {{ __('giproinv') }}</button></a>
                                 </div>
                             </div>
                         </div>
