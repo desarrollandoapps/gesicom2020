@@ -32,12 +32,12 @@
                                                 <td> {{$item->gicodgru}} </td>
                                                 <td> {{$item->ginombre}} </td>
                                                 <td class="td-actions text-right">
-                                                    <a href="{{route('gigruinv.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-simple"><i class="material-icons">remove_red_eye</i></button></a>
-                                                    <a href="{{route('gigruinv.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-simple"><i class="material-icons">edit</i></button></a>
+                                                    <a href="{{route('gigruinv.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
+                                                    <a href="{{route('gigruinv.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
                                                     <form action="{{route('gigruinv.destroy', $item->id)}}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-simple" onclick="return confirm('¿Confirma la eliminación del grupo?')"><i class="material-icons">close</i></button>
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación del grupo?')"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>

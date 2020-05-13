@@ -40,6 +40,18 @@ class GigruinvController extends Controller
      */
     public function store(Request $request)
     {
+        //mensajes de error
+        $mensajes = [
+            'gicodgru.required' => 'Debe ingresar el código del grupo ante Colciencias.',
+            'gicodgru.unique' => 'Ya hay un grupo de investigación con el código que intenta asignar.',
+            'giregpnd.required' => 'Debe ingresar la región.',
+            'giregion.required' => 'Debe ingresar la regional.',
+            'gicenfor.required' => 'Debe ingresar el centro de formación.',
+            'ginombre.required' => 'Debe ingresar el nombre del grupo.',
+            'gimescre.required' => 'Debe selecionar el mes de creación.',
+            'gianocre.required' => 'Debe ingresar el año de creación.'
+        ];
+
         // Validar que los campos obligatorios tengan valor
         $validator = Validator::make($request->all(), [
             'gicodgru'=>'required|unique:gigruinv', 
@@ -49,7 +61,7 @@ class GigruinvController extends Controller
             'ginombre'=>'required', 
             'gimescre'=>'required', 
             'gianocre'=>'required'
-        ]);
+        ], $mensajes);
 
         if ($validator->fails()) {
             return redirect('gigruinv/create')

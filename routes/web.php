@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('upgrade');
 
 	Route::resource('gigruinv', 'GigruinvController');
+	Route::resource('gicapsem', 'GicapsemController');
+	Route::resource('giseminv', 'GiseminvController');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -55,3 +57,4 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+

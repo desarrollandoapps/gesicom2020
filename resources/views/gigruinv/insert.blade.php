@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'gigruinv', 'titlePage' => __('Crear Grupo de Investigación')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 
@@ -55,7 +55,7 @@
                         
                                 <div class="form-group">
                                     <label>Mes de Creación</label>
-                                    <select name="gimescre" class="form-control">
+                                    <select name="gimescre" class="custom-select form-control">
                                         <option value="" disabled>Seleccione un mes</option>
                                         <option value="Enero" {{ old('gimescre') == "Enero" ? 'selected' : '' }}>Enero</option>
                                         <option value="Febrero" {{ old('gimescre') == "Febrero" ? 'selected' : '' }}>Febrero</option>
@@ -71,12 +71,12 @@
                                         <option value="Diciembre" {{ old('gimescre') == "Diciembre" ? 'selected' : '' }}>Diciembre</option>
                                     </select>
                                 </div>
-                        
+                                
                                 <div class="form-group">
                                     <label>Año de Creación</label>
                                     <input type="number" class="form-control" name="gianocre" value="{{old('gianocre')}}">
                                 </div>
-                        
+                                <br>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
                         </div>
@@ -86,8 +86,10 @@
         </div>
     </div>
     
-    
-    
-    
+@endsection
 
+@section('scripts')
+    <script>
+
+    </script>
 @endsection
