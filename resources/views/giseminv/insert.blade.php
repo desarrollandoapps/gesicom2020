@@ -34,7 +34,7 @@
                                 
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="sinombre" id="sinombre" class="form-control">
+                                    <input type="text" name="sinombre" id="sinombre" class="form-control" value="{{old('sinombre')}}">
                                 </div>
 
                                 <div class="form-row">
@@ -42,7 +42,7 @@
                                         <div class="form-group">
                                             <label>Tipo de documento</label>
                                             <select class="custom-select form-control" name="sitipdoc" id="sitipdoc">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="ti" {{ old('sitipdoc') == "ti" ? 'selected' : '' }}>Tarjeta de Identidad</option>
                                                 <option value="cc" {{ old('sitipdoc') == "cc" ? 'selected' : '' }}>Cédula de ciudadanía</option>
                                                 <option value="ce" {{ old('sitipdoc') == "ce" ? 'selected' : '' }}>Cédula de extrangería</option>
@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Correo SENA</label>
+                                            <label>Correo SENA o MiSENA</label>
                                             <input type="email" class="form-control" name="sicorsen" id="sicorsen" value="{{old('sicorsen')}}">
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@
                                         <div class="form-group">
                                             <label>Rol SENNOVA</label>
                                             <select class="custom-select form-control" name="sirolsen" id="sirolsen">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Aprendiz en grupo de investigación" {{ old('sirolsen') == "agi" ? 'selected' : '' }}>Aprendiz en grupo de investigación</option>
                                                 <option value="Aprendiz en semilleros" {{ old('sirolsen') == "as" ? 'selected' : '' }}>Aprendiz en semilleros</option>
                                             </select>
@@ -130,7 +130,7 @@
                                         <div class="form-group">
                                             <label>Ultimo grado de formación recibido</label>
                                             <select class="custom-select form-control" name="sigrafor" id="sigrafor">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('sigrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
                                                 <option value="Bachillerato" {{ old('sigrafor') == "Bachillerato" ? 'selected' : '' }}>Bachillerato</option>
                                                 <option value="Operario o auxiliar" {{ old('sigrafor') == "Operario o auxiliar" ? 'selected' : '' }}>Operario o auxiliar</option>
@@ -160,7 +160,7 @@
                                         <div class="form-group">
                                             <label>Nivel de inglés</label>
                                             <select class="custom-select form-control" name="siniving" id="siniving">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Ninguno" {{ old('siniving') == "Ninguno" ? 'selected' : '' }}>Ninguno</option>
                                                 <option value="A1" {{ old('siniving') == "A1" ? 'selected' : '' }}>A1</option>
                                                 <option value="A2" {{ old('siniving') == "A2" ? 'selected' : '' }}>A2</option>
@@ -177,13 +177,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Teléfono celular</label>
-                                            <input type="tel" class="form-control" name="sinumcel" id="sinumcel" value="{{old('sinumcel')}}">
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' name="sinumcel" id="sinumcel" value="{{old('sinumcel')}}" data-mask>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Teléfono fijo</label>
-                                            <input type="tel" class="form-control" name="sitelfij" id="sitelfij" value="{{old('sitelfij')}}">
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(9) 999-9999"' name="sitelfij" id="sitelfij" value="{{old('sitelfij')}}" data-mask>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -259,8 +259,26 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Área de conocimiento que se desempeña</label>
-                                            <input type="text" class="form-control" name="siarecon" value="{{old('siarecon')}}">
+                                            <label>Área de conocimiento en que se desempeña</label>
+                                            <select class="custom-select form-control" name="siarecon" id="siarecon">
+                                                <option selected value="">{{__('seleccione')}}</option>
+                                                <option value="Arte" {{ old('siarecon') == "Arte" ? 'selected' : '' }}>Arte</option>
+                                                <option value="Biología" {{ old('siarecon') == "Biología" ? 'selected' : '' }}>Biología</option>
+                                                <option value="Ciencias biológicas" {{ old('siarecon') == "Ciencias biológicas" ? 'selected' : '' }}>Ciencias biológicas</option>
+                                                <option value="Ciencias de la educación" {{ old('siarecon') == "Ciencias de la educación" ? 'selected' : '' }}>Ciencias de la educación</option>
+                                                <option value="Ciencias de la información" {{ old('siarecon') == "Ciencias de la información" ? 'selected' : '' }}>Ciencias de la información</option>
+                                                <option value="Ciencias de la salud" {{ old('siarecon') == "Ciencias de la salud" ? 'selected' : '' }}>Ciencias de la salud</option>
+                                                <option value="Ciencias de la tierra y del espacio" {{ old('siarecon') == "Ciencias de la tierra y del espacio" ? 'selected' : '' }}>Ciencias de la tierra y del espacio</option>
+                                                <option value="Ciencias del espiritu" {{ old('siarecon') == "Ciencias del espiritu" ? 'selected' : '' }}>Ciencias del espiritu</option>
+                                                <option value="Ciencias del hombre" {{ old('siarecon') == "Ciencias del hombre" ? 'selected' : '' }}>Ciencias del hombre</option>
+                                                <option value="Ciencias del lenguaje" {{ old('siarecon') == "Ciencias del lenguaje" ? 'selected' : '' }}>Ciencias del lenguaje</option>
+                                                <option value="Filosofía" {{ old('siarecon') == "Filosofía" ? 'selected' : '' }}>Filosofía</option>
+                                                <option value="Física" {{ old('siarecon') == "Física" ? 'selected' : '' }}>Física</option>
+                                                <option value="Ingeniería" {{ old('siarecon') == "Ingeniería" ? 'selected' : '' }}>Ingeniería</option>
+                                                <option value="Matemáticas" {{ old('siarecon') == "Matemáticas" ? 'selected' : '' }}>Matemáticas</option>
+                                                <option value="Química" {{ old('siarecon') == "Química" ? 'selected' : '' }}>Química</option>
+                                                <option value="Ninguna de las anteriores" {{ old('siarecon') == "Ninguna de las anteriores" ? 'selected' : '' }}>Ninguna de las anteriores</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +288,7 @@
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
                                             <select class="custom-select form-control" name="sigruinv" id="sigruinv">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 @foreach ($grupos as $item)
                                                     <option value="{{$item->id}}">{{$item->ginombre}}</option>
                                                     {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
@@ -282,7 +300,7 @@
                                         <div class="form-group">
                                             <label>Semillero de investigación vinculado</label>
                                             <select class="custom-select form-control" name="sisemvin" id="sisemvin" value="{{old('sisemvin')}}">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 @foreach ($semilleros as $item)
                                                         <option value="{{$item->id}}">{{$item->senombre}}</option>
                                                 @endforeach
@@ -294,7 +312,7 @@
                                 <div class="form-group">
                                     <label>Proyecto vinculado</label>
                                     <select class="custom-select form-control" name="siproyec" id="siproyec">
-                                        <option selected>{{__('seleccione')}}</option>
+                                        <option selected value="">{{__('seleccione')}}</option>
                                         @foreach ($proyectos as $item)
                                             <option value="{{$item->id}}">{{$item->pinompro}}</option>
                                             {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
@@ -305,30 +323,17 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Vinculación a un proyecto REDCOLSI</label>
+                                            <label>Vinculación a un proyecto RedColSI</label>
                                             <input type="number" class="form-control" name="siprored" value="{{old('siprored')}}">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Participación RedCOLSI</label>
+                                            <label>Participación RedColSI</label>
                                             <select class="custom-select form-control" name="siparred" id="siparred">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option>
                                                 <option value="No" {{ old('siparred') == "No" ? 'selected' : '' }}>No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Curso de Investigación a realizar</label>
-                                            <select class="custom-select form-control" name="sicurinv" id="sicurinv">
-                                                <option selected>{{__('seleccione')}}</option>
-                                                <option value="Si" {{ old('sicurinv') == "Si" ? 'selected' : '' }}>Si</option>
-                                                <option value="No" {{ old('sicurinv') == "No" ? 'selected' : '' }}>No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -336,9 +341,19 @@
                                         <div class="form-group">
                                             <label>Formulación de proyecto</label>
                                             <select class="custom-select form-control" name="siforpro" id="siforpro">
-                                                <option selected>{{__('seleccione')}}</option>
+                                                <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Si" {{ old('siforpro') == "Si" ? 'selected' : '' }}>Si</option>
                                                 <option value="No" {{ old('siforpro') == "No" ? 'selected' : '' }}>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Curso de Investigación a realizar</label>
+                                            <select class="custom-select form-control" name="sicurinv" id="sicurinv">
+                                                <option selected value="">{{__('seleccione')}}</option>
+                                                <option value="Si" {{ old('sicurinv') == "Si" ? 'selected' : '' }}>Si</option>
+                                                <option value="No" {{ old('sicurinv') == "No" ? 'selected' : '' }}>No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -348,12 +363,14 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Capacitación en investigación</label>
-                                            <select class="custom-select form-control" name="sicapaci" id="sicapaci">
-                                                <option selected>{{__('seleccione')}}</option>
-                                                @foreach ($capacitaciones as $item)
-                                                    <option value="{{$item->id}}">{{$item->csnombre}}</option>
-                                                @endforeach
-                                            </select>
+                                            @foreach ($capacitaciones as $item)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="{{$item->id}}" id="{{$item->id}}" name="sicapa{{$item->id}}">
+                                                    <label class="form-check-label" for="{{$item->id}}">
+                                                        {{$item->csnombre}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -372,10 +389,14 @@
 
 @section('scripts')
     <script src="{{asset('datepicker')}}/bootstrap-datepicker.min.js"></script>
+    <script src="{{asset('adminlte')}}/plugins/moment/moment.min.js"></script>
+    <script src="{{asset('adminlte')}}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <script>
         $('.date').datepicker({
             language: 'es',
             autoclose: true
         });
+        $('#sinumcel').inputmask();
+        $('#sitelfij').inputmask();
     </script>
 @endsection

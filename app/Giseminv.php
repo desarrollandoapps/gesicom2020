@@ -27,6 +27,7 @@ class Giseminv extends Model
         'siantsen',
         'sigrafor',
         'sititulo',
+        'siniving',
         'siproyec',
         'siarecon',
         'sicering',
@@ -40,7 +41,7 @@ class Giseminv extends Model
         'siparred',
         'sicurinv',
         'siforpro',
-        'sicapaci',
-        'sigruinv'
+        'sigruinv',
+        'sisemill'
     ];
 }

@@ -44,11 +44,12 @@ class CreateGiseminvTable extends Migration
             $table->string('siprored');
             $table->string('siparred');
             $table->string('sicurinv');
+            $table->string('siniving');
             $table->string('siforpro');
-            $table->bigInteger('sicapaci')->unsigned();
-            $table->foreign('sicapaci')->references('id')->on('gicapsem');
             $table->bigInteger('sigruinv')->unsigned();
             $table->foreign('sigruinv')->references('id')->on('gigruinv');
+            $table->bigInteger('sisemill')->unsigned();
+            $table->foreign('sisemill')->references('id')->on('gisemill');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -62,8 +63,8 @@ class CreateGiseminvTable extends Migration
     public function down()
     {
         Schema::table('giseminv', function (Blueprint $table) {
-            $table->dropForeign('giseminv_sicapaci_foreign');
             $table->dropForeign('giseminv_sigruinv_foreign');
+            $table->dropForeign('giseminv_sisemill_foreign');
         });
         Schema::dropIfExists('giseminv');
     }
