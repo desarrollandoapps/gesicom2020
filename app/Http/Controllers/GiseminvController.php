@@ -27,7 +27,10 @@ class GiseminvController extends Controller
     public function create()
     {
         $capacitaciones = App\Gicapsem::orderby('csnombre', 'asc')->get();
-        return view('giseminv.insert', compact('capacitaciones'));
+        $semilleros = App\Gisemill::orderby('senombre', 'asc')->get();
+        $grupos = App\Gigruinv::orderby('ginombre', 'asc')->get();
+        $proyectos = App\Giproinv::orderby('pinompro', 'asc')->get();
+        return view('giseminv.insert', compact('capacitaciones', 'grupos', 'proyectos', 'semilleros'));
     }
 
     /**

@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('giseminv', 'GiseminvController');
 	Route::resource('gilinpro', 'GilinproController');
 	Route::resource('giproinv', 'GiproinvController');
+	Route::resource('gisemill', 'GisemillController');
 });
 
 Route::group(['middleware' => 'auth'], function () {

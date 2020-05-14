@@ -40,6 +40,7 @@ class Giseminv extends Model
         'siparred',
         'sicurinv',
         'siforpro',
-        'sicapaci'
+        'sicapaci',
+        'sigruinv'
     ];
 }

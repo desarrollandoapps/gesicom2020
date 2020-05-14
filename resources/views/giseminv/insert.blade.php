@@ -42,7 +42,7 @@
                                         <div class="form-group">
                                             <label>Tipo de documento</label>
                                             <select class="custom-select form-control" name="sitipdoc" id="sitipdoc">
-                                                <option selected>Seleccione el tipo de documento</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="ti" {{ old('sitipdoc') == "ti" ? 'selected' : '' }}>Tarjeta de Identidad</option>
                                                 <option value="cc" {{ old('sitipdoc') == "cc" ? 'selected' : '' }}>Cédula de ciudadanía</option>
                                                 <option value="ce" {{ old('sitipdoc') == "ce" ? 'selected' : '' }}>Cédula de extrangería</option>
@@ -111,7 +111,7 @@
                                         <div class="form-group">
                                             <label>Rol SENNOVA</label>
                                             <select class="custom-select form-control" name="sirolsen" id="sirolsen">
-                                                <option selected>Seleccione el rol</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Aprendiz en grupo de investigación" {{ old('sirolsen') == "agi" ? 'selected' : '' }}>Aprendiz en grupo de investigación</option>
                                                 <option value="Aprendiz en semilleros" {{ old('sirolsen') == "as" ? 'selected' : '' }}>Aprendiz en semilleros</option>
                                             </select>
@@ -130,7 +130,7 @@
                                         <div class="form-group">
                                             <label>Ultimo grado de formación recibido</label>
                                             <select class="custom-select form-control" name="sigrafor" id="sigrafor">
-                                                <option selected>Seleccione el grado de formación</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('sigrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
                                                 <option value="Bachillerato" {{ old('sigrafor') == "Bachillerato" ? 'selected' : '' }}>Bachillerato</option>
                                                 <option value="Operario o auxiliar" {{ old('sigrafor') == "Operario o auxiliar" ? 'selected' : '' }}>Operario o auxiliar</option>
@@ -160,7 +160,7 @@
                                         <div class="form-group">
                                             <label>Nivel de inglés</label>
                                             <select class="custom-select form-control" name="siniving" id="siniving">
-                                                <option selected>Seleccione el nivel</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Ninguno" {{ old('siniving') == "Ninguno" ? 'selected' : '' }}>Ninguno</option>
                                                 <option value="A1" {{ old('siniving') == "A1" ? 'selected' : '' }}>A1</option>
                                                 <option value="A2" {{ old('siniving') == "A2" ? 'selected' : '' }}>A2</option>
@@ -268,10 +268,38 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Semillero de investigación vinculado</label>
-                                            <input type="number" class="form-control" name="siantsen" value="{{old('siantsen')}}">
+                                            <label>Grupo de investigación vinculado</label>
+                                            <select class="custom-select form-control" name="sigruinv" id="sigruinv">
+                                                <option selected>{{__('seleccione')}}</option>
+                                                @foreach ($grupos as $item)
+                                                    <option value="{{$item->id}}">{{$item->ginombre}}</option>
+                                                    {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Semillero de investigación vinculado</label>
+                                            <select class="custom-select form-control" name="sisemvin" id="sisemvin" value="{{old('sisemvin')}}">
+                                                <option selected>{{__('seleccione')}}</option>
+                                                @foreach ($semilleros as $item)
+                                                        <option value="{{$item->id}}">{{$item->senombre}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Proyecto vinculado</label>
+                                    <select class="custom-select form-control" name="siproyec" id="siproyec">
+                                        <option selected>{{__('seleccione')}}</option>
+                                        @foreach ($proyectos as $item)
+                                            <option value="{{$item->id}}">{{$item->pinompro}}</option>
+                                            {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-row">
@@ -285,7 +313,7 @@
                                         <div class="form-group">
                                             <label>Participación RedCOLSI</label>
                                             <select class="custom-select form-control" name="siparred" id="siparred">
-                                                <option selected>Seleccione</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option>
                                                 <option value="No" {{ old('siparred') == "No" ? 'selected' : '' }}>No</option>
                                             </select>
@@ -298,7 +326,7 @@
                                         <div class="form-group">
                                             <label>Curso de Investigación a realizar</label>
                                             <select class="custom-select form-control" name="sicurinv" id="sicurinv">
-                                                <option selected>Seleccione</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Si" {{ old('sicurinv') == "Si" ? 'selected' : '' }}>Si</option>
                                                 <option value="No" {{ old('sicurinv') == "No" ? 'selected' : '' }}>No</option>
                                             </select>
@@ -308,7 +336,7 @@
                                         <div class="form-group">
                                             <label>Formulación de proyecto</label>
                                             <select class="custom-select form-control" name="siforpro" id="siforpro">
-                                                <option selected>Seleccione</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 <option value="Si" {{ old('siforpro') == "Si" ? 'selected' : '' }}>Si</option>
                                                 <option value="No" {{ old('siforpro') == "No" ? 'selected' : '' }}>No</option>
                                             </select>
@@ -321,7 +349,7 @@
                                         <div class="form-group">
                                             <label>Capacitación en investigación</label>
                                             <select class="custom-select form-control" name="sicapaci" id="sicapaci">
-                                                <option selected>Seleccione</option>
+                                                <option selected>{{__('seleccione')}}</option>
                                                 @foreach ($capacitaciones as $item)
                                                     <option value="{{$item->id}}">{{$item->csnombre}}</option>
                                                 @endforeach
