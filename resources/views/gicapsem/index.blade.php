@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gigruinv', 'titlePage' => __('Grupos de Investigación')])
+@extends('layouts.app', ['activePage' => 'gicapsem', 'titlePage' => __('Grupos de Investigación')])
 
 @section('content')
     <div class="content">

@@ -30,7 +30,6 @@ class Giseminv extends Model
         'siniving',
         'siproyec',
         'siarecon',
-        'sicering',
         'sititula',
         'sinumfic',
         'siinstru',

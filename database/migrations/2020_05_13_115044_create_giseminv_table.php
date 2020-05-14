@@ -25,8 +25,8 @@ class CreateGiseminvTable extends Migration
             $table->string('sicorper');
             $table->string('sicorsen');
             $table->string('sinumcel');
-            $table->string('sitelfij');
-            $table->string('sinumeip');
+            $table->string('sitelfij')->nullable();
+            $table->string('sinumeip')->nullable();
             $table->date('sifecnac');
             $table->string('sitipvin');
             $table->string('siantsen');
@@ -34,14 +34,13 @@ class CreateGiseminvTable extends Migration
             $table->string('sititulo');
             $table->string('siproyec');
             $table->string('siarecon');
-            $table->string('sicering');
             $table->string('sititula');
             $table->string('sinumfic');
             $table->string('siinstru');
             $table->date('siterlec');
             $table->date('siterpro');
             $table->string('siambfor');
-            $table->string('siprored');
+            $table->string('siprored')->nullable();
             $table->string('siparred');
             $table->string('sicurinv');
             $table->string('siniving');

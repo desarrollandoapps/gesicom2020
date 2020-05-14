@@ -112,8 +112,8 @@
                                             <label>Rol SENNOVA</label>
                                             <select class="custom-select form-control" name="sirolsen" id="sirolsen">
                                                 <option selected value="">{{__('seleccione')}}</option>
-                                                <option value="Aprendiz en grupo de investigación" {{ old('sirolsen') == "agi" ? 'selected' : '' }}>Aprendiz en grupo de investigación</option>
-                                                <option value="Aprendiz en semilleros" {{ old('sirolsen') == "as" ? 'selected' : '' }}>Aprendiz en semilleros</option>
+                                                <option value="Aprendiz en grupo de investigación" {{ old('sirolsen') == "Aprendiz en grupo de investigación" ? 'selected' : '' }}>Aprendiz en grupo de investigación</option>
+                                                <option value="Aprendiz en semilleros" {{ old('sirolsen') == "Aprendiz en semilleros" ? 'selected' : '' }}>Aprendiz en semilleros</option>
                                             </select>
                                         </div>
                                     </div>
@@ -210,7 +210,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Instructor</label>
-                                            <input type="text" class="form-control" name="sinumfic" id="sinumfic" value="{{old('sinumfic')}}">
+                                            <input type="text" class="form-control" name="siinstru" id="siinstru" value="{{old('siinstru')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -288,10 +288,9 @@
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
                                             <select class="custom-select form-control" name="sigruinv" id="sigruinv">
-                                                <option selected value="">{{__('seleccione')}}</option>
+                                                <option value="">{{__('seleccione')}}</option>
                                                 @foreach ($grupos as $item)
-                                                    <option value="{{$item->id}}">{{$item->ginombre}}</option>
-                                                    {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
+                                                    <option value="{{$item->id}}" {{old('sigruinv') == $item->id ? 'selected' : '' }}>{{$item->ginombre}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -299,10 +298,10 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Semillero de investigación vinculado</label>
-                                            <select class="custom-select form-control" name="sisemvin" id="sisemvin" value="{{old('sisemvin')}}">
+                                            <select class="custom-select form-control" name="sisemill" id="sisemill" value="{{old('sisemill')}}">
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 @foreach ($semilleros as $item)
-                                                        <option value="{{$item->id}}">{{$item->senombre}}</option>
+                                                    <option value="{{$item->id}}" {{old('sisemill') == $item->id ? 'selected' : '' }}>{{$item->senombre}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -314,8 +313,7 @@
                                     <select class="custom-select form-control" name="siproyec" id="siproyec">
                                         <option selected value="">{{__('seleccione')}}</option>
                                         @foreach ($proyectos as $item)
-                                            <option value="{{$item->id}}">{{$item->pinompro}}</option>
-                                            {{-- <option value="Si" {{ old('siparred') == "Si" ? 'selected' : '' }}>Si</option> --}}
+                                            <option value="{{$item->id}}" {{old('siproyec') == $item->id ? 'selected' : '' }}>{{$item->pinompro}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -324,7 +322,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Vinculación a un proyecto RedColSI</label>
-                                            <input type="number" class="form-control" name="siprored" value="{{old('siprored')}}">
+                                            <input type="text" class="form-control" name="siprored" value="{{old('siprored')}}">
                                         </div>
                                     </div>
                                     <div class="col">
@@ -393,8 +391,9 @@
     <script src="{{asset('adminlte')}}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <script>
         $('.date').datepicker({
+            format: 'yyyy-mm-dd',
             language: 'es',
-            autoclose: true
+            autoclose: true,
         });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();

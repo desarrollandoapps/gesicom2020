@@ -42,6 +42,7 @@ class GiseminvController extends Controller
      */
     public function store(Request $request)
     {        
+        // dd($request);
         //mensajes de error
         $mensajes = [
             'sinombre.required' => 'Debe ingresar el nombre.',
@@ -61,7 +62,7 @@ class GiseminvController extends Controller
             'sigrafor.required' => 'Debe seleccionar el último grado de formación recibido.',
             'sititulo.required' => 'Debe ingresar el título.',
             'siprofes.required' => 'Debe ingresar la profesión.',
-            'sicering.required' => 'Debe seleccionar el nivel de inglés.',
+            'siniving.required' => 'Debe seleccionar el nivel de inglés.',
             'sinumcel.required' => 'Debe ingresar el número de celular.',
             'sititula.required' => 'Debe ingresar la titulación.',
             'sinumfic.required' => 'Debe ingresar el número de ficha.',
@@ -74,7 +75,6 @@ class GiseminvController extends Controller
             'sigruinv.required' => 'Debe seleccionar un grupo de investigación.',
             'sisemill.required' => 'Debe seleccionar un semillero de investigación.',
             'siproyec.required' => 'Debe seleccionar un proyecto.',
-            'siprored.required' => 'Debe seleccionar la vinculación a un proyecto RedColSI.',
             'siparred.required' => 'Debe seleccionar la participación en RedColSI.',
             'sicurinv.required' => 'Debe seleccionar si debe realizar el curso de investigación.',
             'siforpro.required' => 'Debe seleccionar si ha formulado un proyecto.'
@@ -95,10 +95,8 @@ class GiseminvController extends Controller
             'sigrafor' =>'required',
             'sititulo' =>'required',
             'siprofes' =>'required',
-            'sicering' =>'required',
+            'siniving' =>'required',
             'sinumcel' =>'required',
-            'sitelfij' =>'required',
-            'sinumeip' =>'required',
             'sititula' =>'required',
             'sinumfic' =>'required',
             'siinstru' =>'required',
@@ -110,11 +108,9 @@ class GiseminvController extends Controller
             'sigruinv' =>'required',
             'sisemill' =>'required',
             'siproyec' =>'required',
-            'siprored' =>'required',
             'siparred' =>'required',
             'sicurinv' =>'required',
             'siforpro' =>'required',
-            'sicapaci' =>'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -146,7 +142,6 @@ class GiseminvController extends Controller
             'siniving' => $request->get('siniving'),
             'siproyec' => $request->get('siproyec'),
             'siarecon' => $request->get('siarecon'),
-            'sicering' => $request->get('sicering'),
             'sititula' => $request->get('sititula'),
             'sinumfic' => $request->get('sinumfic'),
             'siinstru' => $request->get('siinstru'),
@@ -173,7 +168,7 @@ class GiseminvController extends Controller
             //Se crea el registro del detalle de las capacitaciones del semillero
             if ($capacitaciones[$i] <> null)
             {
-                App\Gicapsem::create([
+                App\Gidetcap::create([
                     'dcsemill' => $semillero->id,
                     'dccapaci' => $capacitaciones[$i]
                 ]);
