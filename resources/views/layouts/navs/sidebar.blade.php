@@ -75,7 +75,7 @@
             <a href="#" class="nav-link {{ ($activePage == 'giseminv' || $activePage == 'gicapsem') ? ' active' : '' }}">
               <i class="nav-icon fas fa-seedling"></i>
               <p>
-                {{ __('semilleros') }}
+                {{ __('giseminv') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

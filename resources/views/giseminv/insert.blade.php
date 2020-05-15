@@ -43,10 +43,10 @@
                                             <label>Tipo de documento</label>
                                             <select class="custom-select form-control" name="sitipdoc" id="sitipdoc">
                                                 <option selected value="">{{__('seleccione')}}</option>
-                                                <option value="ti" {{ old('sitipdoc') == "ti" ? 'selected' : '' }}>Tarjeta de Identidad</option>
-                                                <option value="cc" {{ old('sitipdoc') == "cc" ? 'selected' : '' }}>Cédula de ciudadanía</option>
-                                                <option value="ce" {{ old('sitipdoc') == "ce" ? 'selected' : '' }}>Cédula de extrangería</option>
-                                                <option value="pasaporte" {{ old('sitipdoc') == "pasaporte" ? 'selected' : '' }}>Pasaporte</option>
+                                                <option value="T.I." {{ old('sitipdoc') == "T.I." ? 'selected' : '' }}>Tarjeta de Identidad</option>
+                                                <option value="C.C." {{ old('sitipdoc') == "C.C." ? 'selected' : '' }}>Cédula de ciudadanía</option>
+                                                <option value="C.C." {{ old('sitipdoc') == "C.C." ? 'selected' : '' }}>Cédula de extrangería</option>
+                                                <option value="Pasaporte" {{ old('sitipdoc') == "Pasaporte" ? 'selected' : '' }}>Pasaporte</option>
                                             </select>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Ultimo grado de formación recibido</label>
+                                            <label>Último grado de formación recibido</label>
                                             <select class="custom-select form-control" name="sigrafor" id="sigrafor">
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('sigrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
