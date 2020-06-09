@@ -41,13 +41,13 @@
                         
                             <div class="form-group">
                                 <label>Regional</label>
-                                <input type="text" class="form-control" name="giregion" value="{{$grupo->giregion}}">
+                                {!! Form::select('giregion', $regionales, $grupo->giregion, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
                             </div>
                         
                         
                             <div class="form-group">
                                 <label>Centro de Formación</label>
-                                <input type="text" class="form-control" name="gicenfor" value="{{$grupo->gicenfor}}">
+                                {!! Form::select('gicenfor', $centros, $grupo->gicenfor, ['class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
                             </div>
                         
                         
@@ -92,4 +92,20 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $('#giregion').change(function(event){        
+            console.log(event.target.value);
+                
+            $.get("../../centros/" + event.target.value, function(response, centros){
+                $('#gicenfor').empty();
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#gicenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
+    </script>
 @endsection

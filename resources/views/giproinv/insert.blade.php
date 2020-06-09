@@ -32,13 +32,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Regional</label>
-                                            <input type="text" class="form-control" name="piregion" value="{{old('piregion')}}">
+                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                            {{-- <input type="text" class="form-control" name="piregion" value="{{old('piregion')}}"> --}}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Centro de Formación</label>
-                                            <input type="text" class="form-control" name="picenfor" value="{{old('picenfor')}}">
+                                            {{-- <input type="text" class="form-control" name="picenfor" value="{{old('picenfor')}}"> --}}
+                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +65,7 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Valor presupuestado</label>
+                                            <label>Valor aprobado</label>
                                             <input type="text" class="form-control" data-inputmask='"mask": "$[9]9.999.999"' name="pivalpre" id="pivalpre" value="{{old('pivalpre')}}" data-mask>
                                         </div>
                                     </div>
@@ -101,5 +103,14 @@
     <script src="{{asset('adminlte')}}/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <script>
         $('#pivalpre').inputmask();
+        $('#piregion').change(function(event){            
+            $.get("../centros/" + event.target.value, function(response, centros){
+                $('#picenfor').empty();
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#picenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
     </script>
 @endsection

@@ -25,7 +25,7 @@
                                     <h5>Regional: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$proyecto->piregion}}</h5>
+                                    <h5 class="lead">{{$proyecto->regional}}</h5>
                                 </div>
                             </div>
                             <div class="row">
@@ -33,7 +33,7 @@
                                     <h5>Centro de formación: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$proyecto->picenfor}}</h5>
+                                    <h5 class="lead">{{$proyecto->centro}}</h5>
                                 </div>
                             </div>
                             <div class="row">
@@ -57,7 +57,7 @@
                                     <h5>Valor presupuestado: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$proyecto->pivalpre}}</h5>
+                                    <h5 class="lead">$ {{number_format($proyecto->pivalpre, 2, ',', '.')}}</h5>
                                 </div>
                             </div>
                             <div class="row">
@@ -73,7 +73,7 @@
                                     <h5>Línea programática: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$linea->lpnomlin}}</h5>
+                                    <h5 class="lead">{{$proyecto->linea}}</h5>
                                 </div>
                             </div>
                             <br>

@@ -33,13 +33,15 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Regional</label>
-                                        <input type="text" class="form-control" name="piregion" value="{{$proyecto->piregion}}">
+                                        {!! Form::select('piregion', $regionales, $proyecto->piregion, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                        {{-- <input type="text" class="form-control" name="piregion" value="{{$proyecto->piregion}}"> --}}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Centro de Formación</label>
-                                        <input type="text" class="form-control" name="picenfor" value="{{$proyecto->picenfor}}">
+                                        {!! Form::select('picenfor', $centros, $proyecto->picenfor, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
+                                        {{-- <input type="text" class="form-control" name="picenfor" value="{{$proyecto->picenfor}}"> --}}
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +67,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Valor presupuestado</label>
-                                        <input type="text" class="form-control" data-inputmask='"mask": "$[9]9.999.999"' name="pivalpre" id="pivalpre" value="{{$proyecto->pivalpre}}" data-mask>
+                                        <input type="text" class="form-control" data-inputmask='"mask": "$[9]9.999.999"' name="pivalpre" id="pivalpre" 
+                                            @if ($proyecto->pivalpre < 10000000)
+                                                value="0{{$proyecto->pivalpre}}"
+                                            @else
+                                                value="{{$proyecto->pivalpre}}"
+                                            @endif
+                                        data-mask>
                                     </div>
                                 </div>
                                 <div class="col">

@@ -26,7 +26,7 @@
                                     <h5>Regional: </h5>
                                 </div>
                                 <div class="col-sm-5">
-                                    <h5 class="lead">{{$grupo->giregion}}</h5>
+                                    <h5 class="lead">{{$grupo->regional}}</h5>
                                 </div>
                             </div>
                             <div class="row">
@@ -34,7 +34,7 @@
                                     <h5>Centro de Formación: </h5>
                                 </div>
                                 <div class="col-sm-5">
-                                    <h5 class="lead">{{$grupo->gicenfor}}</h5>
+                                    <h5 class="lead">{{$grupo->centro}}</h5>
                                 </div>
                             </div>
                             <div class="row">

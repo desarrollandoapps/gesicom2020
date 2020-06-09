@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class GiproinvController extends Controller
 {
@@ -28,8 +29,10 @@ class GiproinvController extends Controller
      */
     public function create()
     {
+        $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
+        $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
         $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->get();
-        return view('giproinv.insert', compact('lineas'));
+        return view('giproinv.insert', compact('lineas', 'regionales', 'centros'));
     }
 
     /**
@@ -91,11 +94,18 @@ class GiproinvController extends Controller
      */
     public function show($id)
     {
-        $proyecto = App\Giproinv::findorfail($id);
-        $linea = App\Gilinpro::select('lpnomlin')
-                            ->where('id', $proyecto->pilinpro)
-                            ->first();
-        return view( 'giproinv.view', compact('proyecto', 'linea') );
+        $proyecto = App\Giproinv::join('giregion', 'giproinv.piregion', 'giregion.id')
+                                ->join('gicenfor', 'giproinv.picenfor', 'gicenfor.id')
+                                ->join('gilinpro', 'giproinv.pilinpro', 'gilinpro.id')
+                                ->select('giproinv.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 'gilinpro.lpnomlin as linea')
+                                ->where('giproinv.id', $id)
+                                ->first();
+        // $proyecto = App\Giproinv::findorfail($id);
+        // $linea = App\Gilinpro::select('lpnomlin')
+        //                     ->where('id', $proyecto->pilinpro)
+        //                     ->first();
+
+        return view( 'giproinv.view', compact('proyecto') );
     }
 
     /**
@@ -108,7 +118,9 @@ class GiproinvController extends Controller
     {
         $proyecto = App\Giproinv::findorfail($id);
         $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->get();
-        return view('giproinv.edit', compact('proyecto', 'lineas'));
+        $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
+        $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
+        return view('giproinv.edit', compact('proyecto', 'lineas', 'regionales', 'centros'));
     }
 
     /**

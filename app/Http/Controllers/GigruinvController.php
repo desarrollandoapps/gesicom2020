@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Giregion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class GigruinvController extends Controller
@@ -29,7 +31,9 @@ class GigruinvController extends Controller
      */
     public function create()
     {
-        return view('gigruinv.insert');
+        $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
+        $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
+        return view('gigruinv.insert', compact('regionales', 'centros'));
     }
 
     /**
@@ -86,12 +90,15 @@ class GigruinvController extends Controller
     public function show( $id )
     {
         //
-        $grupo = App\Gigruinv::findorfail( $id );
+        $grupo = App\Gigruinv::join('giregion', 'gigruinv.giregion', 'giregion.id')
+                                ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
+                                ->select('gigruinv.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro')
+                                ->where('gigruinv.id', $id)
+                                ->first();
 
-        // Enviar a la vista retornando el grupo
         return view( 'gigruinv.view', compact('grupo') );
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,8 +110,10 @@ class GigruinvController extends Controller
         //
         $grupo = App\Gigruinv::findorfail( $id );
 
-         // Enviar a la vista retornando el grupo
-         return view( 'gigruinv.edit', compact('grupo') );
+        $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
+        $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
+
+         return view( 'gigruinv.edit', compact('grupo', 'regionales', 'centros') );
        
     }
 
