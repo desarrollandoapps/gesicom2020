@@ -106,7 +106,7 @@ class GilinproController extends Controller
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('gilinpro/create')
+            return redirect('gilinpro' . $id . '/edit')
                         ->withErrors($validator)
                         ->withInput();
         }

@@ -239,9 +239,88 @@ class GiinvestController extends Controller
      * @param  \App\Giinvest  $giinvest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Giinvest $giinvest)
+    public function update(Request $request, $id)
     {
-        //
+        //mensajes de error
+        $mensajes = [
+            'innombre.required' => 'Debe ingresar el nombre.',
+            'intipdoc.required' => 'Debe seleccionar el tipo de documento.',
+            'innumdoc.required' => 'Debe ingresar el número del documento.',
+            'innumdoc.unique' => 'Ya exite un investigador con este número de identificación.',
+            'infecexp.required' => 'Debe ingresar la fecha de expedición del documento.',
+            'inmunexp.required' => 'Debe ingresar el municipio de expedición del documento.',
+            'infecnac.required' => 'Debe ingresar la fecha de nacimiento.',
+            'incorper.required' => 'Debe ingresar el correo electrónico personal.',
+            'incorper.email' => 'Debe ingresar una dirección de correo personal válida.',
+            'incorsen.required' => 'Debe ingresar el correo electrónico SENA.',
+            'incorsen.email' => 'Debe ingresar una dirección de correo SENA válida.',
+            'innumcel.required' => 'Debe ingresar el número de celular.',
+            'ingrafor.required' => 'Debe seleccionar el último grado de formación recibido.',
+            'intitulo.required' => 'Debe ingresar el título.',
+            'inprofes.required' => 'Debe ingresar la profesión.',
+            'inniving.required' => 'Debe seleccionar el nivel de inglés.',
+            'inregion.required' => 'Debe seleccionar la regional.',
+            'incenfor.required' => 'Debe seleccionar el centro de cormación.',
+            'ingruinv.required' => 'Debe seleccionar el grupo de investigación.',
+            'inlininv.required' => 'Debe seleccionar la línea de investigación.',
+            'inrolsen.required' => 'Debe seleccionar el rol en SENNOVA.',
+            'intipvin.required' => 'Debe ingresar el tipo de vinculación.',
+            'inporded.required' => 'Debe ingresar el porcentaje de dedicación al grupo',
+            'inantsen.required' => 'Debe ingresar la antigüedad en el SENA.',
+            'inprofor.required' => 'Debe ingresar el programa de formación (No aplica en caso contrario).',
+            'inarecon.required' => 'Debe seleccionar el área de conocimiento.',
+            'incarinv.required' => 'Debe seleccionar un cargo.',
+            'innumgra.required' => 'Debe seleccionar el grado.',
+            'insemill.required' => 'Debe seleccionar el semillero de investigación.',
+            'inasimen.required' => 'Debe ingresar la asignación mensual.',
+            'innumcon.required' => 'Debe ingresar el número de contrato (No aplica en caso contrario).',
+            'inestcon.required' => 'Debe seleccionar si está contratado.',
+        ];
+
+        // Validar que los campos obligatorios tengan valor
+        $validator = Validator::make($request->all(), [
+            'innombre' => 'required',
+            // 'intipdoc' => 'required',
+            // 'innumdoc' =>'required', 
+            'infecexp' => 'required',
+            'inmunexp' => 'required',
+            'infecnac' => 'required',
+            'incorper' => 'required|email:rfc,dns',
+            'incorsen' => 'required|email:rfc,dns',
+            'innumcel' => 'required',
+            'ingrafor' => 'required',
+            'intitulo' => 'required',
+            'inprofes' => 'required',
+            'inniving' => 'required',
+            'inregion' => 'required',
+            'incenfor' => 'required',
+            'ingruinv' => 'required',
+            'inlininv' => 'required',
+            'insemill' => 'required',
+            'inrolsen' => 'required',
+            'intipvin' => 'required',
+            'incarinv' => 'required',
+            'innumgra' => 'required',
+            'inporded' => 'required',
+            'inantsen' => 'required',
+            'inprofor' => 'required',
+            'inarecon' => 'required',
+            'inasimen' => 'required',
+            'innumcon' => 'required',
+            'inestcon' => 'required'
+        ], $mensajes);
+
+        if ($validator->fails()) {
+            return redirect('giinvest/' . $id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $investigador = App\Giinvest::findorfail($id);
+        $investigador->update($request->all());
+
+        return redirect()->route( 'giinvest.index' )
+                         ->with( 'exito', 'Investigador modificado con éxito' );
     }
 
     /**
@@ -250,8 +329,12 @@ class GiinvestController extends Controller
      * @param  \App\Giinvest  $giinvest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Giinvest $giinvest)
+    public function destroy($id)
     {
-        //
+        $investigador = App\Giinvest::findorfail($id);
+        $investigador->delete();
+
+        return redirect()->route( 'giinvest.index' )
+                         ->with( 'exito', 'Investigador eliminado con éxito' );
     }
 }

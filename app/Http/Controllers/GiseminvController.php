@@ -300,7 +300,7 @@ class GiseminvController extends Controller
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('giseminv/create')
+            return redirect('giseminv' . $id . '/edit')
                         ->withErrors($validator)
                         ->withInput();
         }

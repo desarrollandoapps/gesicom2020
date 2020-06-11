@@ -157,7 +157,7 @@ class GiproinvController extends Controller
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('giproinv/create')
+            return redirect('giproinv' . $id . '/edit')
                         ->withErrors($validator)
                         ->withInput();
         }
