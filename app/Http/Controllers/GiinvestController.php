@@ -13,8 +13,17 @@ class GiinvestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if( $request )
+        {
+            $query = $request->buscar;
+            $investigadores = App\Giinvest::where('innombre', 'LIKE', '%' . $query . '%')
+                                            ->orderby('innombre', 'asc')
+                                            ->get();
+            return view('giinvest.index', compact('investigadores', 'query'));
+        }
+
         $investigadores = App\Giinvest::join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')

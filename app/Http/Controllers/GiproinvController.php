@@ -14,8 +14,18 @@ class GiproinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if( $request )
+        {
+            $query = $request->buscar;
+            $proyectos = App\Giproinv::where('pinompro', 'LIKE', '%' . $query . '%')
+                                        ->orderby('pianofor', 'desc')
+                                        ->orderby('pinompro', 'asc')
+                                        ->get();
+            return view('giproinv.index', compact('proyectos', 'query'));
+        }
+
         $proyectos = App\Giproinv::orderby('pianofor', 'desc')
                                 ->orderby('pinompro', 'asc')
                                 ->get();

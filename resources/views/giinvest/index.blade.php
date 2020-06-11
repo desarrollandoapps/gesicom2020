@@ -41,7 +41,7 @@
                                                     <form action="{{route('giinvest.destroy', $item->id)}}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación del grupo?')"><i class="fas fa-trash"></i></button>
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación del investigador?')"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>

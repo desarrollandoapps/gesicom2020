@@ -13,8 +13,17 @@ class GicapsemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if( $request )
+        {
+            $query = $request->buscar;
+            $capacitaciones = App\Gicapsem::where('csnombre', 'LIKE', '%' . $query . '%')
+                                            ->orderby('csnombre', 'asc')
+                                            ->get();
+            return view('gicapsem.index', compact('capacitaciones', 'query'));
+        }
+        
         $capacitaciones = App\Gicapsem::orderby( 'csnombre', 'asc' )->get();
         return view('gicapsem.index', compact('capacitaciones'));
     }

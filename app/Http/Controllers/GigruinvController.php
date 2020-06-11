@@ -15,8 +15,17 @@ class GigruinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //Si se reciben datos de buscar
+        if( $request )
+        {
+            $query = $request->buscar;
+            $grupos = App\Gigruinv::where('ginombre', 'LIKE', '%' . $query . '%')
+                                            ->orderby('ginombre', 'asc')
+                                            ->get();
+            return view('gigruinv.index', compact('grupos', 'query'));
+        }
         // Listar todos los registros estableciendo ordenamiento, campo y tipo
         $grupos = App\Gigruinv::orderby( 'ginombre', 'asc' )->get();
 

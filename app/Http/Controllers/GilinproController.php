@@ -13,8 +13,16 @@ class GilinproController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if( $request )
+        {
+            $query = $request->buscar;
+            $lineas = App\Gilinpro::where('lpnomlin', 'LIKE', '%' . $query . '%')
+                                            ->orderby('lpnomlin', 'asc')
+                                            ->get();
+            return view('gilinpro.index', compact('lineas', 'query'));
+        }
         $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->get();
         return view('gilinpro.index', compact('lineas'));
     }

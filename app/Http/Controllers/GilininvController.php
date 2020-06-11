@@ -14,8 +14,17 @@ class GilininvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if( $request )
+        {
+            $query = $request->buscar;
+            $lineas = App\Gilininv::where('lideslin', 'LIKE', '%' . $query . '%')
+                                            ->orderby('lideslin', 'asc')
+                                            ->get();
+            return view('gilininv.index', compact('lineas', 'query'));
+        }
+
         $lineas = App\Gilininv::join('gigruinv', 'gilininv.licodgru', 'gigruinv.id')
                                 ->select('gilininv.*', 'gigruinv.ginombre as grupo')
                                 ->orderby( 'lideslin', 'asc' )
