@@ -57,7 +57,7 @@
                                     <h5>Valor presupuestado: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">$ {{number_format($proyecto->pivalpre, 2, ',', '.')}}</h5>
+                                    <h5 class="lead">$ {{number_format($proyecto->pivalpre, 0, ',', '.')}}</h5>
                                 </div>
                             </div>
                             <div class="row">

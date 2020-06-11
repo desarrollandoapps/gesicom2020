@@ -11,6 +11,7 @@ class Gisemill extends Model
     protected $table = "gisemill";
     protected $fillable = [
         'seidsemi',
+        'segruinv',
         'senombre'
     ];
 }

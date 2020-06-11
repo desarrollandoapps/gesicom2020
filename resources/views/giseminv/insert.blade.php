@@ -287,23 +287,25 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
-                                            <select class="custom-select form-control" name="sigruinv" id="sigruinv">
+                                            {!! Form::select('sigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'sigruinv']) !!}
+                                            {{-- <select class="custom-select form-control" name="sigruinv" id="sigruinv">
                                                 <option value="">{{__('seleccione')}}</option>
                                                 @foreach ($grupos as $item)
                                                     <option value="{{$item->id}}" {{old('sigruinv') == $item->id ? 'selected' : '' }}>{{$item->ginombre}}</option>
                                                 @endforeach
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Semillero de investigación vinculado</label>
-                                            <select class="custom-select form-control" name="sisemill" id="sisemill" value="{{old('sisemill')}}">
+                                            {!! Form::select('sisemill', $semilleros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'sisemill']) !!}
+                                            {{-- <select class="custom-select form-control" name="sisemill" id="sisemill" value="{{old('sisemill')}}">
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 @foreach ($semilleros as $item)
                                                     <option value="{{$item->id}}" {{old('sisemill') == $item->id ? 'selected' : '' }}>{{$item->senombre}}</option>
                                                 @endforeach
-                                            </select>
+                                            </select> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -397,5 +399,14 @@
         });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();
+        $('#sigruinv').change(function(event){            
+            $.get("../semilleros/" + event.target.value, function(response, semilleros){
+                $('#sisemill').empty();
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#sisemill').append("<option value='" + response[i].id + "'>" + response[i].senombre + "</option>");
+                }
+            });
+        });
     </script>
 @endsection

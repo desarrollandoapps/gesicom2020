@@ -31,7 +31,7 @@
                         
                             <div class="form-group">
                                 <label>Código Colciencias</label>
-                                <input type="text" class="form-control" name="gicodgru" value="{{$grupo->gicodgru}}">
+                                <input type="text" class="form-control" name="gicodgru" value="{{$grupo->gicodgru}}" readonly>
                             </div>
                         
                             <div class="form-group">

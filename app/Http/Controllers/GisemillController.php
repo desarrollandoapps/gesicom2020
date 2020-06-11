@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 use App;
@@ -15,7 +16,9 @@ class GisemillController extends Controller
      */
     public function index()
     {
-        $semilleros = App\Gisemill::orderby('senombre', 'asc')->get();
+        $semilleros = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
+                                    ->select('gisemill.*', 'gigruinv.ginombre as grupo')
+                                    ->orderby('senombre', 'asc')->get();
         return view('gisemill.index', compact('semilleros'));
     }
 
@@ -26,7 +29,8 @@ class GisemillController extends Controller
      */
     public function create()
     {
-        return view('gisemill.insert');
+        $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
+        return view('gisemill.insert', compact('grupos'));
     }
 
     /**
@@ -41,6 +45,7 @@ class GisemillController extends Controller
         $mensajes = [
             'seidsemi.required' => 'Debe ingresar el código del semillero.',
             'seidsemi.unique' => 'Ya hay un semillero con el código que intenta asignar.',
+            'segruinv.required' => 'Debe seleccionar el grupo de investigación.',
             'senombre.required' => 'Debe ingresar el nombre del semillero.',
             'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.'
         ];
@@ -48,7 +53,8 @@ class GisemillController extends Controller
         // Validar que los campos obligatorios tengan valor
         $validator = Validator::make($request->all(), [
             'seidsemi'=>'required|unique:gisemill',
-            'senombre'=>'required|unique:gisemill'
+            'senombre'=>'required|unique:gisemill',
+            'segruinv'=>'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -73,7 +79,10 @@ class GisemillController extends Controller
      */
     public function show($id)
     {
-        $semillero = App\Gisemill::findorfail($id);
+        $semillero = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
+                                ->select('gisemill.*', 'gigruinv.ginombre as grupo')
+                                ->where('gisemill.id', $id)
+                                ->first();
         return view('gisemill.view', compact('semillero'));
     }
 
@@ -86,7 +95,8 @@ class GisemillController extends Controller
     public function edit($id)
     {
         $semillero = App\Gisemill::findorfail($id);
-        return view('gisemill.edit', compact('semillero'));
+        $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
+        return view('gisemill.edit', compact('semillero', 'grupos'));
     }
 
     /**
@@ -98,25 +108,22 @@ class GisemillController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         //mensajes de error
         $mensajes = [
             'seidsemi.required' => 'Debe ingresar el código del semillero.',
             'seidsemi.unique' => 'Ya hay un semillero con el código que intenta asignar.',
+            'segruinv.required' => 'Debe seleccionar el grupo de investigación.',
             'senombre.required' => 'Debe ingresar el nombre del semillero.',
             'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.'
         ];
 
         // Validar que los campos obligatorios tengan valor
-        $validator = Validator::make($request->all(), [
-            'seidsemi'=>'required|unique:gisemill',
-            'senombre'=>'required|unique:gisemill'
+        $request->validate( [
+            'seidsemi'=>'required',
+            'senombre'=>'required',
+            'segruinv'=>'required'
         ], $mensajes);
-
-        if ($validator->fails()) {
-            return redirect('gisemill/update')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
 
         $semillero = App\Gisemill::findorfail($id);
         $semillero->update($request->all());

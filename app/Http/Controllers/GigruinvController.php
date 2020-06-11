@@ -113,7 +113,7 @@ class GigruinvController extends Controller
         $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
         $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
 
-         return view( 'gigruinv.edit', compact('grupo', 'regionales', 'centros') );
+        return view( 'gigruinv.edit', compact('grupo', 'regionales', 'centros') );
        
     }
 
@@ -126,15 +126,26 @@ class GigruinvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //mensajes de error
+        $mensajes = [
+            'gicodgru.required' => 'Debe ingresar el código del grupo ante Colciencias.',
+            'gicodgru.unique' => 'Ya hay un grupo de investigación con el código que intenta asignar.',
+            'giregpnd.required' => 'Debe ingresar la región.',
+            'giregion.required' => 'Debe ingresar la regional.',
+            'gicenfor.required' => 'Debe ingresar el centro de formación.',
+            'ginombre.required' => 'Debe ingresar el nombre del grupo.',
+            'gimescre.required' => 'Debe selecionar el mes de creación.',
+            'gianocre.required' => 'Debe ingresar el año de creación.'
+        ];
         $request->validate( [
-            'gicodgru'=>'required', 
+            'gicodgru'=>'required',
             'giregpnd'=>'required', 
             'giregion'=>'required', 
             'gicenfor'=>'required', 
             'ginombre'=>'required', 
             'gimescre'=>'required', 
-            'gianocre'=>'required' ] );
+            'gianocre'=>'required' 
+        ], $mensajes);
 
         $grupo = App\Gigruinv::findorfail( $id );
 
@@ -160,4 +171,11 @@ class GigruinvController extends Controller
         return redirect()->route( 'gigruinv.index' )
                          ->with( 'exito', 'Grupo de investigación eliminado con éxito' );
     }
+
+    public function darGrupos(Request $request, $centro)
+    {
+        $grupos = App\Gigruinv::where('gicenfor', $centro)->get();
+        return response()->json($grupos);
+    }
+    
 }

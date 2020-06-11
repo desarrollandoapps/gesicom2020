@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGisemillTable extends Migration
+class CreateGilininvsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateGisemillTable extends Migration
      */
     public function up()
     {
-        Schema::create('gisemill', function (Blueprint $table) {
+        Schema::create('gilininv', function (Blueprint $table) {
             $table->id();
-            $table->string('seidsemi');
-            $table->string('senombre');
-            $table->bigInteger('segruinv')->unsigned();
-            $table->foreign('segruinv')->references('id')->on('gigruinv');
+            $table->string('lideslin'); 
+            $table->bigInteger('licodgru')->unsigned();
+            $table->foreign('licodgru')->references('id')->on('gigruinv');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ class CreateGisemillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gisemill');
+        Schema::dropIfExists('gilininv');
     }
 }

@@ -50,10 +50,11 @@
     "Confirm New Password": "Confirmación de la contraseña nueva",
     "proyectos": "Proyectos",
     "gigruinv": "Grupo de Investigación",
-    "gilininv": "Línea de investigación",
+    "gilininv": "Líneas de investigación",
     "giseminv": "Integrante de Semillero",
     "gicapsem": "Capacitación de semillero",
     "gilinpro": "Línea programática",
     "giproinv": "Proyecto",
-    "gisemill": "Semillero de investigación"
+    "gisemill": "Semillero de investigación",
+    "giinvest": "Investigador"
 }

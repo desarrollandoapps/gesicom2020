@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gisemill', 'titlePage' => __('Detalle del Semillero')])
+@extends('layouts.app', ['activePage' => 'gilininv', 'titlePage' => __('Detalle de Línea de investigación')])
 @section('searchHidden')
     hidden
 @endsection
@@ -9,36 +9,28 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h3 class="card-title">Detalle de {{ __('gisemill') }}</h3>
+                            <h3 class="card-title">Detalle de {{ __('gilininv') }}</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Código: </h5>
+                                    <h5>Nombre de {{ __('gilininv') }}: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$semillero->seidsemi}}</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <h5>Grupo de investigación: </h5>
-                                </div>
-                                <div class="col-md-5">
-                                    <h5 class="lead">{{$semillero->grupo}}</h5>
+                                    <h5 class="lead">{{$linea->lideslin}}</h5>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Nombre de {{ __('gisemill') }}: </h5>
+                                    <h5>{{ __('gigruinv') }}: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$semillero->senombre}}</h5>
+                                    <h5 class="lead">{{$linea->grupo}}</h5>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
-                                <a href="{{route('gisemill.index')}}"><button class="btn btn-primary">Regresar</button></a>
+                                <a href="{{route('gilininv.index')}}"><button class="btn btn-primary">Regresar</button></a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gisemill', 'titlePage' => __('Semillero de Investigación')])
+@extends('layouts.app', ['activePage' => 'gilininv', 'titlePage' => __('Líneas de investigación')])
 
 @section('content')
     <div class="content">
@@ -14,7 +14,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header card-header-primary">
-                          <h4 class="card-title ">{{ __('gisemill') }}</h4>
+                          <h4 class="card-title ">{{ __('gilininv') }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -27,17 +27,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($semilleros as $item)
+                                        @foreach ($lineas as $item)
                                             <tr>
-                                                <td> {{$item->senombre}}</td>
+                                                <td> {{$item->lideslin}}</td>
                                                 <td> {{$item->grupo}}</td>
                                                 <td class="td-actions text-right">
-                                                    <a href="{{route('gisemill.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
-                                                    <a href="{{route('gisemill.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
-                                                    <form action="{{route('gisemill.destroy', $item->id)}}" method="POST" class="d-inline">
+                                                    <a href="{{route('gilininv.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
+                                                    <a href="{{route('gilininv.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
+                                                    <form action="{{route('gilininv.destroy', $item->id)}}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de la capacitación?')"><i class="fas fa-trash"></i></button>
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de la línea de investigación?')"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -45,7 +45,7 @@
                                     </tbody>
                                 </table>
                                 <div class="row">
-                                    <a href="{{route('gisemill.create')}} "><button class="btn btn-primary">Crear {{ __('gisemill') }}</button></a>
+                                    <a href="{{route('gilininv.create')}} "><button class="btn btn-primary">Crear {{ __('gilininv') }}</button></a>
                                 </div>
                             </div>
                         </div>

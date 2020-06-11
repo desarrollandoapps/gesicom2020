@@ -25,7 +25,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ ($activePage == 'gigruinv' || $activePage == 'gisemill') ? ' active' : '' }}">
+            <a href="#" class="nav-link {{ ($activePage == 'gigruinv' || $activePage == 'gisemill' || $activePage == 'gilininv') ? ' active' : '' }}">
               <i class="nav-icon fas fa-flask"></i>
               <p>
                 {{ __('gigruinv') }}
@@ -43,6 +43,12 @@
                 <a href="{{ route('gisemill.index') }}"" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ __('gisemill') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'gilininv' ? ' active' : '' }}">
+                <a href="{{ route('gilininv.index') }}"" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ __('gilininv') }}</p>
                 </a>
               </li>
             </ul>
@@ -72,6 +78,23 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link {{ ($activePage == 'giinvest' || $activePage == 'giinvest') ? ' active' : '' }}">
+              <i class="nav-icon fas fa-user-tie"></i>
+              <p>
+                {{ __('giinvest') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item{{ $activePage == 'giinvest' ? ' active' : '' }}">
+                <a href="{{ route('giinvest.index') }}"" class="nav-link">
+                  <i class="fas fa-user-tie nav-icon"></i>
+                  <p>{{ __('giinvest') }}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ ($activePage == 'giseminv' || $activePage == 'gicapsem') ? ' active' : '' }}">
               <i class="nav-icon fas fa-seedling"></i>
               <p>
@@ -82,7 +105,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
                 <a href="{{ route('giseminv.index') }}"" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-seedling nav-icon"></i>
                   <p>{{ __('giseminv') }}</p>
                 </a>
               </li>
