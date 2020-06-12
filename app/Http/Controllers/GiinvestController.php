@@ -15,23 +15,16 @@ class GiinvestController extends Controller
      */
     public function index(Request $request)
     {
-        if( $request )
-        {
-            $query = $request->buscar;
-            $investigadores = App\Giinvest::where('innombre', 'LIKE', '%' . $query . '%')
-                                            ->orderby('innombre', 'asc')
-                                            ->get();
-            return view('giinvest.index', compact('investigadores', 'query'));
-        }
-
-        $investigadores = App\Giinvest::join('giregion', 'giinvest.inregion', 'giregion.id')
+        $query = $request->buscar;
+        $investigadores = App\Giinvest::where('giinvest.innombre', 'LIKE', '%' . $query . '%')
+                                        ->join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 'gigruinv.ginombre as grupo')
-                                        ->orderBy('innombre', 'asc')->get();
+                                        ->orderBy('giinvest.innombre', 'asc')->get();
 
-        return view('giinvest.index', compact( 'investigadores' ) );
-    }
+        return view('giinvest.index', compact('investigadores', 'query'));
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -45,24 +38,13 @@ class GiinvestController extends Controller
         $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
         $lineas = App\Gilininv::orderby('lideslin', 'asc')->pluck('lideslin', 'id')->all();
         $semilleros = App\Gisemill::orderby('senombre', 'asc')->pluck('senombre', 'id')->all();
-        $roles = [
-            'Líder Sennova', 
-            'Líder de grupo de investigación', 
-            'Líder de semillero de investigación',
-            'Investigador en grupo de investigación',
-            'Aprendiz en grupo de investigación',
-            'Aprendiz en semilleros',
-            'Instructor investigador en semillero',
-            'Gestor SENNOVA',
-            'Asesor SENNOVA DG',
-            'Otro'
-        ];
-        $vinculaciones = ['Planta', 'Planta temporal', 'Contratista'];
-        $cargos = ['Instructor', 'Asesor', 'Profesional', 'Técnico', 'No aplica'];
-        $grados = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'No aplica'];
+        $roles = App\Girolinv::orderby('rinombre', 'asc')->pluck('rinombre', 'id')->all();
+        $vinculaciones = App\Givininv::orderby('vinombre', 'asc')->pluck('vinombre', 'id')->all();
+        $cargos = App\Gicarinv::orderby('cinombre', 'asc')->pluck('cinombre', 'id')->all();
+        $grados = App\Gigrados::orderby('grnombre', 'asc')->pluck('grnombre', 'id')->all();
 
-        return view('giinvest.insert', compact('regionales', 'centros','grupos', 'lineas', 
-                                                'semilleros', 'roles', 'vinculaciones', 'cargos', 
+        return view('giinvest.insert', compact('regionales', 'centros','grupos', 'lineas',
+                                                'semilleros', 'roles', 'vinculaciones', 'cargos',
                                                 'grados'));
     }
 
@@ -114,7 +96,7 @@ class GiinvestController extends Controller
         $validator = Validator::make($request->all(), [
             'innombre' => 'required',
             'intipdoc' => 'required',
-            'innumdoc' =>'required|unique:giinvest', 
+            'innumdoc' =>'required|unique:giinvest',
             'infecexp' => 'required',
             'inmunexp' => 'required',
             'infecnac' => 'required',
@@ -164,38 +146,26 @@ class GiinvestController extends Controller
      */
     public function show($id)
     {
-        $roles = [
-            'Líder Sennova', 
-            'Líder de grupo de investigación', 
-            'Líder de semillero de investigación',
-            'Investigador en grupo de investigación',
-            'Aprendiz en grupo de investigación',
-            'Aprendiz en semilleros',
-            'Instructor investigador en semillero',
-            'Gestor SENNOVA',
-            'Asesor SENNOVA DG',
-            'Otro'
-        ];
-        $vinculaciones = ['Planta', 'Planta temporal', 'Contratista'];
-        $cargos = ['Instructor', 'Asesor', 'Profesional', 'Técnico', 'No aplica'];
-        $grados = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'No aplica'];
-
         $investigador = App\Giinvest::join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gilininv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gisemill', 'giinvest.insemill', 'gisemill.id')
-                                        ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 
-                                        'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero')
+
+                                        ->join('girolinv', 'giinvest.inrolsen', 'girolinv.id')
+                                        ->join('givininv', 'giinvest.intipvin', 'givininv.id')
+                                        ->join('gicarinv', 'giinvest.incarinv', 'gicarinv.id')
+                                        ->join('gigrados', 'giinvest.innumgra', 'gigrados.id')
+
+                                        ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro',
+                                        'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero',
+                                        'girolinv.rinombre as rol', 'givininv.vinombre as vinculacion', 'gicarinv.cinombre as cargo',
+                                        'gigrados.grnombre as grado')
                                         ->where('giinvest.id', $id)
-                                        ->orderBy('innombre', 'asc')
+                                        ->orderBy('giinvest.innombre', 'asc')
                                         ->first();
 
-        $rol = $roles[$investigador->inrolsen];
-        $vinculacion = $vinculaciones[$investigador->intipvin];
-        $cargo = $cargos[$investigador->incarinv];
-        $grado = $grados[$investigador->innumgra];
-        return view('giinvest.view', compact('investigador', 'rol', 'cargo', 'grado', 'vinculacion'));
+        return view('giinvest.view', compact('investigador'));
     }
 
     /**
@@ -211,33 +181,31 @@ class GiinvestController extends Controller
         $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
         $lineas = App\Gilininv::orderby('lideslin', 'asc')->pluck('lideslin', 'id')->all();
         $semilleros = App\Gisemill::orderby('senombre', 'asc')->pluck('senombre', 'id')->all();
-        $roles = [
-            'Líder Sennova', 
-            'Líder de grupo de investigación', 
-            'Líder de semillero de investigación',
-            'Investigador en grupo de investigación',
-            'Aprendiz en grupo de investigación',
-            'Aprendiz en semilleros',
-            'Instructor investigador en semillero',
-            'Gestor SENNOVA',
-            'Asesor SENNOVA DG',
-            'Otro'
-        ];
-        $vinculaciones = ['Planta', 'Planta temporal', 'Contratista'];
-        $cargos = ['Instructor', 'Asesor', 'Profesional', 'Técnico', 'No aplica'];
-        $grados = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 'No aplica'];
+        $roles = App\Girolinv::orderby('rinombre', 'asc')->pluck('rinombre', 'id')->all();
+        $vinculaciones = App\Givininv::orderby('vinombre', 'asc')->pluck('vinombre', 'id')->all();
+        $cargos = App\Gicarinv::orderby('cinombre', 'asc')->pluck('cinombre', 'id')->all();
+        $grados = App\Gigrados::orderby('grnombre', 'asc')->pluck('grnombre', 'id')->all();
+
         $investigador = App\Giinvest::join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gilininv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gisemill', 'giinvest.insemill', 'gisemill.id')
-                                        ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 
-                                        'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero')
+
+                                        ->join('girolinv', 'giinvest.inrolsen', 'girolinv.id')
+                                        ->join('givininv', 'giinvest.intipvin', 'givininv.id')
+                                        ->join('gicarinv', 'giinvest.incarinv', 'gicarinv.id')
+                                        ->join('gigrados', 'giinvest.innumgra', 'gigrados.id')
+
+                                        ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro',
+                                        'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero',
+                                        'girolinv.rinombre as rol', 'givininv.vinombre as vinculacion', 'gicarinv.cinombre as cargo',
+                                        'gigrados.grnombre as grado')
                                         ->where('giinvest.id', $id)
-                                        ->orderBy('innombre', 'asc')
+                                        ->orderBy('giinvest.innombre', 'asc')
                                         ->first();
-        return view('giinvest.edit', compact('investigador', 'regionales', 'centros','grupos', 'lineas', 
-                                                'semilleros', 'roles', 'vinculaciones', 'cargos', 
+        return view('giinvest.edit', compact('investigador', 'regionales', 'centros','grupos', 'lineas',
+                                                'semilleros', 'roles', 'vinculaciones', 'cargos',
                                                 'grados'));
     }
 
@@ -290,7 +258,7 @@ class GiinvestController extends Controller
         $validator = Validator::make($request->all(), [
             'innombre' => 'required',
             // 'intipdoc' => 'required',
-            // 'innumdoc' =>'required', 
+            // 'innumdoc' =>'required',
             'infecexp' => 'required',
             'inmunexp' => 'required',
             'infecnac' => 'required',
