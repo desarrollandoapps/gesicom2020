@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call([GirolinvSeeder::class]);
         $this->call([GivininvSeeder::class]);
         $this->call([GigradosSeeder::class]);
+        $this->call([GiproforSeeder::class]);
     }
 }
