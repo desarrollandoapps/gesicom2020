@@ -260,7 +260,8 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Programa de formación</label>
-                                        <input type="text" class="form-control" name="inprofor" id="inprofor" value="{{$investigador->inprofor}}">
+                                        {!! Form::select('inprofor', $programas, $investigador->inprofor, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'inprofor']) !!}
+                                        {{-- <input type="text" class="form-control" name="inprofor" id="inprofor" value="{{$investigador->inprofor}}"> --}}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -293,7 +294,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Asignación salarial mensual</label>
-                                        <input type="number" class="form-control" name="inasimen" id="inasimen" value="{{$investigador->inasimen}}">
+                                        <input type="text" class="form-control" data-inputmask='"mask": "$[9].999.999"' name="inasimen" id="inasimen" value="{{$investigador->inasimen}}" data-mask>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -339,6 +340,7 @@
         });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();
+        $('#inasimen').inputmask();
         $('#inregion').change(function(event){            
             $.get("../centros/" + event.target.value, function(response, centros){
                 $('#incenfor').empty();

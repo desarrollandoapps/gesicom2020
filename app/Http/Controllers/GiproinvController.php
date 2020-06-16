@@ -54,13 +54,13 @@ class GiproinvController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         //mensajes de error
         $mensajes = [
             'pinompro.required' => 'Debe ingresar el nombre del proyecto.',
             'pinompro.unique' => 'Ya hay un proyecto con el nombre que intenta asignar.',
             'piregion.required' => 'Debe ingresar la regional.',
             'picenfor.required' => 'Debe ingresar el centro de formación.',
+            'pigruinv.required' => 'Debe ingresar el Grupo de investigación.',
             'pianofor.required' => 'Debe ingresar el año de formulación.',
             'pinumrad.required' => 'Debe ingresar el número de radicado.',
             'pivalpre.required' => 'Debe ingresar el valor presupuestado.',
@@ -72,6 +72,7 @@ class GiproinvController extends Controller
         $validator = Validator::make($request->all(), [
             'piregion' => 'required',
             'picenfor' => 'required',
+            'pigruinv' => 'required',
             'pianofor' => 'required',
             'pinompro' => 'required|unique:giproinv',
             'pinumrad' => 'required',
@@ -107,14 +108,13 @@ class GiproinvController extends Controller
     {
         $proyecto = App\Giproinv::join('giregion', 'giproinv.piregion', 'giregion.id')
                                 ->join('gicenfor', 'giproinv.picenfor', 'gicenfor.id')
+                                ->join('gigruinv', 'giproinv.pigruinv', 'gigruinv.id')
                                 ->join('gilinpro', 'giproinv.pilinpro', 'gilinpro.id')
-                                ->select('giproinv.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 'gilinpro.lpnomlin as linea')
+                                ->select('giproinv.*', 'giregion.renombre as regional', 
+                                'gicenfor.cfnombre as centro', 'gilinpro.lpnomlin as linea',
+                                'gigruinv.ginombre as grupo')
                                 ->where('giproinv.id', $id)
                                 ->first();
-        // $proyecto = App\Giproinv::findorfail($id);
-        // $linea = App\Gilinpro::select('lpnomlin')
-        //                     ->where('id', $proyecto->pilinpro)
-        //                     ->first();
 
         return view( 'giproinv.view', compact('proyecto') );
     }
@@ -131,7 +131,8 @@ class GiproinvController extends Controller
         $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->get();
         $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
         $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
-        return view('giproinv.edit', compact('proyecto', 'lineas', 'regionales', 'centros'));
+        $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
+        return view('giproinv.edit', compact('proyecto', 'lineas', 'regionales', 'centros', 'grupos'));
     }
 
     /**
@@ -149,6 +150,7 @@ class GiproinvController extends Controller
             'pinompro.unique' => 'Ya hay un proyecto con el nombre que intenta asignar.',
             'piregion.required' => 'Debe ingresar la regional.',
             'picenfor.required' => 'Debe ingresar el centro de formación.',
+            'pigruinv.required' => 'Debe ingresar el Grupo de investigación.',
             'pianofor.required' => 'Debe ingresar el año de formulación.',
             'pinumrad.required' => 'Debe ingresar el número de radicado.',
             'pivalpre.required' => 'Debe ingresar el valor presupuestado.',
@@ -156,9 +158,11 @@ class GiproinvController extends Controller
             'pilinpro.required' => 'Debe seleccionar una línea programática.'
         ];
 
+        // Validar que los campos obligatorios tengan valor
         $validator = Validator::make($request->all(), [
             'piregion' => 'required',
             'picenfor' => 'required',
+            'pigruinv' => 'required',
             'pianofor' => 'required',
             'pinompro' => 'required',
             'pinumrad' => 'required',
@@ -168,7 +172,7 @@ class GiproinvController extends Controller
         ], $mensajes);
 
         if ($validator->fails()) {
-            return redirect('giproinv' . $id . '/edit')
+            return redirect('giproinv/' . $id . '/edit')
                         ->withErrors($validator)
                         ->withInput();
         }

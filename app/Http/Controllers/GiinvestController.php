@@ -20,6 +20,7 @@ class GiinvestController extends Controller
                                         ->join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
+                                        ->join('giprofor', 'giinvest.inprofor', 'giprofor.id')
                                         ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro', 'gigruinv.ginombre as grupo')
                                         ->orderBy('giinvest.innombre', 'asc')->get();
 
@@ -42,10 +43,11 @@ class GiinvestController extends Controller
         $vinculaciones = App\Givininv::orderby('vinombre', 'asc')->pluck('vinombre', 'id')->all();
         $cargos = App\Gicarinv::orderby('cinombre', 'asc')->pluck('cinombre', 'id')->all();
         $grados = App\Gigrados::orderby('grnombre', 'asc')->pluck('grnombre', 'id')->all();
+        $programas = App\Giprofor::orderby('pfnombre', 'asc')->pluck('pfnombre', 'id')->all();
 
         return view('giinvest.insert', compact('regionales', 'centros','grupos', 'lineas',
                                                 'semilleros', 'roles', 'vinculaciones', 'cargos',
-                                                'grados'));
+                                                'grados', 'programas'));
     }
 
     /**
@@ -100,8 +102,8 @@ class GiinvestController extends Controller
             'infecexp' => 'required',
             'inmunexp' => 'required',
             'infecnac' => 'required',
-            'incorper' => 'required|email',
-            'incorsen' => 'required|email',
+            'incorper' => 'required|email:rfc,dns',
+            'incorsen' => 'required|email:rfc,dns',
             'innumcel' => 'required',
             'ingrafor' => 'required',
             'intitulo' => 'required',
@@ -131,6 +133,9 @@ class GiinvestController extends Controller
                         ->withInput();
         }
 
+        $valor = str_replace(['$', '.'], ['',''], $request->inasimen);
+        $request->merge(['inasimen' => $valor]);
+
         App\Giinvest::create( $request->all() );
 
         // Redireccionar a la página principal con mensaje de éxito
@@ -151,16 +156,15 @@ class GiinvestController extends Controller
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gilininv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gisemill', 'giinvest.insemill', 'gisemill.id')
-
                                         ->join('girolinv', 'giinvest.inrolsen', 'girolinv.id')
                                         ->join('givininv', 'giinvest.intipvin', 'givininv.id')
                                         ->join('gicarinv', 'giinvest.incarinv', 'gicarinv.id')
                                         ->join('gigrados', 'giinvest.innumgra', 'gigrados.id')
-
+                                        ->join('giprofor', 'giinvest.inprofor', 'giprofor.id')
                                         ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro',
                                         'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero',
                                         'girolinv.rinombre as rol', 'givininv.vinombre as vinculacion', 'gicarinv.cinombre as cargo',
-                                        'gigrados.grnombre as grado')
+                                        'gigrados.grnombre as grado', 'giprofor.pfnombre as programa')
                                         ->where('giinvest.id', $id)
                                         ->orderBy('giinvest.innombre', 'asc')
                                         ->first();
@@ -185,28 +189,28 @@ class GiinvestController extends Controller
         $vinculaciones = App\Givininv::orderby('vinombre', 'asc')->pluck('vinombre', 'id')->all();
         $cargos = App\Gicarinv::orderby('cinombre', 'asc')->pluck('cinombre', 'id')->all();
         $grados = App\Gigrados::orderby('grnombre', 'asc')->pluck('grnombre', 'id')->all();
+        $programas = App\Giprofor::orderby('pfnombre', 'asc')->pluck('pfnombre', 'id')->all();
 
         $investigador = App\Giinvest::join('giregion', 'giinvest.inregion', 'giregion.id')
                                         ->join('gicenfor', 'giinvest.incenfor', 'gicenfor.id')
                                         ->join('gigruinv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gilininv', 'giinvest.ingruinv', 'gigruinv.id')
                                         ->join('gisemill', 'giinvest.insemill', 'gisemill.id')
-
                                         ->join('girolinv', 'giinvest.inrolsen', 'girolinv.id')
                                         ->join('givininv', 'giinvest.intipvin', 'givininv.id')
                                         ->join('gicarinv', 'giinvest.incarinv', 'gicarinv.id')
                                         ->join('gigrados', 'giinvest.innumgra', 'gigrados.id')
-
+                                        ->join('giprofor', 'giinvest.inprofor', 'giprofor.id')
                                         ->select('giinvest.*', 'giregion.renombre as regional', 'gicenfor.cfnombre as centro',
                                         'gigruinv.ginombre as grupo', 'gilininv.lideslin as linea', 'gisemill.senombre as semillero',
                                         'girolinv.rinombre as rol', 'givininv.vinombre as vinculacion', 'gicarinv.cinombre as cargo',
-                                        'gigrados.grnombre as grado')
+                                        'gigrados.grnombre as grado', 'giprofor.pfnombre as programa')
                                         ->where('giinvest.id', $id)
                                         ->orderBy('giinvest.innombre', 'asc')
                                         ->first();
         return view('giinvest.edit', compact('investigador', 'regionales', 'centros','grupos', 'lineas',
                                                 'semilleros', 'roles', 'vinculaciones', 'cargos',
-                                                'grados'));
+                                                'grados', 'programas'));
     }
 
     /**
@@ -292,6 +296,9 @@ class GiinvestController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+
+        $valor = str_replace(['$', '.'], ['',''], $request->inasimen);
+        $request->merge(['inasimen' => $valor]);
 
         $investigador = App\Giinvest::findorfail($id);
         $investigador->update($request->all());

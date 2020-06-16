@@ -22,10 +22,8 @@ class CreateGiinvestsTable extends Migration
             $table->foreign('incenfor')->references('id')->on('gicenfor');
             $table->bigInteger('ingruinv')->unsigned();
             $table->foreign('ingruinv')->references('id')->on('gigruinv');
-
             $table->bigInteger('inrolsen')->unsigned();
             $table->foreign('inrolsen')->references('id')->on('girolinv');
-
             $table->string('intipdoc');
             $table->string('innumdoc');
             $table->string('infecexp');
@@ -43,17 +41,14 @@ class CreateGiinvestsTable extends Migration
             $table->string('inporded');
             $table->string('inarecon');
             $table->string('inniving');
-            $table->string('inprofor');
-
+            $table->bigInteger('inprofor')->unsigned();
+            $table->foreign('inprofor')->references('id')->on('giprofor');
             $table->bigInteger('intipvin')->unsigned();
             $table->foreign('intipvin')->references('id')->on('givininv');
-
             $table->bigInteger('incarinv')->unsigned();
             $table->foreign('incarinv')->references('id')->on('gicarinv');
-
             $table->bigInteger('innumgra')->unsigned();
             $table->foreign('innumgra')->references('id')->on('gigrados');
-
             $table->double('inasimen');
             $table->string('innumcon');
             $table->string('inestcon');

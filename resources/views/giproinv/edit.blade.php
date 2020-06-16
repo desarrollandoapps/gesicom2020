@@ -34,14 +34,18 @@
                                     <div class="form-group">
                                         <label>Regional</label>
                                         {!! Form::select('piregion', $regionales, $proyecto->piregion, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
-                                        {{-- <input type="text" class="form-control" name="piregion" value="{{$proyecto->piregion}}"> --}}
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Centro de Formación</label>
                                         {!! Form::select('picenfor', $centros, $proyecto->picenfor, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
-                                        {{-- <input type="text" class="form-control" name="picenfor" value="{{$proyecto->picenfor}}"> --}}
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Centro de Formación</label>
+                                        {!! Form::select('pigruinv', $grupos, $proyecto->pigruinv, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +71,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Valor presupuestado</label>
-                                        <input type="text" class="form-control" data-inputmask='"mask": "$[9]9.999.999"' name="pivalpre" id="pivalpre" 
+                                        <input type="text" class="form-control" data-inputmask='"mask": "$9[9].999.999"' name="pivalpre" id="pivalpre" 
                                             @if ($proyecto->pivalpre < 10000000)
                                                 value="0{{$proyecto->pivalpre}}"
                                             @else

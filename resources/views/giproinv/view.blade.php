@@ -38,6 +38,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
+                                    <h5>Grupo de investigación: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">{{$proyecto->grupo}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
                                     <h5>Año de formulación: </h5>
                                 </div>
                                 <div class="col-md-5">

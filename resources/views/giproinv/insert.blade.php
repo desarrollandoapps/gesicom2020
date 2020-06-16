@@ -70,7 +70,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Valor aprobado</label>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "$[9]9.999.999"' name="pivalpre" id="pivalpre" value="{{old('pivalpre')}}" data-mask>
+                                            <input type="text" class="form-control" data-inputmask='"mask": "$9[9].999.999"' name="pivalpre" id="pivalpre" value="{{old('pivalpre')}}" data-mask>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -105,6 +105,7 @@
         $('#piregion').change(function(event){            
             $.get("../centros/" + event.target.value, function(response, centros){
                 $('#picenfor').empty();
+                $('#picenfor').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
                     $('#picenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");

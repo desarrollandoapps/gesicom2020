@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call([GiproforSeeder::class]);
         $this->call([GisemillSeeder::class]);
         $this->call([GitipponSeeder::class]);
+        $this->call([GilininvSeeder::class]);
     }
 }

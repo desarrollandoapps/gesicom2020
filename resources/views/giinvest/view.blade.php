@@ -215,7 +215,7 @@
                                     <h5>Programa de formación:</h5>
                                 </div>
                                 <div class="col">
-                                    <h5 class="lead">{{ $investigador->inprofor }}</h5>
+                                    <h5 class="lead">{{ $investigador->programa }}</h5>
                                 </div>
                                 <div class="col">
                                     <h5>Asignación salarial mensual:</h5>
