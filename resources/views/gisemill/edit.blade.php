@@ -31,11 +31,11 @@
                         
                             <div class="form-group">
                                 <label>Regional</label>
-                                {!! Form::select('giregion', $regionales, $semillero->regional, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                                {!! Form::select('seregion', $regionales, $semillero->regional, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'seregion']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Centro de Formación</label>
-                                {!! Form::select('gicenfor', $centros, $semillero->centro, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
+                                {!! Form::select('secenfor', $centros, $semillero->centro, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'secenfor']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Grupo de investigación</label>
@@ -58,4 +58,30 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $('#seregion').change(function(event){                        
+            $.get("../../centros/" + event.target.value, function(response, centros){
+                $('#secenfor').empty();
+                $('#secenfor').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#secenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
+
+        $('#secenfor').change(function(event) {
+            $.get("../../grupos/" + event.target.value, function(response, grupos) {
+                $("#segruinv").empty();
+                $('#segruinv').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#segruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
+                }
+            });
+        });
+    </script>
 @endsection
