@@ -30,12 +30,20 @@
                             @method('PUT')
                         
                             <div class="form-group">
-                                <label>Código del semillero</label>
-                                <input type="text" class="form-control" name="seidsemi" value="{{$semillero->seidsemi}}" readonly>
+                                <label>Regional</label>
+                                {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                            </div>
+                            <div class="form-group">
+                                <label>Centro de Formación</label>
+                                {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Grupo de investigación</label>
                                 {!! Form::select('segruinv', $grupos, $semillero->segruinv, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'segruinv']) !!}
+                            </div>
+                            <div class="form-group">
+                                <label>Código del semillero</label>
+                                <input type="text" class="form-control" name="seidsemi" value="{{$semillero->seidsemi}}" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Nombre del semillero</label>

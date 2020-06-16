@@ -29,8 +29,11 @@ class GisemillController extends Controller
      */
     public function create()
     {
+        $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
+        $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
         $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
-        return view('gisemill.insert', compact('grupos'));
+
+        return view('gisemill.insert', compact('regionales', 'centros','grupos'));
     }
 
     /**
@@ -94,9 +97,11 @@ class GisemillController extends Controller
      */
     public function edit($id)
     {
-        $semillero = App\Gisemill::findorfail($id);
+        $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
+        $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
         $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
-        return view('gisemill.edit', compact('semillero', 'grupos'));
+        $semillero = App\Gisemill::findorfail($id);
+        return view('gisemill.edit', compact('semillero', 'regionales', 'centros', 'grupos'));
     }
 
     /**
@@ -108,7 +113,6 @@ class GisemillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         //mensajes de error
         $mensajes = [
             'seidsemi.required' => 'Debe ingresar el código del semillero.',

@@ -53,8 +53,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ ($activePage == 'giproinv' || $activePage == 'gilinpro' || $activePage == 'gitracon') ? ' active' : '' }}">
+          <li class="nav-item has-treeview {{($activePage == 'giproinv'|| $activePage == 'gilinpro' ) ? ' menu-open' : ''}} ">
+            <a href="#" class="nav-link {{ ($activePage == 'giproinv' || $activePage == 'gilinpro' ) ? ' active' : '' }}">
               <i class="nav-icon fas fa-project-diagram"></i>
               <p>
                 {{ __('proyectos') }}
@@ -77,7 +77,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{($activePage == 'giinvest'|| $activePage == 'giinvest' ) ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'giinvest' || $activePage == 'giinvest') ? ' active' : '' }}">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
@@ -94,7 +94,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{($activePage == 'giseminv'|| $activePage == 'gicapsem' ) ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'giseminv' || $activePage == 'gicapsem') ? ' active' : '' }}">
               <i class="nav-icon fas fa-seedling"></i>
               <p>
@@ -117,19 +117,43 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{($activePage == 'giponinv'|| $activePage == 'giponinv' ) ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'giponinv' || $activePage == 'giponinv') ? ' active' : '' }}">
-              <i class="nav-icon fas fa-book-open"></i>
+              <i class="nav-icon fas fa-atom"></i>
               <p>
                 {{ __('productos') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item{{ $activePage == 'giponinv' ? ' active' : '' }}">
+              <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
+                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                  <i class="fas fa-book-open nav-icon"></i>
+                  <p>{{ __('giartvin') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
+                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                  <i class="fas fa-book nav-icon"></i>
+                  <p>{{ __('gilibvin') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
+                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                  <i class="fas fa-brain nav-icon"></i>
+                  <p>{{ __('giparevi') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
                 <a href="{{ route('giponinv.index') }}"" class="nav-link">
                   <i class="fas fa-comment nav-icon"></i>
                   <p>{{ __('giponinv') }}</p>
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
+                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                  <i class="fas fa-laptop-code nav-icon"></i>
+                  <p>{{ __('gisofvin') }}</p>
                 </a>
               </li>
             </ul>

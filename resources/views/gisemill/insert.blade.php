@@ -27,14 +27,22 @@
                             <form action="{{route('gisemill.store')}} " method="POST">
                                 @csrf
                                 @method('POST')
-                        
+                                
                                 <div class="form-group">
-                                    <label>Código del semillero</label>
-                                    <input type="text" class="form-control" name="seidsemi" value="{{old('seidsemi')}}">
+                                    <label>Regional</label>
+                                    {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label>Centro de Formación</label>
+                                    {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
                                 </div>
                                 <div class="form-group">
                                     <label>Grupo de investigación</label>
                                     {!! Form::select('segruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'segruinv']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label>Código del semillero</label>
+                                    <input type="text" class="form-control" name="seidsemi" value="{{old('seidsemi')}}">
                                 </div>
 
                                 <div class="form-group">
@@ -52,4 +60,30 @@
         </div>
     </div>
     
+@endsection
+
+@section('scripts')
+    <script src="{{asset('adminlte')}}/plugins/moment/moment.min.js"></script>
+    <script>
+        $('#giregion').change(function(event){            
+            $.get("../centros/" + event.target.value, function(response, centros){
+                $('#gicenfor').empty();
+                $('#gicenfor').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#gicenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
+        $('#gicenfor').change(function(event){            
+            $.get("../grupos/" + event.target.value, function(response, grupos){
+                $('#segruinv').empty();
+                $('#segruinv').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#segruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
+                }
+            });
+        });
+    </script>
 @endsection
