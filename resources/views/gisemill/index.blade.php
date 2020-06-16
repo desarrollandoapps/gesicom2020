@@ -23,6 +23,8 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Grupo de investigación</th>
+                                            <th>Centro de formación</th>
+                                            <th>Regional</th>
                                             <th class="text-right">Opciones</th>
                                         </tr>
                                     </thead>
@@ -31,6 +33,8 @@
                                             <tr>
                                                 <td> {{$item->senombre}}</td>
                                                 <td> {{$item->grupo}}</td>
+                                                <td> {{$item->centro}}</td>
+                                                <td> {{$item->regional}}</td>
                                                 <td class="td-actions text-right">
                                                     <a href="{{route('gisemill.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
                                                     <a href="{{route('gisemill.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>

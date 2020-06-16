@@ -119,7 +119,7 @@
           </li>
           <li class="nav-item has-treeview {{($activePage == 'giponinv'|| $activePage == 'giponinv' ) ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'giponinv' || $activePage == 'giponinv') ? ' active' : '' }}">
-              <i class="nav-icon fas fa-atom"></i>
+              <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('productos') }}
                 <i class="right fas fa-angle-left"></i>

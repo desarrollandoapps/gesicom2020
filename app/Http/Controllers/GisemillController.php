@@ -17,7 +17,10 @@ class GisemillController extends Controller
     public function index()
     {
         $semilleros = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
-                                    ->select('gisemill.*', 'gigruinv.ginombre as grupo')
+                                    ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
+                                    ->join('giregion', 'gicenfor.cfregion', 'giregion.id')
+                                    ->select('gisemill.*', 'gigruinv.ginombre as grupo', 
+                                    'gicenfor.cfnombre as centro', 'giregion.renombre as regional')
                                     ->orderby('senombre', 'asc')->get();
         return view('gisemill.index', compact('semilleros'));
     }
@@ -100,7 +103,16 @@ class GisemillController extends Controller
         $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
         $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
         $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
-        $semillero = App\Gisemill::findorfail($id);
+        
+        $semillero = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
+                                    ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
+                                    ->join('giregion', 'gicenfor.cfregion', 'giregion.id')
+                                    ->select('gisemill.*', 'gigruinv.ginombre as grupo', 
+                                    'gicenfor.cfnombre as centro', 'giregion.renombre as regional', 
+                                    'gicenfor.id as centro', 'giregion.id as regional')
+                                    ->where('gisemill.id', $id)
+                                    ->first();
+        // $semillero = App\Gisemill::findorfail($id);
         return view('gisemill.edit', compact('semillero', 'regionales', 'centros', 'grupos'));
     }
 

@@ -31,11 +31,11 @@
                         
                             <div class="form-group">
                                 <label>Regional</label>
-                                {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                                {!! Form::select('giregion', $regionales, $semillero->regional, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Centro de Formación</label>
-                                {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
+                                {!! Form::select('gicenfor', $centros, $semillero->centro, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
                             </div>
                             <div class="form-group">
                                 <label>Grupo de investigación</label>
