@@ -12,6 +12,7 @@ class Giproinv extends Model
     protected $fillable = [
         'piregion',
         'picenfor',
+        'pigruinv',
         'pianofor',
         'pinompro',
         'pinumrad',

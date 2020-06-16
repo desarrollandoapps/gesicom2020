@@ -15,8 +15,12 @@ class CreateGiproinvTable extends Migration
     {
         Schema::create('giproinv', function (Blueprint $table) {
             $table->id();
-            $table->string('piregion');
-            $table->string('picenfor');
+            $table->bigInteger('piregion')->unsigned();
+            $table->foreign('piregion')->references('id')->on('giregion');
+            $table->bigInteger('picenfor')->unsigned();
+            $table->foreign('picenfor')->references('id')->on('gicenfor');
+            $table->bigInteger('pigruinv')->unsigned();
+            $table->foreign('pigruinv')->references('id')->on('gigruinv');
             $table->integer('pianofor');
             $table->string('pinompro');
             $table->string('pinumrad');

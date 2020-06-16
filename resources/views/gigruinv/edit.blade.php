@@ -101,6 +101,7 @@
                 
             $.get("../../centros/" + event.target.value, function(response, centros){
                 $('#gicenfor').empty();
+                $('#gicenfor').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
                     $('#gicenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");

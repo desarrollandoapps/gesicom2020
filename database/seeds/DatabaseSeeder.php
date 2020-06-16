@@ -16,10 +16,13 @@ class DatabaseSeeder extends Seeder
         $this->call([CentrosFormacionSeeder::class]);
         $this->call([LineasProgramaticasSeeder::class]);
         $this->call([CapacitacionSemilleroSeeder::class]);
+        $this->call([GigruinvSeeder::class]);
         $this->call([GicarinvSeeder::class]);
         $this->call([GirolinvSeeder::class]);
         $this->call([GivininvSeeder::class]);
         $this->call([GigradosSeeder::class]);
         $this->call([GiproforSeeder::class]);
+        $this->call([GisemillSeeder::class]);
+        $this->call([GitipponSeeder::class]);
     }
 }

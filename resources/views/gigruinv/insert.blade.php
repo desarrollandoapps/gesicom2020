@@ -92,6 +92,7 @@
     <script>
         $('#giregion').change(function(event){            
             $.get("../centros/" + event.target.value, function(response, centros){
+                $('#gicenfor').append("<option value=''>Seleccione...</option>");
                 $('#gicenfor').empty();
                 for(i = 0; i < response.length; i++)
                 {

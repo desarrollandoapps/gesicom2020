@@ -24,7 +24,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview {{($activePage == 'gigruinv'|| $activePage == 'gisemill' || $activePage == 'gilininv') ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'gigruinv' || $activePage == 'gisemill' || $activePage == 'gilininv') ? ' active' : '' }}">
               <i class="nav-icon fas fa-flask"></i>
               <p>
@@ -54,7 +54,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ ($activePage == 'giproinv' || $activePage == 'gilinpro') ? ' active' : '' }}">
+            <a href="#" class="nav-link {{ ($activePage == 'giproinv' || $activePage == 'gilinpro' || $activePage == 'gitracon') ? ' active' : '' }}">
               <i class="nav-icon fas fa-project-diagram"></i>
               <p>
                 {{ __('proyectos') }}
@@ -117,25 +117,25 @@
               </li>
             </ul>
           </li>
-          
-          <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link {{ ($activePage == 'giponinv' || $activePage == 'giponinv') ? ' active' : '' }}">
+              <i class="nav-icon fas fa-book-open"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                {{ __('productos') }}
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item{{ $activePage == 'giponinv' ? ' active' : '' }}">
+                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                  <i class="fas fa-comment nav-icon"></i>
+                  <p>{{ __('giponinv') }}</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          
-          <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
-            </a>
-          </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+
+          {{-- <li class="nav-header">MULTI LEVEL EXAMPLE</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
@@ -193,13 +193,7 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-circle nav-icon"></i>
-              <p>Level 1</p>
-            </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

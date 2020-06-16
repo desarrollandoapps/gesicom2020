@@ -340,6 +340,7 @@
         $('#inregion').change(function(event){            
             $.get("../centros/" + event.target.value, function(response, centros){
                 $('#incenfor').empty();
+                $('#incenfor').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
                     $('#incenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");

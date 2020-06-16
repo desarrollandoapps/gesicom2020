@@ -33,14 +33,18 @@
                                         <div class="form-group">
                                             <label>Regional</label>
                                             {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
-                                            {{-- <input type="text" class="form-control" name="piregion" value="{{old('piregion')}}"> --}}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Centro de Formación</label>
-                                            {{-- <input type="text" class="form-control" name="picenfor" value="{{old('picenfor')}}"> --}}
                                             {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Grupo de investigación</label>
+                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -78,12 +82,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Línea programática</label>
-                                    <select class="custom-select form-control" name="pilinpro" id="pilinpro">
-                                        <option value="">{{__('seleccione')}}</option>
-                                        @foreach ($lineas as $item)
-                                            <option value="{{$item->id}}">{{$item->lpnomlin}}</option>
-                                        @endforeach
-                                    </select>
+                                    {!! Form::select('pilinpro', $lineas, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pilinpro']) !!}
                                 </div>
                         
                                 <br>
@@ -109,6 +108,16 @@
                 for(i = 0; i < response.length; i++)
                 {
                     $('#picenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
+        $('#picenfor').change(function(event){            
+            $.get("../grupos/" + event.target.value, function(response, grupos){
+                $('#pigruinv').empty();
+                $('#pigruinv').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#pigruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
                 }
             });
         });

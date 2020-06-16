@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gisemill', 'GisemillController');
 	Route::resource('gilininv', 'GilininvController');
 	Route::resource('giinvest', 'GiinvestController');
+	Route::resource('giponinv', 'GiponinvController');
 });
 
 // Route::group(['middleware' => 'auth'], function () {

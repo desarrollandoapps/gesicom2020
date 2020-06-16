@@ -339,5 +339,42 @@
         });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();
+        $('#inregion').change(function(event){            
+            $.get("../centros/" + event.target.value, function(response, centros){
+                $('#incenfor').empty();
+                $('#incenfor').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#incenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                }
+            });
+        });
+        $('#incenfor').change(function(event){            
+            $.get("../grupos/" + event.target.value, function(response, grupos){
+                $('#ingruinv').empty();
+                $('#ingruinv').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#ingruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
+                }
+            });
+        });
+        $('#ingruinv').change(function(event){            
+            $.get("../semilleros/" + event.target.value, function(response, semilleros){
+                $('#insemill').empty();
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#insemill').append("<option value='" + response[i].id + "'>" + response[i].senombre + "</option>");
+                }
+            });
+            $.get("../lineas/" + event.target.value, function(response, lineas){
+                $('#inlininv').empty();
+                $('#inlininv').append("<option value=''>Seleccione...</option>");
+                for(i = 0; i < response.length; i++)
+                {
+                    $('#inlininv').append("<option value='" + response[i].id + "'>" + response[i].lideslin + "</option>");
+                }
+            });
+        });
     </script>
 @endsection

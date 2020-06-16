@@ -41,8 +41,9 @@ class GiproinvController extends Controller
     {
         $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
         $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
-        $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->get();
-        return view('giproinv.insert', compact('lineas', 'regionales', 'centros'));
+        $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
+        $lineas = App\Gilinpro::orderby('lpnomlin', 'asc')->pluck('lpnomlin', 'id')->all();
+        return view('giproinv.insert', compact('lineas', 'regionales', 'centros', 'grupos'));
     }
 
     /**
