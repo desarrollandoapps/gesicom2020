@@ -117,8 +117,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview {{($activePage == 'giponinv'|| $activePage == 'giponinv' ) ? ' menu-open' : ''}} ">
-            <a href="#" class="nav-link {{ ($activePage == 'giponinv' || $activePage == 'giponinv') ? ' active' : '' }}">
+          <li class="nav-item has-treeview {{($activePage == 'giartinv'|| $activePage == 'gilibinv' || $activePage == 'gipatinv' || $activePage == 'giponinv' ) ? ' menu-open' : ''}} ">
+            <a href="#" class="nav-link {{ ($activePage == 'giartinv' || $activePage == 'gilibinv' || $activePage == 'gipatinv' || $activePage == 'giponinv') ? ' active' : '' }}">
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('productos') }}
@@ -127,21 +127,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
-                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                <a href="{{ route('giartinv.index') }}"" class="nav-link">
                   <i class="fas fa-book-open nav-icon"></i>
-                  <p>{{ __('giartvin') }}</p>
+                  <p>{{ __('giartinv') }}</p>
                 </a>
               </li>
               <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
-                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                <a href="{{ route('gilibinv.index') }}"" class="nav-link">
                   <i class="fas fa-book nav-icon"></i>
-                  <p>{{ __('gilibvin') }}</p>
+                  <p>{{ __('gilibinv') }}</p>
                 </a>
               </li>
               <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">
-                <a href="{{ route('giponinv.index') }}"" class="nav-link">
+                <a href="{{ route('gipatinv.index') }}"" class="nav-link">
                   <i class="fas fa-brain nav-icon"></i>
-                  <p>{{ __('giparevi') }}</p>
+                  <p>{{ __('gipatinv') }}</p>
                 </a>
               </li>
               <li class="nav-item{{ $activePage == 'gigruinv' ? ' active' : '' }}">

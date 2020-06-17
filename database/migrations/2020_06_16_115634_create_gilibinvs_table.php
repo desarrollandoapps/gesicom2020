@@ -13,7 +13,7 @@ class CreateGilibinvsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gilibinvs', function (Blueprint $table) {
+        Schema::create('gilibinv', function (Blueprint $table) {
             $table->id();
             $table->string('linomlib');
             $table->bigInteger('linumpag')->unsigned();
@@ -41,6 +41,6 @@ class CreateGilibinvsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gilibinvs');
+        Schema::dropIfExists('gilibinv');
     }
 }
