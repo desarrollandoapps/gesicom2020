@@ -27,7 +27,7 @@ class CreateGiartinvsTable extends Migration
             $table->string('aimeddiv');
             $table->string('aicoissn');
             $table->string('aicoddoi');
-            $table->string('aipagweb')->nullable();
+            $table->string('aisitweb')->nullable();
             $table->bigInteger('aiprovin')->unsigned();
             $table->foreign('aiprovin')->references('id')->on('giproinv');
             $table->bigInteger('aicodtip')->unsigned();

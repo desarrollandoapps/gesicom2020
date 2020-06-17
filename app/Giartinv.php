@@ -22,6 +22,6 @@ class Giartinv extends Model
         'aicoddoi',
         'aisitweb',
         'aiprovin',
-        'aicodtip',
+        'aicodtip'
     ];
 }

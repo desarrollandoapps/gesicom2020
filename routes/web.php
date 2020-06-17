@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gilininv', 'GilininvController');
 	Route::resource('giinvest', 'GiinvestController');
 	Route::resource('giponinv', 'GiponinvController');
+	Route::resource('giartinv', 'GiartinvController');
+	Route::resource('gilibinv', 'GilibinvController');
+	Route::resource('gipatinv', 'GipatinvController');
 });
 
 // Route::group(['middleware' => 'auth'], function () {

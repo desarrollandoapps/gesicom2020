@@ -8,13 +8,11 @@ class Gipatinv extends Model
 {
     protected $table = 'gipatinv';
     protected $fillable = [
-        'prcopare',
-        'prnumrad',
-        'prfecsol',
-        'prtitobr',
-        'prnumreg',
-        'prespare',
-        'prprovin',
-        'prcodtip',
+        'pinumrad',
+        'pifecsol',
+        'pititobr',
+        'pinumreg',
+        'piprovin',
+        'picodtip'
     ];
 }

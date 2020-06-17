@@ -13,18 +13,16 @@ class CreateGipatinvsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gipatinvs', function (Blueprint $table) {
+        Schema::create('gipatinv', function (Blueprint $table) {
             $table->id();
-            $table->string('prcopare');
-            $table->string('prnumrad');
-            $table->date('prfecsol');
-            $table->string('prtitobr');
-            $table->string('prnumreg');
-            $table->string('prespare');
-            $table->bigInteger('prprovin')->unsigned();
-            $table->foreign('prprovin')->references('id')->on('giproinv');
-            $table->bigInteger('prcodtip')->unsigned();
-            $table->foreign('prcodtip')->references('id')->on('gitippat');
+            $table->string('pinumrad');
+            $table->date('pifecsol');
+            $table->string('pititobr');
+            $table->string('pinumreg');
+            $table->bigInteger('piprovin')->unsigned();
+            $table->foreign('piprovin')->references('id')->on('giproinv');
+            $table->bigInteger('picodtip')->unsigned();
+            $table->foreign('picodtip')->references('id')->on('gitippat');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +35,6 @@ class CreateGipatinvsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gipatinvs');
+        Schema::dropIfExists('gipatinv');
     }
 }

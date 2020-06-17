@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Gipatinv;
+use App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GipatinvController extends Controller
 {
@@ -14,7 +15,8 @@ class GipatinvController extends Controller
      */
     public function index()
     {
-        //
+        $patentes = App\Gipatinv::orderBy('pititobr', 'asc')->get();
+        return view('gipatinv.index', compact('patentes'));
     }
 
     /**
@@ -24,7 +26,13 @@ class GipatinvController extends Controller
      */
     public function create()
     {
-        //
+        $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
+        $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
+        $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
+        $proyectos = App\Giproinv::orderby('pinompro', 'asc')->pluck('pinompro', 'id')->all();
+        $tiposPatente = App\Gitippat::orderby('tpnomtip', 'asc')->pluck('tpnomtip', 'id')->all();
+
+        return view('gipatinv.insert', compact('regionales', 'centros', 'grupos', 'proyectos', 'tiposPatente'));
     }
 
     /**
@@ -35,7 +43,39 @@ class GipatinvController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //mensajes de error
+        $mensajes = [
+            'pinumrad.required' => 'Debe ingresar el número del radicado de la patente.',
+            'pinumrad.unique' => 'Ya hay una patente con el número de radicado que intenta asignar.',
+            'pifecsol.required' => 'Debe seleccionar la fecha de la solicitud de la patente.',
+            'pititobr.required' => 'Debe ingresar el título de la obra de la patente.',
+            'pinumreg.required' => 'Debe ingresar el número de registro de la patente.',
+            'piprovin.required' => 'Debe seleccionar el proyecto.',
+            'picodtip.required' => 'Debe seleccionar el tipo de patente.'
+        ];
+
+        // Validar que los campos obligatorios tengan valor
+        $validator = Validator::make($request->all(), [
+            'piprovin' => 'required',
+            'piprovin' => 'required',
+            'pinumrad' => 'required|unique:gipatinv',
+            'pifecsol' => 'required',
+            'pititobr' => 'required',
+            'pinumreg' => 'required'
+        ], $mensajes);
+
+        if ($validator->fails()) {
+            return redirect('gipatinv/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // Se toma el modelo
+        App\Gipatinv::create( $request->all() );
+
+        // Redireccionar a la página principal con mensaje de éxito
+        return redirect()->route( 'gipatinv.index' )
+                         ->with( 'exito', 'Patente creada con éxito' );
     }
 
     /**
@@ -44,9 +84,14 @@ class GipatinvController extends Controller
      * @param  \App\Gipatinv  $gipatinv
      * @return \Illuminate\Http\Response
      */
-    public function show(Gipatinv $gipatinv)
+    public function show($id)
     {
-        //
+        $patente = App\Gipatinv::join('giproinv', 'gipatinv.piprovin', 'giproinv.id')
+                                    ->join('gitippat', 'gipatinv.picodtip', 'gitippat.id')
+                                    ->select('gipatinv.*', 'giproinv.pinompro as proyecto', 'gitippat.tpnomtip as tipo')
+                                    ->where('gipatinv.id', $id)
+                                    ->first();
+        return view('gipatinv.view', compact('patente'));
     }
 
     /**
@@ -55,9 +100,22 @@ class GipatinvController extends Controller
      * @param  \App\Gipatinv  $gipatinv
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gipatinv $gipatinv)
+    public function edit($id)
     {
-        //
+        $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
+        $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
+        $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
+        $proyectos = App\Giproinv::orderby('pinompro', 'asc')->pluck('pinompro', 'id')->all();
+        $tiposPatente = App\Gitippat::orderby('tpnomtip', 'asc')->pluck('tpnomtip', 'id')->all();
+
+        $patente = App\Gipatinv::join('giproinv', 'gipatinv.piprovin', 'giproinv.id')
+                                    ->join('gitippat', 'gipatinv.picodtip', 'gitippat.id')
+                                    ->select('gipatinv.*', 'giproinv.pinompro as proyecto', 'gitippat.tpnomtip as tipo')
+                                    ->where('gipatinv.id', $id)
+                                    ->first();
+
+        return view('gipatinv.edit', compact('patente', 'regionales', 'centros', 'grupos',
+                                    'proyectos', 'tiposPatente'));
     }
 
     /**
@@ -67,9 +125,40 @@ class GipatinvController extends Controller
      * @param  \App\Gipatinv  $gipatinv
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gipatinv $gipatinv)
+    public function update(Request $request, $id)
     {
-        //
+        //mensajes de error
+        $mensajes = [
+            'pinumrad.required' => 'Debe ingresar el número del radicado de la patente.',
+            'pifecsol.required' => 'Debe seleccionar la fecha de la solicitud de la patente.',
+            'pititobr.required' => 'Debe ingresar el título de la obra de la patente.',
+            'pinumreg.required' => 'Debe ingresar el número de registro de la patente.',
+            'piprovin.required' => 'Debe seleccionar el proyecto.',
+            'picodtip.required' => 'Debe seleccionar el tipo de patente.'
+        ];
+
+        // Validar que los campos obligatorios tengan valor
+        $validator = Validator::make($request->all(), [
+            'piprovin' => 'required',
+            'piprovin' => 'required',
+            'pinumrad' => 'required',
+            'pifecsol' => 'required',
+            'pititobr' => 'required',
+            'pinumreg' => 'required'
+        ], $mensajes);
+
+        if ($validator->fails()) {
+            return redirect('gipatinv/' . $id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $patente = App\Gipatinv::findorfail($id);
+        $patente->update($request->all());
+
+        return redirect()->route( 'gipatinv.index' )
+                         ->with( 'exito', 'Patente modificada con éxito' );
+
     }
 
     /**
@@ -78,8 +167,12 @@ class GipatinvController extends Controller
      * @param  \App\Gipatinv  $gipatinv
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gipatinv $gipatinv)
+    public function destroy($id)
     {
-        //
+        $patente = App\Gipatinv::findorfail($id);
+        $patente->delete();
+
+        return redirect()->route( 'gipatinv.index' )
+                         ->with( 'exito', 'Patente eliminada con éxito' );
     }
 }

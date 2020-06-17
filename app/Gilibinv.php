@@ -19,6 +19,6 @@ class Gilibinv extends Model
         'licoisbn',
         'lisitweb',
         'liprovin',
-        'licodtip',
+        'licodtip'
     ];
 }
