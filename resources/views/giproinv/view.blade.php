@@ -84,11 +84,47 @@
                                     <h5 class="lead">{{$proyecto->linea}}</h5>
                                 </div>
                             </div>
-                            <br>
-                            <div class="row">
-                                <a href="{{route('giproinv.index')}}"><button class="btn btn-primary">Regresar</button></a>
-                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h3 class="card-title">Vincular investigadores</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{route('giproinv.update', $proyecto->id)}} " method="POST">
+                                @csrf
+                                @method('POST')
+                                <div class="form-row align-items-end">
+                                    <div class="col-11">
+                                        <div class="form-group">
+                                            <label>Investigador:</label>
+                                            {!! Form::select('piregion', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <a href="{{route('giproinv.index')}}"><button class="btn btn-secondary btn-circle">+</button></a>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a href="{{route('giproinv.index')}}"><button class="btn btn-primary">Crear investigador</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <a href="{{route('giproinv.index')}}"><button class="btn btn-primary">Regresar</button></a>
                     </div>
                 </div>
             </div>

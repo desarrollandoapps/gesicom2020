@@ -89,7 +89,6 @@ class GisemillController extends Controller
                                 ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
                                 ->join('giregion', 'gicenfor.cfregion', 'giregion.id')
                                 ->select('gisemill.*', 'gigruinv.ginombre as grupo',
-                                'giregion.renombre as regional', 
                                 'gicenfor.id as centro', 'giregion.id as regional')
                                 ->where('gisemill.id', $id)
                                 ->first();

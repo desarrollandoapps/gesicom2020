@@ -79,7 +79,12 @@
                         
                             <div class="form-group">
                                 <label>Año de Creación</label>
-                                <input type="number" class="form-control" name="gianocre" value="{{$grupo->gianocre}}">
+                                <select name="gianocre" id="gianocre" class="custom-select form-control">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    @for($i = 2013; $i <= 2030; $i++)
+                                        <option value="{{$i}}"{{ $grupo->gianocre == $i ? 'selected' : '' }}>{{$i}}</option>
+                                    @endfor
+                                </select>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>

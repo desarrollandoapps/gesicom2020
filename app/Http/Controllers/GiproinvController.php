@@ -106,6 +106,7 @@ class GiproinvController extends Controller
      */
     public function show($id)
     {
+        $investigadores = App\Giinvest::orderby('innombre', 'asc')->pluck('innombre', 'id')->all();
         $proyecto = App\Giproinv::join('giregion', 'giproinv.piregion', 'giregion.id')
                                 ->join('gicenfor', 'giproinv.picenfor', 'gicenfor.id')
                                 ->join('gigruinv', 'giproinv.pigruinv', 'gigruinv.id')
@@ -116,7 +117,7 @@ class GiproinvController extends Controller
                                 ->where('giproinv.id', $id)
                                 ->first();
 
-        return view( 'giproinv.view', compact('proyecto') );
+        return view( 'giproinv.view', compact('proyecto', 'investigadores') );
     }
 
     /**
@@ -202,5 +203,11 @@ class GiproinvController extends Controller
         $proyecto->delete();
         return redirect()->route( 'giproinv.index' )
                          ->with( 'exito', 'Proyecto eliminado con éxito' );
+    }
+
+    public function darProyectos($grupo)
+    {
+        $proyectos = App\Giproinv::where('pigruinv', $grupo)->get();
+        return response()->json($proyectos);
     }
 }

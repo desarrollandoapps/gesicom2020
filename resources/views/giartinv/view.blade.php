@@ -122,7 +122,7 @@
 
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Página web del artículo:</h5>
+                                    <h5>Página web de la revista:</h5>
                                 </div>
                                 <div class="col-md-5">
                                     <h5 class="lead">{{$articulo->aisitweb}}</h5>

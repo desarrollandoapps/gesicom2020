@@ -140,22 +140,10 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>Página web del evento</label>
+                                        <label>Página web de la revista</label>
                                         <input type="text" class="form-control" name="aisitweb" id="aisitweb" value="{{$articulo->aisitweb}}" placeholder="http://www.evento.com">
                                     </div>
                                 </div>
-
-                                <!-- <div class="col">
-                                    <div class="form-group">
-                                        <label>Ámbito</label>
-                                        <select class="custom-select form-control" name="piambito" id="piambito">
-                                            <option selected value="">{{__('seleccione')}}</option>
-                                            <option value="Local" {{ $articulo->piambito == "Local" ? 'selected' : '' }}>Local</option>
-                                            <option value="Nacional" {{ $articulo->piambito == "Nacional" ? 'selected' : '' }}>Nacional</option>
-                                            <option value="Internacional" {{ $articulo->piambito == "Internacional" ? 'selected' : '' }}>Internacional</option>
-                                        </select>
-                                    </div>
-                                </div> -->
                             </div>
 
                             <br>

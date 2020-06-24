@@ -33,8 +33,8 @@ class CreateGiinvestsTable extends Migration
             $table->string('incorper');
             $table->string('incorsen');
             $table->string('innumcel');
-            $table->string('intelfij');
-            $table->string('innumeip');
+            $table->string('intelfij')->nullable();
+            $table->string('innumeip')->nullable();
             $table->string('inantsen');
             $table->string('ingrafor');
             $table->string('intitulo');

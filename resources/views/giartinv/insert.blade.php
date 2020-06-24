@@ -91,48 +91,6 @@
                                             <input type="text" class="form-control" name="aipagfin" id="aipagfin" value="{{old('aipagfin')}}">
                                         </div>
                                     </div>
-                                <!-- <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de inicio</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecini">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecini" value="{{old('pifecini')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de finalización</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecfin">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecfin" value="{{old('pifecfin')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de la ponencia</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecpon">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecpon" value="{{old('pifecpon')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Año de publicación</label>
@@ -201,22 +159,10 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Página web del evento</label>
+                                            <label>Página web de la revista</label>
                                             <input type="text" class="form-control" name="aisitweb" id="aisitweb" value="{{old('aisitweb')}}" placeholder="http://www.evento.com">
                                         </div>
                                     </div>
-
-                                    <!-- <div class="col">
-                                        <div class="form-group">
-                                            <label>Ámbito</label>
-                                            <select class="custom-select form-control" name="piambito" id="piambito">
-                                                <option selected value="">{{__('seleccione')}}</option>
-                                                <option value="Local" {{ old('piambito') == "Local" ? 'selected' : '' }}>Local</option>
-                                                <option value="Nacional" {{ old('piambito') == "Nacional" ? 'selected' : '' }}>Nacional</option>
-                                                <option value="Internacional" {{ old('piambito') == "Internacional" ? 'selected' : '' }}>Internacional</option>
-                                            </select>
-                                        </div>
-                                    </div> -->
                                 </div>
 
                                 <br>

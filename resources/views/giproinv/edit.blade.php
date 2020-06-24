@@ -57,7 +57,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Año de formulación</label>
-                                        <input type="number" class="form-control" name="pianofor" value="{{$proyecto->pianofor}}">
+                                        {{-- <input type="number" class="form-control" name="pianofor" value="{{$proyecto->pianofor}}"> --}}
+                                        <select name="pianofor" id="gianocre" class="custom-select form-control">
+                                            <option value="" disabled selected>Seleccione...</option>
+                                            @for($i = 2013; $i <= 2030; $i++)
+                                                <option value="{{$i}}"{{ $proyecto->pianofor == $i ? 'selected' : '' }}>{{$i}}</option>
+                                            @endfor
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -83,7 +89,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Año de ejecución</label>
-                                        <input type="text" class="form-control" name="pianoeje" value="{{$proyecto->pianoeje}}">
+                                        {{-- <input type="text" class="form-control" name="pianoeje" value="{{$proyecto->pianoeje}}"> --}}
+                                        <select name="pianoeje" id="gianocre" class="custom-select form-control">
+                                            <option value="" disabled selected>Seleccione...</option>
+                                            @for($i = 2013; $i <= 2030; $i++)
+                                                <option value="{{$i}}"{{ $proyecto->pianoeje == $i ? 'selected' : '' }}>{{$i}}</option>
+                                            @endfor
+                                        </select>
                                     </div>
                                 </div>
                             </div>
