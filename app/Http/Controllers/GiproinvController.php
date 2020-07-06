@@ -210,4 +210,9 @@ class GiproinvController extends Controller
         $proyectos = App\Giproinv::where('pigruinv', $grupo)->get();
         return response()->json($proyectos);
     }
+
+    public function addInvestigador($proyecto)
+    {
+        echo "Add Investigador"
+    }
 }

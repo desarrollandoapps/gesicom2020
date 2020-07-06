@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gilibinv', 'GilibinvController');
 	Route::resource('gipatinv', 'GipatinvController');
 	Route::resource('gisofinv', 'GisofinvController');
+
+	Route::get('giproinv/add/{investigador}', 'GiproinvController@addInvestigador')->name('addInvestigador');
 });
 
 // Route::group(['middleware' => 'auth'], function () {

@@ -95,7 +95,7 @@
                             <h3 class="card-title">Vincular investigadores</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('giproinv.update', $proyecto->id)}} " method="POST">
+                            <form action="{{route('addInvestigador', $proyecto->id)}} " method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="form-row align-items-end">
