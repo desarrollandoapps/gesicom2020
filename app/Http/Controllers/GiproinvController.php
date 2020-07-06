@@ -213,6 +213,6 @@ class GiproinvController extends Controller
 
     public function addInvestigador($proyecto)
     {
-        echo "Add Investigador"
+        echo "Add Investigador";
     }
 }
