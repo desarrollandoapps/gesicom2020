@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call([GitipartSeeder::class]);
         $this->call([GitiplibSeeder::class]);
         $this->call([GitippatSeeder::class]);
+        $this->call([GiproinvSeeder::class]);
+        $this->call([GiinvestSeeder::class]);
     }
 }
