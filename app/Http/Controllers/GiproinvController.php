@@ -106,7 +106,6 @@ class GiproinvController extends Controller
      */
     public function show($id)
     {
-        $investigadores = App\Giinvest::orderby('innombre', 'asc')->pluck('innombre', 'id')->all();
         $proyecto = App\Giproinv::join('giregion', 'giproinv.piregion', 'giregion.id')
                                 ->join('gicenfor', 'giproinv.picenfor', 'gicenfor.id')
                                 ->join('gigruinv', 'giproinv.pigruinv', 'gigruinv.id')
@@ -116,6 +115,12 @@ class GiproinvController extends Controller
                                 'gigruinv.ginombre as grupo')
                                 ->where('giproinv.id', $id)
                                 ->first();
+                                
+        $investigadores = App\Giinvest::join('gidetinv', 'giinvest.id', 'gidetinv.diinvest')
+                                        ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
+                                        ->where('giproinv.id', $id)
+                                        ->select('giinvest.*')
+                                        ->get();
 
         return view( 'giproinv.view', compact('proyecto', 'investigadores') );
     }
@@ -211,8 +216,33 @@ class GiproinvController extends Controller
         return response()->json($proyectos);
     }
 
-    public function addInvestigador($proyecto)
+    public function addInvestigador(Request $request, $id)
     {
-        echo "Add Investigador";
+         //mensajes de error
+         $mensajes = [
+            'piinvest.required' => 'Debe seleccionar un investigador.'
+        ];
+
+        // Validar que los campos obligatorios tengan valor
+        $validator = Validator::make($request->all(), [
+            'piinvest' => 'required'
+        ], $mensajes);
+
+        if ($validator->fails()) {
+            return redirect('giproinv/' . $id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $investigadores = App\Giinvest::all();
+
+        $investigador = $investigadores[$request->giinvest - 1];
+        $investigador->update();
+
+        // Redireccionar a la página principal con mensaje de éxito
+        return redirect()->route( 'giproinv/' . $id )
+                         ->with( 'exito', 'Investigador asociado con éxito' );
+        
+        // echo $investigadores[$request->giinvest - 1]->innombre;
     }
 }

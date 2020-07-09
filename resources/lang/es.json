@@ -62,5 +62,6 @@
     "giartinv": "Artículo",
     "gilibinv": "Libro",
     "gipatinv": "Patente",
-    "gisofinv": "Software"
+    "gisofinv": "Software",
+    "gidetinv": "Asociar investigador a proyecto"
 }

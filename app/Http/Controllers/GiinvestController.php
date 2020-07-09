@@ -321,4 +321,10 @@ class GiinvestController extends Controller
         return redirect()->route( 'giinvest.index' )
                          ->with( 'exito', 'Investigador eliminado con éxito' );
     }
+
+    public function darInvestigadores($grupo)
+    {
+        $investigadores = App\Giinvest::where('ingruinv', $grupo)->get();
+        return response()->json($investigadores);
+    }
 }

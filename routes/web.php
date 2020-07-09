@@ -59,8 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gilibinv', 'GilibinvController');
 	Route::resource('gipatinv', 'GipatinvController');
 	Route::resource('gisofinv', 'GisofinvController');
-
-	Route::get('giproinv/add/{investigador}', 'GiproinvController@addInvestigador')->name('addInvestigador');
+	Route::resource('gidetinv', 'GidetinvController');
 });
 
 // Route::group(['middleware' => 'auth'], function () {
@@ -73,5 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('centros/{regional}', 'RegionalesController@darCentros');
 Route::get('grupos/{centro}', 'GigruinvController@darGrupos');
 Route::get('semilleros/{centro}', 'CentrosFormacionController@darSemileros');
+Route::get('investigadores/{grupo}', 'GiinvestController@darInvestigadores');
 Route::get('lineas/{grupo}', 'GilininvController@darLineas');
 Route::get('proyectos/{grupo}', 'GiproinvController@darProyectos');

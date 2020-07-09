@@ -23,6 +23,7 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th class="text-right">Opciones</th>
+                                            <th class="text-right"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,6 +39,15 @@
                                                         <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de la capacitación?')"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
+                                                <td class="td-actions text-right">
+                                                    <form action="{{route('gidetinv.create')}}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="hidden" name="idProyecto" value="{{$item->id}}">
+                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar investigadores"><i class="fas fa-user-plus"></i></button>
+                                                    </form>
+                                                    {{-- <a href="{{route('gidetinv.create', $item->id)}}"><button type="button" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar investigadores"><i class="fas fa-user-plus"></i></button></a> --}}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -52,4 +62,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 @endsection
