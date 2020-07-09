@@ -31,6 +31,7 @@
                                                         <form action="{{route('gidetinv.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
+                                                            <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
                                                             {{-- <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la desasociación del investigador?')"><i class="fas fa-trash"></i></button> --}}
                                                         </form>
                                                         <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
@@ -146,24 +147,42 @@
             if(!confirm("¿Confirma desvincular al investigador?")) {
                 return false;
             }
-            var token =  $('#token').val();
-            alert(token);
+            var idunico = id;
+            var rutamala = "{{ route('borrando', "rempl") }}";
+            var rutabuena = rutamala.replace('rempl',idunico);
+            alert(rutabuena);
+                $.ajax({
+                    url: rutabuena,
+                    method: 'GET'
+                }).then(function (datos){
+                    alert("borramos bien");
+                    
+                },
+                function (){
+                    alert("No se encontratos datos omg");
+                });
+        }
+        
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': token
-                }
-            });
+
+
+            // var token =  $('#token').val();
+
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': token
+            //     }
+            // });
             
-            
-            var ruta = 'gidetinv/' + id;
-            $.ajax({
-                url: ruta,
-                type: 'DELETE',
-                dataType: 'json',
-                data: {id: id}
-            });
-        };
+
+            // var ruta = 'gidetinv/' + id;
+            // $.ajax({
+            //     url: ruta,
+            //     type: 'DELETE',
+            //     dataType: 'json',
+            //     data: {id: id}
+            // });
+        // };
 
         (function() {
             'use strict';

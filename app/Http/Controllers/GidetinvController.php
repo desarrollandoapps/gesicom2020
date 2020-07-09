@@ -26,18 +26,20 @@ class GidetinvController extends Controller
      */
     public function create(Request $request)
     {
+        
         $investigadoresAsociados = App\Giinvest::join('gidetinv', 'giinvest.id', 'gidetinv.diinvest')
                                         ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
-                                        ->where('giproinv.id', $request->idProyecto)
+                                        ->where('giproinv.id', $request->diproinv)
                                         ->whereNull('gidetinv.deleted_at')
                                         ->select('giinvest.*', 'gidetinv.id as idDetalle')
                                         ->get();
 
-        $proyecto = App\Giproinv::findorfail($request->idProyecto);
+        $proyecto = App\Giproinv::findorfail($request->diproinv);
         $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
         $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
         $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
         $investigadores = App\Giinvest::orderby('innombre', 'asc')->pluck('innombre', 'id')->all();
+
         return view('gidetinv.insert', compact('proyecto', 'regionales', 'grupos', 'centros', 'investigadores', 'investigadoresAsociados'));
     }
 
@@ -96,13 +98,28 @@ class GidetinvController extends Controller
      * @param  \App\Gidetinv  $gidetinv
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        // dd($request);
         $detalle = App\Gidetinv::findorfail( $id );
         $detalle->delete();
-        return redirect()->route( 'giproinv.index' )
-                         ->with( 'exito', 'Investigador desasociado con éxito' );
+        //return $this->create($request);
+        // return Redirect::route('gidetinv.create', $request);
+        //  return redirect()->$this->create($request);
+        // return redirect()->route( 'gidetinv.create' )
+        //                  ->with( 'exito', 'Investigador desasociado con éxito' );
+
+    }
+    public function borrar($id)
+    {
+        // dd($request);
+        $detalle = App\Gidetinv::findorfail( $id );
+        $detalle->delete();
+        //return $this->create($request);
+        // return Redirect::route('gidetinv.create', $request);
+        //  return redirect()->$this->create($request);
+        // return redirect()->route( 'gidetinv.create' )
+        //                  ->with( 'exito', 'Investigador desasociado con éxito' );
 
     }
 }

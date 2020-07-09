@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gilibinv', 'GilibinvController');
 	Route::resource('gipatinv', 'GipatinvController');
 	Route::resource('gisofinv', 'GisofinvController');
+	Route::get('/gidetinv/borrar/{id}','GidetinvController@borrar')->name('borrando');
 	Route::resource('gidetinv', 'GidetinvController');
 });
 
