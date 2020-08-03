@@ -100,26 +100,20 @@ class GidetinvController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        // dd($request);
         $detalle = App\Gidetinv::findorfail( $id );
         $detalle->delete();
-        //return $this->create($request);
-        // return Redirect::route('gidetinv.create', $request);
-        //  return redirect()->$this->create($request);
-        // return redirect()->route( 'gidetinv.create' )
-        //                  ->with( 'exito', 'Investigador desasociado con éxito' );
-
     }
+
     public function borrar($id)
     {
-        // dd($request);
         $detalle = App\Gidetinv::findorfail( $id );
         $detalle->delete();
-        //return $this->create($request);
-        // return Redirect::route('gidetinv.create', $request);
-        //  return redirect()->$this->create($request);
-        // return redirect()->route( 'gidetinv.create' )
-        //                  ->with( 'exito', 'Investigador desasociado con éxito' );
+    }
 
+    public function asociarInvestigador(Request $request)
+    {
+        App\Gidetinv::create( $request->all() );
+
+        return response()->json(['success' => 'Investigador agregado con éxito']);
     }
 }

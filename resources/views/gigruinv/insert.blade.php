@@ -24,39 +24,44 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('gigruinv.store')}} " method="POST">
+                            <form action="{{route('gigruinv.store')}}" method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
                         
                                 <div class="form-group">
                                     <label>Código Colciencias</label>
-                                    <input type="text" class="form-control" name="gicodgru" value="{{old('gicodgru')}}">
+                                    <input type="text" class="form-control" name="gicodgru" value="{{old('gicodgru')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar el código de Colciencias</div>
                                 </div>
                         
                                 <div class="form-group">
                                     <label>Región Plan Nacional de Desarrollo</label>
-                                    <input type="text" class="form-control" name="giregpnd" value="{{old('giregpnd')}}">
+                                    <input type="text" class="form-control" name="giregpnd" value="{{old('giregpnd')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar la región</div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Regional</label>
-                                    {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                                    {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion', 'required']) !!}
+                                    <div class="invalid-feedback">Debe seleccionar la regional</div>
                                 </div>
                         
                                 <div class="form-group">
                                     <label>Centro de Formación</label>
-                                    {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
+                                    {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor', 'required']) !!}
+                                    <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                 </div>
                         
                                 <div class="form-group">
                                     <label>Nombre del Grupo</label>
-                                    <input type="text" class="form-control" name="ginombre" value="{{old('ginombre')}}">
+                                    <input type="text" class="form-control" name="ginombre" value="{{old('ginombre')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar el nombre del grupo</div>
                                 </div>
                         
                                 <div class="form-group">
                                     <label>Mes de Creación</label>
-                                    <select name="gimescre" class="custom-select form-control">
-                                        <option value="" disabled>Seleccione un mes</option>
+                                    <select name="gimescre" class="custom-select form-control" required>
+                                        <option value="" disabled selected>Seleccione...</option>
                                         <option value="Enero" {{ old('gimescre') == "Enero" ? 'selected' : '' }}>Enero</option>
                                         <option value="Febrero" {{ old('gimescre') == "Febrero" ? 'selected' : '' }}>Febrero</option>
                                         <option value="Marzo" {{ old('gimescre') == "Marzo" ? 'selected' : '' }}>Marzo</option>
@@ -70,16 +75,18 @@
                                         <option value="Noviembre" {{ old('gimescre') == "Noviembre" ? 'selected' : '' }}>Noviembre</option>
                                         <option value="Diciembre" {{ old('gimescre') == "Diciembre" ? 'selected' : '' }}>Diciembre</option>
                                     </select>
+                                    <div class="invalid-feedback">Debe seleccionar el mes de creación</div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Año de Creación</label>
-                                    <select name="gianocre" id="gianocre" class="custom-select form-control">
+                                    <select name="gianocre" id="gianocre" class="custom-select form-control" required>
                                         <option value="" disabled selected>Seleccione...</option>
                                         @for($i = 2013; $i <= 2030; $i++)
                                             <option value="{{$i}}"{{ old('gianocre') == $i ? 'selected' : '' }}>{{$i}}</option>
                                         @endfor
                                     </select>
+                                    <div class="invalid-feedback">Debe seleccionar el año de creación</div>
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -105,5 +112,22 @@
                 }
             });
         });
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection

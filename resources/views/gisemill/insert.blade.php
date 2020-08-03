@@ -24,30 +24,35 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('gisemill.store')}} " method="POST">
+                            <form action="{{route('gisemill.store')}}" method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
                                 
                                 <div class="form-group">
                                     <label>Regional</label>
-                                    {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion']) !!}
+                                    {!! Form::select('giregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'giregion', 'required']) !!}
+                                    <div class="invalid-feedback">Debe seleccionar la regional</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Centro de Formación</label>
-                                    {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor']) !!}
+                                    {!! Form::select('gicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'gicenfor', 'required']) !!}
+                                    <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Grupo de investigación</label>
-                                    {!! Form::select('segruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'segruinv']) !!}
+                                    {!! Form::select('segruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'segruinv', 'required']) !!}
+                                    <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Código del semillero</label>
-                                    <input type="text" class="form-control" name="seidsemi" value="{{old('seidsemi')}}">
+                                    <input type="text" class="form-control" name="seidsemi" value="{{old('seidsemi')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar el código del semillero</div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Nombre del semillero</label>
-                                    <input type="text" class="form-control" name="senombre" value="{{old('senombre')}}">
+                                    <input type="text" class="form-control" name="senombre" value="{{old('senombre')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar el nombre del semillero</div>
                                 </div>
                         
                                 <br>
@@ -85,5 +90,22 @@
                 }
             });
         });
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection

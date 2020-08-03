@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <form action="{{route('gidetinv.store')}}" class="needs-validation" method="POST" novalidate>
+                            <form action="{{route('gidetinv.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
                                 @csrf
                                 @method('POST')
                                 <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
@@ -99,7 +99,8 @@
                                 </div>
                         
                                 <br>
-                                <button type="submit" class="btn btn-primary">Asociar</button>
+                                <!-- <button type="submit" class="btn btn-primary">Asociar</button> -->
+                                <button type="button" class="btn btn-primary" onclick="asociar()">Asociar</button>
                             </form>
                         </div>
                     </div>
@@ -143,46 +144,43 @@
             });
         });
 
+        function asociar() {
+            var diinvest = $('#diinvest').val();
+            var diproinv = $('#diproinv').val();
+            var form = $('#formAdd');
+            var ruta = "{{ route('asociarInvestigador') }}";
+            $.ajax({
+                url: ruta,
+                method: 'POST',
+                data: form.serialize(),
+                dataType: 'json'
+            }).then(function (datos){
+                alert("¡Investigador asociado con éxito!");
+                location.reload();
+            },
+            function (){
+                alert("No se pudo asociar el investigador");
+            });
+        }
+
         function desasociar(id) {
             if(!confirm("¿Confirma desvincular al investigador?")) {
                 return false;
             }
             var idunico = id;
-            var rutamala = "{{ route('borrando', "rempl") }}";
-            var rutabuena = rutamala.replace('rempl',idunico);
-            alert(rutabuena);
-                $.ajax({
-                    url: rutabuena,
-                    method: 'GET'
-                }).then(function (datos){
-                    alert("borramos bien");
-                    
-                },
-                function (){
-                    alert("No se encontratos datos omg");
-                });
+            var rutamala = "{{ route('borrando', "reempl") }}";
+            var rutabuena = rutamala.replace('reempl',idunico);
+            $.ajax({
+                url: rutabuena,
+                method: 'GET'
+            }).then(function (datos){
+                alert("¡Se ha desasociado el investigador con éxito!");
+                location.reload();
+            },
+            function (){
+                alert("No se desasociar el investigador");
+            });
         }
-        
-
-
-
-            // var token =  $('#token').val();
-
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': token
-            //     }
-            // });
-            
-
-            // var ruta = 'gidetinv/' + id;
-            // $.ajax({
-            //     url: ruta,
-            //     type: 'DELETE',
-            //     dataType: 'json',
-            //     data: {id: id}
-            // });
-        // };
 
         (function() {
             'use strict';

@@ -119,10 +119,37 @@ class GiproinvController extends Controller
         $investigadores = App\Giinvest::join('gidetinv', 'giinvest.id', 'gidetinv.diinvest')
                                         ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
                                         ->where('giproinv.id', $id)
+                                        ->where('gidetinv.deleted_at', NULL)
                                         ->select('giinvest.*')
                                         ->get();
+        
+        $articulos = App\Giartinv::join('giproinv', 'giartinv.aiprovin', 'giproinv.id')
+                                    ->select('giartinv.*')
+                                    ->where('giartinv.aiprovin', $id)
+                                    ->get();
 
-        return view( 'giproinv.view', compact('proyecto', 'investigadores') );
+        $libros = App\Gilibinv::join('giproinv', 'gilibinv.liprovin', 'giproinv.id')
+                                    ->select('gilibinv.*')
+                                    ->where('gilibinv.liprovin', $id)
+                                    ->get();
+
+        $patentes = App\Gipatinv::join('giproinv', 'gipatinv.piprovin', 'giproinv.id')
+                                    ->select('gipatinv.*')
+                                    ->where('gipatinv.piprovin', $id)
+                                    ->get();
+
+        $ponencias = App\Giponinv::join('giproinv', 'giponinv.piprovin', 'giproinv.id')
+                                    ->select('giponinv.*')
+                                    ->where('giponinv.piprovin', $id)
+                                    ->get();
+
+        $software = App\Gisofinv::join('giproinv', 'gisofinv.siprovin', 'giproinv.id')
+                                    ->select('gisofinv.*')
+                                    ->where('gisofinv.siprovin', $id)
+                                    ->get();
+
+        return view( 'giproinv.view', compact('proyecto', 'investigadores', 'articulos', 'libros', 'patentes', 
+                                                'ponencias', 'software') );
     }
 
     /**

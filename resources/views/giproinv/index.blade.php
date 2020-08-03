@@ -46,7 +46,6 @@
                                                         <input type="hidden" name="diproinv" value="{{$item->id}}">
                                                         <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar investigadores"><i class="fas fa-user-plus"></i></button>
                                                     </form>
-                                                    {{-- <a href="{{route('gidetinv.create', $item->id)}}"><button type="button" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar investigadores"><i class="fas fa-user-plus"></i></button></a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

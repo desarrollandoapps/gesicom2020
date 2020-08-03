@@ -33,8 +33,10 @@ class GilininvController extends Controller
      */
     public function create()
     {
+        $regionales = DB::table('giregion')->pluck('renombre', 'id')->all();
+        $centros = DB::table('gicenfor')->pluck('cfnombre', 'id')->all();
         $grupos = DB::table('gigruinv')->pluck('ginombre', 'id')->all();
-        return view('gilininv.insert', compact('grupos'));
+        return view('gilininv.insert', compact('regionales', 'centros', 'grupos'));
     }
 
     /**

@@ -27,11 +27,14 @@ class GiseminvController extends Controller
      */
     public function create()
     {
-        $capacitaciones = App\Gicapsem::orderby('csnombre', 'asc')->get();
+        $regionales = App\Giregion::orderby('renombre', 'asc')->pluck('renombre', 'id')->all();
+        $centros = App\Gicenfor::orderby('cfnombre', 'asc')->pluck('cfnombre', 'id')->all();
         $semilleros = App\Gisemill::orderby('senombre', 'asc')->pluck('senombre', 'id')->all();
         $grupos = App\Gigruinv::orderby('ginombre', 'asc')->pluck('ginombre', 'id')->all();
         $proyectos = App\Giproinv::orderby('pinompro', 'asc')->get();
-        return view('giseminv.insert', compact('capacitaciones', 'grupos', 'proyectos', 'semilleros'));
+        $capacitaciones = App\Gicapsem::orderby('csnombre', 'asc')->get();
+        $programas = App\Giprofor::orderby('pfnombre', 'asc')->pluck('pfnombre', 'id')->all();
+        return view('giseminv.insert', compact('capacitaciones', 'regionales', 'centros', 'grupos', 'proyectos', 'semilleros', 'programas'));
     }
 
     /**
