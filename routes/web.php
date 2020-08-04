@@ -62,6 +62,21 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/gidetinv/asociar','GidetinvController@asociarInvestigador')->name('asociarInvestigador');
 	Route::get('/gidetinv/borrar/{id}','GidetinvController@borrar')->name('borrando');
 	Route::resource('gidetinv', 'GidetinvController');
+	Route::post('/gidearau/asociar','GidearauController@asociarInvestigador')->name('asociarAutor');
+	Route::get('/gidearau/borrar/{id}','GidearauController@borrar')->name('borrandoAutor');
+	Route::resource('gidearau', 'GidearauController');
+	Route::post('/gideliau/asociar','GideliauController@asociarInvestigador')->name('asociarAutorLibro');
+	Route::get('/gideliau/borrar/{id}','GideliauController@borrar')->name('borrandoAutorLibro');
+	Route::resource('gideliau', 'GideliauController');
+	Route::post('/gidesoau/asociar','GidesoauController@asociarInvestigador')->name('asociarAutorSw');
+	Route::get('/gidesoau/borrar/{id}','GidesoauController@borrar')->name('borrandoAutorSw');
+	Route::resource('gidesoau', 'GidesoauController');
+	Route::post('/gidepoau/asociar','GidepoauController@asociarInvestigador')->name('asociarAutorPo');
+	Route::get('/gidepoau/borrar/{id}','GidepoauController@borrar')->name('borrandoAutorPo');
+	Route::resource('gidepoau', 'GidepoauController');
+	Route::post('/gidepaau/asociar','GidepaauController@asociarInvestigador')->name('asociarAutorPa');
+	Route::get('/gidepaau/borrar/{id}','GidepaauController@borrar')->name('borrandoAutorPa');
+	Route::resource('gidepaau', 'GidepaauController');
 });
 
 // Route::group(['middleware' => 'auth'], function () {
@@ -75,5 +90,6 @@ Route::get('centros/{regional}', 'RegionalesController@darCentros');
 Route::get('grupos/{centro}', 'GigruinvController@darGrupos');
 Route::get('semilleros/{centro}', 'CentrosFormacionController@darSemileros');
 Route::get('investigadores/{grupo}', 'GiinvestController@darInvestigadores');
+Route::get('integrantesemillero/{grupo}', 'GiseminvController@darIntegrantesSemillero');
 Route::get('lineas/{grupo}', 'GilininvController@darLineas');
 Route::get('proyectos/{grupo}', 'GiproinvController@darProyectos');

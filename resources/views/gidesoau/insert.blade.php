@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gidetinv', 'titlePage' => __('gidetinv')])
+@extends('layouts.app', ['activePage' => 'gidesoau', 'titlePage' => __('gidesoau')])
 
 @section('hidden-search')
     hidden
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Investigadores asociados </h4>
+                            <h4 class="card-title">Autores asociados </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -24,15 +24,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($investigadoresAsociados as $item)
+                                            @foreach ($autores as $item)
                                                 <tr>
                                                     <td>{{$item->innombre}}</td>
                                                     <td class="td-actions text-right">
-                                                        <form action="{{route('gidetinv.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
+                                                        <form action="{{route('gidesoau.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
-                                                            {{-- <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la desasociación del investigador?')"><i class="fas fa-trash"></i></button> --}}
+                                                            <input type="hidden" name="dllibinv" value="{{$software->id}}">
                                                         </form>
                                                         <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
                                                     </td>
@@ -50,7 +49,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{__('gidetinv')}} </h4>
+                            <h4 class="card-title">{{__('gidesoau')}} </h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -65,41 +64,40 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Proyecto: </h5>
+                                    <h5>Artículo: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$proyecto->pinompro}}</h5>
+                                    <h5 class="lead">{{$software->sititobr}}</h5>
                                 </div>
                             </div>
                             <hr>
-                            <form action="{{route('gidetinv.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
+                            <form action="{{route('gidesoau.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
                                 @csrf
                                 @method('POST')
-                                <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
+                                <input type="hidden" name="dssofinv" value="{{$software->id}}">
                                 <input type="hidden" id="token" value="{{csrf_token()}}">
                                 <div class="form-group">
                                     <label>Regional</label>
-                                    {!! Form::select('diregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'diregion', 'required']) !!}
+                                    {!! Form::select('liregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'liregion', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar la regional</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Centro de formación</label>
-                                    {!! Form::select('dicenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'dicenfor', 'required']) !!}
+                                    {!! Form::select('licenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'licenfor', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Grupo de investigación</label>
-                                    {!! Form::select('digruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'digruinv', 'required']) !!}
+                                    {!! Form::select('ligruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'ligruinv', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
                                 </div>
                                 <div class="form-group">
                                     <label>Investigadores</label>
-                                    {!! Form::select('diinvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'diinvest', 'required']) !!}
+                                    {!! Form::select('dsinvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'dsinvest', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar el investigador</div>
                                 </div>
                         
                                 <br>
-                                <!-- <button type="submit" class="btn btn-primary">Asociar</button> -->
                                 <button type="button" class="btn btn-primary" onclick="asociar()">Asociar</button>
                             </form>
                         </div>
@@ -113,42 +111,40 @@
 @section('scripts')
     <script>
         $('select option:first').attr('disabled', true);
-        $('#diregion').change(function(event){
+        $('#liregion').change(function(event){
             $.get("../centros/" + event.target.value, function(response, centros){
-                $('#dicenfor').empty();
-                $('#dicenfor').append("<option value=''>Seleccione...</option>");
+                $('#licenfor').empty();
+                $('#licenfor').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
-                    $('#dicenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
+                    $('#licenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
                 }
             });
         });
-        $('#dicenfor').change(function(event){
+        $('#licenfor').change(function(event){
             $.get("../grupos/" + event.target.value, function(response, grupos){
-                $('#digruinv').empty();
-                $('#digruinv').append("<option value=''>Seleccione...</option>");
+                $('#ligruinv').empty();
+                $('#ligruinv').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
-                    $('#digruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
+                    $('#ligruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
                 }
             });
         });
-        $('#digruinv').change(function(event){
+        $('#ligruinv').change(function(event){
             $.get("../investigadores/" + event.target.value, function(response, investigadores){
-                $('#diinvest').empty();
-                $('#diinvest').append("<option value=''>Seleccione...</option>");
+                $('#dsinvest').empty();
+                $('#dsinvest').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
-                    $('#diinvest').append("<option value='" + response[i].id + "'>" + response[i].innombre + "</option>");
+                    $('#dsinvest').append("<option value='" + response[i].id + "'>" + response[i].innombre + "</option>");
                 }
             });
         });
 
         function asociar() {
-            var diinvest = $('#diinvest').val();
-            var diproinv = $('#diproinv').val();
             var form = $('#formAdd');
-            var ruta = "{{ route('asociarInvestigador') }}";
+            var ruta = "{{ route('asociarAutorSw') }}";
             $.ajax({
                 url: ruta,
                 method: 'POST',
@@ -157,21 +153,21 @@
             }).then(function (datos){
                 swal({
                 title: "¡Hecho!",
-                text: "¡Investigador asociado con éxito!",
+                text: "¡Autor asociado con éxito!",
                 type: "success"
                 }).then(function(e){
                     location.reload();
                 })
             },
             function (){
-                swal("¡Atención!", "No se pudo asociar el investigador", "warning");
+                swal("¡Atención!", "No se pudo asociar el autor", "warning");
             });
         }
 
         function desasociar(id) {
             swal({
                 title: "¿Desasociar?",
-                text: "¿Confirma la desasociación del investigador?",
+                text: "¿Confirma la desasociación del autor?",
                 type: "warning",
                 showCancelButton: !0,
                 confirmButtonText: "Si, desasociar",
@@ -180,7 +176,7 @@
             }).then(function(e) {
                 if (e.value === true) {
                     var idunico = id;
-                    var rutamala = "{{ route('borrando', "reempl") }}";
+                    var rutamala = "{{ route('borrandoAutorSw', "reempl") }}";
                     var rutabuena = rutamala.replace('reempl',idunico);
                     $.ajax({
                         url: rutabuena,
@@ -188,14 +184,14 @@
                     }).then(function (datos){
                         swal({
                             title: "¡Hecho!",
-                            text: "¡Se ha desasociado el investigador con éxito!",
+                            text: "¡Se ha desasociado el autor con éxito!",
                             type: "success"
                             }).then(function(e){
                                 location.reload();
                             })
                     },
                     function (){
-                        swal("¡Atención!", "No se pudo desasociar el investigador", "error");
+                        swal("¡Atención!", "No se pudo desasociar el autor", "error");
                     });
                 }
                 else {

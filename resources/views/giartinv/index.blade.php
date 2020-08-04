@@ -23,6 +23,7 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th class="text-right">Opciones</th>
+                                            <th class="text-right"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,6 +37,14 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación del artículo?')"><i class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <form action="{{route('gidearau.create')}}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="hidden" name="daartinv" value="{{$item->id}}">
+                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar autores"><i class="fas fa-user-plus"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
