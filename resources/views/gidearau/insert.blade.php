@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gidetinv', 'titlePage' => __('gidetinv')])
+@extends('layouts.app', ['activePage' => 'gidearau', 'titlePage' => __('gidearau')])
 
 @section('hidden-search')
     hidden
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Investigadores asociados </h4>
+                            <h4 class="card-title">Autores asociados </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -24,15 +24,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($investigadoresAsociados as $item)
+                                            @foreach ($autores as $item)
                                                 <tr>
                                                     <td>{{$item->innombre}}</td>
                                                     <td class="td-actions text-right">
-                                                        <form action="{{route('gidetinv.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
+                                                        <form action="{{route('gidearau.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
-                                                            {{-- <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la desasociación del investigador?')"><i class="fas fa-trash"></i></button> --}}
+                                                            <input type="hidden" name="daartinv" value="{{$articulo->id}}">
                                                         </form>
                                                         <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
                                                     </td>
@@ -50,7 +49,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{__('gidetinv')}} </h4>
+                            <h4 class="card-title">{{__('gidearau')}} </h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -65,17 +64,17 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Proyecto: </h5>
+                                    <h5>Artículo: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$proyecto->pinompro}}</h5>
+                                    <h5 class="lead">{{$articulo->aititulo}}</h5>
                                 </div>
                             </div>
                             <hr>
                             <form action="{{route('gidetinv.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
                                 @csrf
                                 @method('POST')
-                                <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
+                                <input type="hidden" name="daartinv" value="{{$articulo->id}}">
                                 <input type="hidden" id="token" value="{{csrf_token()}}">
                                 <div class="form-group">
                                     <label>Regional</label>
@@ -94,12 +93,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Investigadores</label>
-                                    {!! Form::select('diinvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'diinvest', 'required']) !!}
+                                    {!! Form::select('dainvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'dainvest', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar el investigador</div>
                                 </div>
                         
                                 <br>
-                                <!-- <button type="submit" class="btn btn-primary">Asociar</button> -->
                                 <button type="button" class="btn btn-primary" onclick="asociar()">Asociar</button>
                             </form>
                         </div>
@@ -135,20 +133,20 @@
         });
         $('#digruinv').change(function(event){
             $.get("../investigadores/" + event.target.value, function(response, investigadores){
-                $('#diinvest').empty();
-                $('#diinvest').append("<option value=''>Seleccione...</option>");
+                $('#dainvest').empty();
+                $('#dainvest').append("<option value=''>Seleccione...</option>");
                 for(i = 0; i < response.length; i++)
                 {
-                    $('#diinvest').append("<option value='" + response[i].id + "'>" + response[i].innombre + "</option>");
+                    $('#dainvest').append("<option value='" + response[i].id + "'>" + response[i].innombre + "</option>");
                 }
             });
         });
 
         function asociar() {
-            var diinvest = $('#diinvest').val();
-            var diproinv = $('#diproinv').val();
+            var dainvest = $('#dainvest').val();
+            var daartinv = $('#daartinv').val();
             var form = $('#formAdd');
-            var ruta = "{{ route('asociarInvestigador') }}";
+            var ruta = "{{ route('asociarAutor') }}";
             $.ajax({
                 url: ruta,
                 method: 'POST',
@@ -157,21 +155,21 @@
             }).then(function (datos){
                 swal({
                 title: "¡Hecho!",
-                text: "¡Investigador asociado con éxito!",
+                text: "¡Autor asociado con éxito!",
                 type: "success"
                 }).then(function(e){
                     location.reload();
                 })
             },
             function (){
-                swal("¡Atención!", "No se pudo asociar el investigador", "warning");
+                swal("¡Atención!", "No se pudo asociar el autor", "warning");
             });
         }
 
         function desasociar(id) {
             swal({
                 title: "¿Desasociar?",
-                text: "¿Confirma la desasociación del investigador?",
+                text: "¿Confirma la desasociación del autor?",
                 type: "warning",
                 showCancelButton: !0,
                 confirmButtonText: "Si, desasociar",
@@ -180,7 +178,7 @@
             }).then(function(e) {
                 if (e.value === true) {
                     var idunico = id;
-                    var rutamala = "{{ route('borrando', "reempl") }}";
+                    var rutamala = "{{ route('borrandoAutor', "reempl") }}";
                     var rutabuena = rutamala.replace('reempl',idunico);
                     $.ajax({
                         url: rutabuena,
@@ -188,14 +186,14 @@
                     }).then(function (datos){
                         swal({
                             title: "¡Hecho!",
-                            text: "¡Se ha desasociado el investigador con éxito!",
+                            text: "¡Se ha desasociado el autor con éxito!",
                             type: "success"
                             }).then(function(e){
                                 location.reload();
                             })
                     },
                     function (){
-                        swal("¡Atención!", "No se pudo desasociar el investigador", "error");
+                        swal("¡Atención!", "No se pudo desasociar el autor", "error");
                     });
                 }
                 else {

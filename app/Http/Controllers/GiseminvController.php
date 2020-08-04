@@ -387,4 +387,12 @@ class GiseminvController extends Controller
         return redirect()->route( 'giseminv.index' )
                          ->with( 'exito', 'Integrante de semillero de investigación eliminado con éxito' );
     }
+
+    public function darIntegrantesSemillero(Request $request, $grupo)
+    {
+        {
+            $semilleros = App\Giseminv::where('sigruinv', $grupo)->get();
+            return response()->json($semilleros);
+        }
+    }
 }

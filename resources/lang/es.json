@@ -63,5 +63,10 @@
     "gilibinv": "Libro",
     "gipatinv": "Patente",
     "gisofinv": "Software",
-    "gidetinv": "Asociar investigador a proyecto"
+    "gidetinv": "Asociar investigador a proyecto",
+    "gidearau": "Asociar autor a artículo",
+    "gideliau": "Asociar autor a libro",
+    "gidesoau": "Asociar autor a software",
+    "gidepoau": "Asociar autor a ponencia",
+    "gidepaau": "Asociar autor a patente"
 }
