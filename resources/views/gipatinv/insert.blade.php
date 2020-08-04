@@ -28,7 +28,7 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('gipatinv.store')}} " method="POST">
+                            <form action="{{route('gipatinv.store')}} " method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
 
@@ -36,13 +36,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Regional</label>
-                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar la regional</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Centro de formación</label>
-                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
+                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +52,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
-                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv']) !!}
+                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +61,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tipo de Patente</label>
-                                            {!! Form::select('picodtip', $tiposPatente, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picodtip']) !!}
+                                            {!! Form::select('picodtip', $tiposPatente, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picodtip', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el tipo de patente</div>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +70,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Proyecto vinculado</label>
-                                            {!! Form::select('piprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piprovin']) !!}
+                                            {!! Form::select('piprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piprovin', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el proyecto vinculado</div>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +80,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Título de la obra</label>
-                                            <input type="text" class="form-control" name="pititobr" id="pititobr" value="{{old('pititobr')}}">
+                                            <input type="text" class="form-control" name="pititobr" id="pititobr" value="{{old('pititobr')}}" required>
+                                            <div class="invalid-feedback">Debe seleccionar el título de la obra</div>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +90,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de radicado</label>
-                                            <input type="text" class="form-control" name="pinumrad" id="pinumrad" value="{{old('pinumrad')}}">
+                                            <input type="text" class="form-control" name="pinumrad" id="pinumrad" value="{{old('pinumrad')}}" required>
+                                            <div class="invalid-feedback">Debe seleccionar el número de radicado</div>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -96,7 +103,8 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control" name="pifecsol" value="{{old('pifecsol')}}">
+                                                <input type="text" class="form-control" name="pifecsol" value="{{old('pifecsol')}}" required>
+                                                <div class="invalid-feedback">Debe seleccionar la fecha de la solicitud de la patente</div>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +154,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de registro</label>
-                                            <input type="text" class="form-control" name="pinumreg" id="pinumreg" value="{{old('pinumreg')}}">
+                                            <input type="text" class="form-control" name="pinumreg" id="pinumreg" value="{{old('pinumreg')}}" required>
+                                            <div class="invalid-feedback">Debe seleccionar el número de registro</div>
                                         </div>
                                     </div>
 
@@ -220,5 +229,22 @@
                 }
             });
         });
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection

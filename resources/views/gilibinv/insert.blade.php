@@ -28,7 +28,7 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('gilibinv.store')}} " method="POST">
+                            <form action="{{route('gilibinv.store')}} " method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
 
@@ -36,13 +36,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Regional</label>
-                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar la regional</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Centro de formación</label>
-                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
+                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +52,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
-                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv']) !!}
+                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +61,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tipo de Libro</label>
-                                            {!! Form::select('licodtip', $tiposLibro, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'licodtip']) !!}
+                                            {!! Form::select('licodtip', $tiposLibro, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'licodtip', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el tipo de libro</div>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +70,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Proyecto vinculado</label>
-                                            {!! Form::select('liprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'liprovin']) !!}
+                                            {!! Form::select('liprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'liprovin', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el proyecto de investigación vinculado</div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +79,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre del libro</label>
-                                            <input type="text" class="form-control" name="linomlib" id="linomlib" value="{{old('linomlib')}}">
+                                            <input type="text" class="form-control" name="linomlib" id="linomlib" value="{{old('linomlib')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el nombre del libro</div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,13 +88,20 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de páginas</label>
-                                            <input type="text" class="form-control" name="linumpag" id="linumpag" value="{{old('linumpag')}}">
+                                            <input type="number" class="form-control" name="linumpag" id="linumpag" value="{{old('linumpag')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el número de páginas del libro</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Año de publicación</label>
-                                            <input type="text" class="form-control" name="lianopub" id="lianopub" value="{{old('lianopub')}}">
+                                            <select name="lianopub" id="lianopub" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                @for($i = 2013; $i <= 2030; $i++)
+                                                    <option value="{{$i}}"{{ old('lianopub') == $i ? 'selected' : '' }}>{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                            <div class="invalid-feedback">Debe seleccionar el año de publicación del libro</div>
                                         </div>
                                     </div>
                                 <!-- <div class="form-row">
@@ -136,13 +149,29 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mes de publicación</label>
-                                            <input type="text" class="form-control" name="limespub" id="limespub" value="{{old('limespub')}}">
+                                            <select name="limespub" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                <option value="1" {{ old('limespub') == "1" ? 'selected' : '' }}>Enero</option>
+                                                <option value="2" {{ old('limespub') == "2" ? 'selected' : '' }}>Febrero</option>
+                                                <option value="3" {{ old('limespub') == "3" ? 'selected' : '' }}>Marzo</option>
+                                                <option value="4" {{ old('limespub') == "4" ? 'selected' : '' }}>Abril</option>
+                                                <option value="5" {{ old('limespub') == "5" ? 'selected' : '' }}>Mayo</option>
+                                                <option value="6" {{ old('limespub') == "6" ? 'selected' : '' }}>Junio</option>
+                                                <option value="7" {{ old('limespub') == "7" ? 'selected' : '' }}>Julio</option>
+                                                <option value="8" {{ old('limespub') == "8" ? 'selected' : '' }}>Agosto</option>
+                                                <option value="9" {{ old('limespub') == "9" ? 'selected' : '' }}>Septiembre</option>
+                                                <option value="10" {{ old('limespub') == "10" ? 'selected' : '' }}>Octubre</option>
+                                                <option value="11" {{ old('limespub') == "11" ? 'selected' : '' }}>Noviembre</option>
+                                                <option value="12" {{ old('limespub') == "12" ? 'selected' : '' }}>Diciembre</option>
+                                            </select>
+                                            <div class="invalid-feedback">Debe ingresar el mes de publicación del libro</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Día de publicación</label>
-                                            <input type="text" class="form-control" name="lidiapub" id="lidiapub" value="{{old('lidiapub')}}">
+                                            <input type="number" class="form-control" name="lidiapub" id="lidiapub" value="{{old('lidiapub')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el día de publicación del libro</div>
                                         </div>
                                     </div>
                                 </div>
@@ -151,13 +180,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Editorial</label>
-                                            <input type="text" class="form-control" name="lieditor" id="lieditor" value="{{old('lieditor')}}">
+                                            <input type="text" class="form-control" name="lieditor" id="lieditor" value="{{old('lieditor')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la editorial</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Ciudad de publicación</label>
-                                            <input type="text" class="form-control" name="liciupub" id="liciupub" value="{{old('liciupub')}}">
+                                            <input type="text" class="form-control" name="liciupub" id="liciupub" value="{{old('liciupub')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la ciudad de publicación del libro</div>
                                         </div>
                                     </div>
                                 </div>
@@ -166,19 +197,22 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Medio de divulgación</label>
-                                            <input type="text" class="form-control" name="limeddiv" id="limeddiv" value="{{old('limeddiv')}}">
+                                            <input type="text" class="form-control" name="limeddiv" id="limeddiv" value="{{old('limeddiv')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el medio de divulgación del libro</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Código ISBN</label>
-                                            <input type="text" class="form-control" name="licoisbn" id="licoisbn" value="{{old('licoisbn')}}">
+                                            <input type="text" class="form-control" name="licoisbn" id="licoisbn" value="{{old('licoisbn')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el código ISBN del libro</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Página web del libro</label>
-                                            <input type="text" class="form-control" name="lisitweb" id="lisitweb" value="{{old('lisitweb')}}" placeholder="http://www.evento.com">
+                                            <input type="text" class="form-control" name="lisitweb" id="lisitweb" value="{{old('lisitweb')}}" placeholder="http://www.evento.com" required>
+                                            <div class="invalid-feedback">Debe ingresar la página web del libro</div>
                                         </div>
                                     </div>
 
@@ -252,5 +286,22 @@
                 }
             });
         });
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection

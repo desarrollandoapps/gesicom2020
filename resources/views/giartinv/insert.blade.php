@@ -28,7 +28,7 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('giartinv.store')}} " method="POST">
+                            <form action="{{route('giartinv.store')}} " method="POST"  class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
 
@@ -36,13 +36,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Regional</label>
-                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion']) !!}
+                                            {!! Form::select('piregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'piregion', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar la regional</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Centro de formación</label>
-                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor']) !!}
+                                            {!! Form::select('picenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'picenfor', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +52,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Grupo de investigación vinculado</label>
-                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv']) !!}
+                                            {!! Form::select('pigruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pigruinv', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +61,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tipo de Artículo</label>
-                                            {!! Form::select('aicodtip', $tiposArticulo, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'aicodtip']) !!}
+                                            {!! Form::select('aicodtip', $tiposArticulo, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'aicodtip', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el tipo de artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +70,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Proyecto vinculado</label>
-                                            {!! Form::select('aiprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'aiprovin']) !!}
+                                            {!! Form::select('aiprovin', $proyectos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'aiprovin', 'required']) !!}
+                                            <div class="invalid-feedback">Debe seleccionar el proyecto vinculado</div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +79,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Título del artículo</label>
-                                            <input type="text" class="form-control" name="aititulo" id="aititulo" value="{{old('aititulo')}}">
+                                            <input type="text" class="form-control" name="aititulo" id="aititulo" value="{{old('aititulo')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el título del artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,25 +88,48 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Página inicial</label>
-                                            <input type="text" class="form-control" name="aipagini" id="aipagini" value="{{old('aipagini')}}">
+                                            <input type="number" class="form-control" name="aipagini" id="aipagini" value="{{old('aipagini')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la página inicial del artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Página final</label>
-                                            <input type="text" class="form-control" name="aipagfin" id="aipagfin" value="{{old('aipagfin')}}">
+                                            <input type="number" class="form-control" name="aipagfin" id="aipagfin" value="{{old('aipagfin')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la página final del artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Año de publicación</label>
-                                            <input type="text" class="form-control" name="aianopub" id="aianopub" value="{{old('aianopub')}}">
+                                            <select name="aianopub" id="aianopub" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                @for($i = 2013; $i <= 2030; $i++)
+                                                    <option value="{{$i}}"{{ old('aianopub') == $i ? 'selected' : '' }}>{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                            <div class="invalid-feedback">Debe ingresar el año de publicación del artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Mes de publicación</label>
-                                            <input type="text" class="form-control" name="aimespub" id="aimespub" value="{{old('aimespub')}}">
+                                            <select name="aimespub" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                <option value="1" {{ old('aimespub') == "1" ? 'selected' : '' }}>Enero</option>
+                                                <option value="2" {{ old('aimespub') == "2" ? 'selected' : '' }}>Febrero</option>
+                                                <option value="3" {{ old('aimespub') == "3" ? 'selected' : '' }}>Marzo</option>
+                                                <option value="4" {{ old('aimespub') == "4" ? 'selected' : '' }}>Abril</option>
+                                                <option value="5" {{ old('aimespub') == "5" ? 'selected' : '' }}>Mayo</option>
+                                                <option value="6" {{ old('aimespub') == "6" ? 'selected' : '' }}>Junio</option>
+                                                <option value="7" {{ old('aimespub') == "7" ? 'selected' : '' }}>Julio</option>
+                                                <option value="8" {{ old('aimespub') == "8" ? 'selected' : '' }}>Agosto</option>
+                                                <option value="9" {{ old('aimespub') == "9" ? 'selected' : '' }}>Septiembre</option>
+                                                <option value="10" {{ old('aimespub') == "10" ? 'selected' : '' }}>Octubre</option>
+                                                <option value="11" {{ old('aimespub') == "11" ? 'selected' : '' }}>Noviembre</option>
+                                                <option value="12" {{ old('aimespub') == "12" ? 'selected' : '' }}>Diciembre</option>
+                                            </select>
+                                            <div class="invalid-feedback">Debe seleccionar el mes de publicación del artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +138,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre de la revista</label>
-                                            <input type="text" class="form-control" name="ainomrev" id="ainomrev" value="{{old('ainomrev')}}">
+                                            <input type="text" class="form-control" name="ainomrev" id="ainomrev" value="{{old('ainomrev')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el nombre de la revista donde se encuentra publicado el artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -118,13 +148,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Volumen de la revista</label>
-                                            <input type="text" class="form-control" name="aivolrev" id="aivolrev" value="{{old('aivolrev')}}">
+                                            <input type="text" class="form-control" name="aivolrev" id="aivolrev" value="{{old('aivolrev')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el volumen de la revista donde se encuentra publicado el artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Serie de la revista</label>
-                                            <input type="text" class="form-control" name="aiserrev" id="aiserrev" value="{{old('aiserrev')}}">
+                                            <input type="text" class="form-control" name="aiserrev" id="aiserrev" value="{{old('aiserrev')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la serie de la revista donde se encuentra publicado el artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -133,13 +165,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Ciudad de publicación</label>
-                                            <input type="text" class="form-control" name="aiciupub" id="aiciupub" value="{{old('aiciupub')}}">
+                                            <input type="text" class="form-control" name="aiciupub" id="aiciupub" value="{{old('aiciupub')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar la ciudad origen de la revista donde se encuentra publicado el artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Medio de divulgación</label>
-                                            <input type="text" class="form-control" name="aimeddiv" id="aimeddiv" value="{{old('aimeddiv')}}">
+                                            <input type="text" class="form-control" name="aimeddiv" id="aimeddiv" value="{{old('aimeddiv')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el medio de divulgación del artículo</div>
                                         </div>
                                     </div>
                                 </div>
@@ -148,13 +182,15 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Código ISSN</label>
-                                            <input type="text" class="form-control" name="aicoissn" id="aicoissn" value="{{old('aicoissn')}}">
+                                            <input type="text" class="form-control" name="aicoissn" id="aicoissn" value="{{old('aicoissn')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el código ISSN de la revista donde se encuentra publicado el artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Código  DOI (Digital Object Identifier)</label>
-                                            <input type="text" class="form-control" name="aicoddoi" id="aicoddoi" value="{{old('aicoddoi')}}">
+                                            <input type="text" class="form-control" name="aicoddoi" id="aicoddoi" value="{{old('aicoddoi')}}" required>
+                                            <div class="invalid-feedback">Debe ingresar el código DOI del artículo</div>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -222,5 +258,22 @@
                 }
             });
         });
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                }, false);
+                });
+            }, false);
+        })();
     </script>
 @endsection
