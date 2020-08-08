@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gilinpro', 'titlePage' => __('Crear Línea Programática')])
+@extends('layouts.app', ['activePage' => 'girubpre', 'titlePage' => __('Crear Rubro Presupuestal')])
 
 @section('hidden-search')
     hidden
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Creación de {{__('gilinpro')}} </h4>
+                            <h4 class="card-title">Creación de {{__('girubpre')}} </h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -24,14 +24,14 @@
                                 </div>
                                 <br>
                             @endif
-                            <form action="{{route('gilinpro.store')}}" method="POST" class="needs-validation" novalidate>
+                            <form action="{{route('girubpre.store')}}" method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('POST')
 
                                 <div class="form-group">
-                                    <label>Nombre de la línea</label>
-                                    <input type="text" class="form-control" name="lpnomlin" value="{{old('lpnomlin')}}" required>
-                                    <div class="invalid-feedback">Debe ingresar el nombre de la línea</div>
+                                    <label>Descripción del rubro</label>
+                                    <input type="text" class="form-control" name="rpdesrub" value="{{old('rpdesrub')}}" required>
+                                    <div class="invalid-feedback">Debe ingresar la descripción del rubro presupuestal</div>
                                 </div>
 
                                 <br>

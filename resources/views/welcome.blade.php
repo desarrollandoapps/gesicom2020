@@ -9,11 +9,11 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     @guest
-                        <a href="{{ route('login') }}" class="btn btn-primary btn-sm mx-auto mt-2">{{ __('Iniciar Sesión') }}</a>
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-sm mx-auto mt-4">{{ __('Iniciar Sesión') }}</a>
                     @endguest
                 </div>
                 <div>
-                    
+
                 </div>
             </div>
         </div>

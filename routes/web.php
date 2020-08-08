@@ -76,7 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gidepoau', 'GidepoauController');
 	Route::post('/gidepaau/asociar','GidepaauController@asociarInvestigador')->name('asociarAutorPa');
 	Route::get('/gidepaau/borrar/{id}','GidepaauController@borrar')->name('borrandoAutorPa');
-	Route::resource('gidepaau', 'GidepaauController');
+    Route::resource('gidepaau', 'GidepaauController');
+    Route::resource('girubpre', 'GirubpreController');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -93,3 +94,4 @@ Route::get('investigadores/{grupo}', 'GiinvestController@darInvestigadores');
 Route::get('integrantesemillero/{grupo}', 'GiseminvController@darIntegrantesSemillero');
 Route::get('lineas/{grupo}', 'GilininvController@darLineas');
 Route::get('proyectos/{grupo}', 'GiproinvController@darProyectos');
+Route::get('rubros/{grupo}', 'GirubpreController@darRubros');
