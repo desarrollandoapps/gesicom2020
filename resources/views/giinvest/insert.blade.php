@@ -101,14 +101,14 @@
                                         <div class="form-group">
                                             <label>Correo personal</label>
                                             <input type="email" class="form-control" name="incorper" id="incorper" value="{{old('incorper')}}" required>
-                                            <div class="invalid-feedback">Debe ingresar el correo personal</div>
+                                            <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Correo SENA o MiSENA</label>
                                             <input type="email" class="form-control" name="incorsen" id="incorsen" value="{{old('incorsen')}}" required>
-                                            <div class="invalid-feedback">Debe ingresar el correo institucional</div>
+                                            <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
                                 </div>
@@ -365,6 +365,13 @@
             language: 'es',
             autoclose: true,
         });
+        $('#infecnac').datepicker().on('changeDate', function (e){
+            let infecexp = $('#infecexp').datepicker('getDate');
+            let infecnac = $('#infecnac').datepicker('getDate');
+            if(infecexp < infecnac) {
+                swal("¡Atención!", "La fecha de nacimiento debe ser inferior a la fecha de expedición del documento", "warning");
+            }
+        });
         $('#innumcel').inputmask();
         $('#intelfij').inputmask();
         $('#inasimen').inputmask();
@@ -413,6 +420,13 @@
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
+                    let infecexp = $('#infecexp').datepicker('getDate');
+                    let infecnac = $('#infecnac').datepicker('getDate');
+                    if(infecexp < infecnac) {
+                        swal("¡Atención!", "La fecha de nacimiento debe ser inferior a la fecha de expedición del documento", "warning");
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();

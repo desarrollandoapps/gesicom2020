@@ -79,12 +79,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('gidepaau', 'GidepaauController');
 });
 
-// Route::group(['middleware' => 'auth'], function () {
-// 	Route::resource('user', 'UserController', ['except' => ['show']]);
-// 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-// 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-// 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-// });
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('users', 'UsersController', ['except' => ['show']]);
+	// Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	// Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	// Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
 
 Route::get('centros/{regional}', 'RegionalesController@darCentros');
 Route::get('grupos/{centro}', 'GigruinvController@darGrupos');

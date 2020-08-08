@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'gilinpro', 'titlePage' => __('Detalle de Línea Programática')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')

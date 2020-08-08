@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'gipatinv', 'titlePage' => __('Modificar Patente')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

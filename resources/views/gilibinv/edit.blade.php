@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'gilibinv', 'titlePage' => __('Modificar Libro')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

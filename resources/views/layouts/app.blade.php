@@ -16,19 +16,26 @@
   <!-- Material -->
   <link rel="stylesheet" href="{{asset('css')}}/estilos.css">
   <!-- SweetAlert2 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
   @yield('estilos')
 </head>
 
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-  
-    @include('layouts.navs.navbar')
-
-    @include('layouts.navs.sidebar')
+  <?php
+  if (!isset($activePage)) {
+    $activePage = "";
+  }
+  if (!isset($titlePage)) {
+    $titlePage = "";
+  }
+  ?>
+  @include('layouts.navs.navbar')
+  @include('layouts.navs.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

@@ -17,7 +17,7 @@ class CreateGisofinvTable extends Migration
             $table->id();
             $table->string('sinumrad');
             $table->string('sifecrad');
-            $table->string('sinumreg')->nullable([]);
+            $table->string('sinumreg')->nullable();
             $table->string('sititobr');
             $table->string('siesttra');
             $table->bigInteger('siprovin')->unsigned();

@@ -101,7 +101,14 @@ class GilibinvController extends Controller
                                     ->select('gilibinv.*', 'giproinv.pinompro as proyecto', 'gitiplib.tlnomtip as tipo')
                                     ->where('gilibinv.id', $id)
                                     ->first();
-        return view('gilibinv.view', compact('libro'));
+        
+        $autores = App\Giinvest::join('gideliau', 'giinvest.id', 'gideliau.dlinvest')
+                                    ->join('gilibinv', 'gideliau.dllibinv', 'gilibinv.id')
+                                    ->select('giinvest.*')
+                                    ->where('gilibinv.id', $id)
+                                    ->get();
+                                    
+        return view('gilibinv.view', compact('libro', 'autores'));
     }
 
     /**

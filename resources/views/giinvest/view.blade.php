@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'giinvest', 'titlePage' => __('Detalle de Investigador')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')

@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'giartinv', 'titlePage' => __('Modificar Artículo')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

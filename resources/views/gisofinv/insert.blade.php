@@ -116,7 +116,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de registro</label>
-                                            <input type="text" class="form-control" name="sinumreg" id="sinumreg" value="{{old('sinumreg')}}" required>
+                                            <input type="text" class="form-control" name="sinumreg" id="sinumreg" value="{{old('sinumreg')}}">
                                             <div class="invalid-feedback">Si no tiene número de registro, por favor escriba "No aplica"</div>
                                         </div>
                                     </div>

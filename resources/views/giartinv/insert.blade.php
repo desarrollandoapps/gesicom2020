@@ -172,7 +172,11 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Medio de divulgación</label>
-                                            <input type="text" class="form-control" name="aimeddiv" id="aimeddiv" value="{{old('aimeddiv')}}" required>
+                                            <select name="aimeddiv" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                <option value="Digital" {{ old('aimeddiv') == "Digital" ? 'selected' : '' }}>Digital</option>
+                                                <option value="Físico" {{ old('aimeddiv') == "Físico" ? 'selected' : '' }}>Físico</option>
+                                            </select>
                                             <div class="invalid-feedback">Debe ingresar el medio de divulgación del artículo</div>
                                         </div>
                                     </div>

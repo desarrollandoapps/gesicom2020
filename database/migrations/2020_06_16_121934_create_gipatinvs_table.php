@@ -18,7 +18,7 @@ class CreateGipatinvsTable extends Migration
             $table->string('pinumrad');
             $table->date('pifecsol');
             $table->string('pititobr');
-            $table->string('pinumreg');
+            $table->string('pinumreg')->nullable();
             $table->bigInteger('piprovin')->unsigned();
             $table->foreign('piprovin')->references('id')->on('giproinv');
             $table->bigInteger('picodtip')->unsigned();

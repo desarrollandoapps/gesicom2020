@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'giponinv', 'titlePage' => __('Detalle de ponencia')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')
@@ -100,7 +100,17 @@
                                     <h5 class="lead">{{$ponencia->tipo}}</h5>
                                 </div>
                             </div>
-
+                            <hr>
+                            <div class="row">
+                                <h5>Autores: </h5>
+                            </div>
+                            <div class="row">
+                                <ul>
+                                    @foreach ($autores as $item)
+                                        <li>{{$item->innombre}} <a href="{{route('giinvest.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             <br>
                             <div class="row">
                                 <a href="{{route('giponinv.index')}}"><button class="btn btn-primary">Regresar</button></a>

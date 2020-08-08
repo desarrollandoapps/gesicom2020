@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['activePage' => 'confirm', 'titlePage' => __('Confirmar')])
 
 @section('content')
 <div class="container">

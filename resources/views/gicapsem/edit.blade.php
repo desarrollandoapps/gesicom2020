@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'gicapsem', 'titlePage' => __('Modificar Capacitación de Semillero')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

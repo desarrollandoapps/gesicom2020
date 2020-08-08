@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-light-primary elevation-5">
     <!-- Brand Logo -->
     <a href="{{asset('adminlte')}}/index3.html" class="brand-link">
-      <img src="{{asset('adminlte')}}/dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
+      <img src="{{asset('images')}}/icono.png"
+           alt="Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">{{ __('App name') }}</span>
@@ -13,11 +13,30 @@
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{asset('adminlte')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <div>
+          @guest
+          @else
+            <i class="nav-icon fas fa-user fa-2x"></i>
+          @endguest
         </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+        <div class="info w-100">
+          <div class="mx-auto">
+            @guest
+              <a class="btn btn-outline-primary btn-sm btn-block" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+            @else
+              {{ Auth::user()->name }}
+              <div class="float-right">
+                <a class="btn btn-outline-primary btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                    Salir
+                </a>
+              </div>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                  style="display: none;">
+                  @csrf
+              </form>
+            @endguest
+            </div>
         </div>
       </div>
 
@@ -35,19 +54,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('gigruinv.index') }}"" class="nav-link{{ $activePage == 'gigruinv' ? ' active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="nav-icon fas fa-flask"></i>
                   <p>{{ __('gigruinv') }}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('gisemill.index') }}"" class="nav-link{{ $activePage == 'gisemill' ? ' active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fab fa-pagelines"></i>
                   <p>{{ __('gisemill') }}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('gilininv.index') }}"" class="nav-link{{ $activePage == 'gilininv' ? ' active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-bezier-curve"></i>
                   <p>{{ __('gilininv') }}</p>
                 </a>
               </li>
@@ -77,22 +96,11 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview {{($activePage == 'giinvest'|| $activePage == 'giinvest' ) ? ' menu-open' : ''}} ">
-            <a href="#" class="nav-link {{ ($activePage == 'giinvest' || $activePage == 'giinvest') ? ' active' : '' }}">
-              <i class="nav-icon fas fa-user-tie"></i>
-              <p>
-                {{ __('giinvest') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
+          <li class="nav-item">
+            <a href="{{ route('giinvest.index') }}"" class="nav-link{{ $activePage == 'giinvest' ? ' active' : '' }}">
+              <i class="fas fa-user-tie nav-icon"></i>
+              <p>{{ __('giinvest') }}</p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('giinvest.index') }}"" class="nav-link{{ $activePage == 'giinvest' ? ' active' : '' }}">
-                  <i class="fas fa-user-tie nav-icon"></i>
-                  <p>{{ __('giinvest') }}</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview {{($activePage == 'giseminv'|| $activePage == 'gicapsem' ) ? ' menu-open' : ''}} ">
             <a href="#" class="nav-link {{ ($activePage == 'giseminv' || $activePage == 'gicapsem') ? ' active' : '' }}">
@@ -158,6 +166,15 @@
               </li>
             </ul>
           </li>
+          @can('administrar-usuario')
+            <hr>
+            <li class="nav-item">
+              <a href="{{ route('users.index') }}"" class="nav-link{{ $activePage == 'users' ? ' active' : '' }}">
+                <i class="fas fa-users nav-icon"></i>
+                <p>Usuarios</p>
+              </a>
+            </li>
+          @endcan
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

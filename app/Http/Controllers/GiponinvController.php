@@ -101,7 +101,12 @@ class GiponinvController extends Controller
                                     ->select('giponinv.*', 'giproinv.pinompro as proyecto', 'gilininv.lideslin as linea', 'gitippon.tpnomtip as tipo')
                                     ->where('giponinv.id', $id)
                                     ->first();
-        return view('giponinv.view', compact('ponencia'));
+        $autores = App\Giinvest::join('gidepoau', 'giinvest.id', 'gidepoau.dpinvest')
+                                    ->join('giponinv', 'gidepoau.dpponinv', 'giponinv.id')
+                                    ->select('giinvest.*')
+                                    ->where('giponinv.id', $id)
+                                    ->get();
+        return view('giponinv.view', compact('ponencia', 'autores'));
     }
 
     /**

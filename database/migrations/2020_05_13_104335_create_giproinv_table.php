@@ -24,6 +24,7 @@ class CreateGiproinvTable extends Migration
             $table->integer('pianofor');
             $table->string('pinompro');
             $table->string('pinumrad');
+            $table->string('pienldri');
             $table->integer('pivalpre');
             $table->integer('pianoeje');
             $table->bigInteger('pilinpro')->unsigned();

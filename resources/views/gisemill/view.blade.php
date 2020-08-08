@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'gisemill', 'titlePage' => __('Detalle del Semillero')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')

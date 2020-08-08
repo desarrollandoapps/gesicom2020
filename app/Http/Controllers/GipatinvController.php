@@ -49,7 +49,6 @@ class GipatinvController extends Controller
             'pinumrad.unique' => 'Ya hay una patente con el número de radicado que intenta asignar.',
             'pifecsol.required' => 'Debe seleccionar la fecha de la solicitud de la patente.',
             'pititobr.required' => 'Debe ingresar el título de la obra de la patente.',
-            'pinumreg.required' => 'Debe ingresar el número de registro de la patente.',
             'piprovin.required' => 'Debe seleccionar el proyecto.',
             'picodtip.required' => 'Debe seleccionar el tipo de patente.'
         ];
@@ -60,8 +59,7 @@ class GipatinvController extends Controller
             'piprovin' => 'required',
             'pinumrad' => 'required|unique:gipatinv',
             'pifecsol' => 'required',
-            'pititobr' => 'required',
-            'pinumreg' => 'required'
+            'pititobr' => 'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -91,7 +89,13 @@ class GipatinvController extends Controller
                                     ->select('gipatinv.*', 'giproinv.pinompro as proyecto', 'gitippat.tpnomtip as tipo')
                                     ->where('gipatinv.id', $id)
                                     ->first();
-        return view('gipatinv.view', compact('patente'));
+
+        $autores = App\Giinvest::join('gidepaau', 'giinvest.id', 'gidepaau.dpinvest')
+                                    ->join('gipatinv', 'gidepaau.dppatinv', 'gipatinv.id')
+                                    ->select('giinvest.*')
+                                    ->where('gipatinv.id', $id)
+                                    ->get();
+        return view('gipatinv.view', compact('patente', 'autores'));
     }
 
     /**

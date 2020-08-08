@@ -60,7 +60,6 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Año de formulación</label>
-                                            {{-- <input type="number" class="form-control" name="pianofor" value="{{old('pianofor')}}"> --}}
                                             <select name="pianofor" id="gianocre" class="custom-select form-control" required>
                                                 <option value="" disabled selected>Seleccione...</option>
                                                 @for($i = 2013; $i <= 2030; $i++)
@@ -104,6 +103,11 @@
                                     <label>Línea programática</label>
                                     {!! Form::select('pilinpro', $lineas, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'pilinpro', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar la línea programática</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Enlace a carpeta del proyecto</label>
+                                    <input type="text" class="form-control" name="pienldri" value="{{old('pienldri')}}" placeholder="http://www.drive.google.com/proyecto" required>
+                                    <div class="invalid-feedback">Debe ingresar el enlace a la carpeta del proyecto</div>
                                 </div>
                         
                                 <br>

@@ -154,7 +154,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de registro</label>
-                                            <input type="text" class="form-control" name="pinumreg" id="pinumreg" value="{{old('pinumreg')}}" required>
+                                            <input type="text" class="form-control" name="pinumreg" id="pinumreg" value="{{old('pinumreg')}}">
                                             <div class="invalid-feedback">Debe seleccionar el número de registro</div>
                                         </div>
                                     </div>

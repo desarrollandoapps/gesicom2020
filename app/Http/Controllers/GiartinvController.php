@@ -107,7 +107,14 @@ class GiartinvController extends Controller
                                     ->select('giartinv.*', 'giproinv.pinompro as proyecto', 'gitipart.tanomtip as tipo')
                                     ->where('giartinv.id', $id)
                                     ->first();
-        return view('giartinv.view', compact('articulo'));
+
+        $autores = App\Giinvest::join('gidearau', 'giinvest.id', 'gidearau.dainvest')
+                                    ->join('giartinv', 'gidearau.daartinv', 'giartinv.id')
+                                    ->select('giinvest.*')
+                                    ->where('giartinv.id', $id)
+                                    ->get();
+                                    
+        return view('giartinv.view', compact('articulo', 'autores'));
     }
 
     /**

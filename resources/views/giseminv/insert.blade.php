@@ -102,14 +102,14 @@
                                         <div class="form-group">
                                             <label>Correo personal</label>
                                             <input type="email" class="form-control" name="sicorper" id="sicorper" value="{{old('sicorper')}}" required>
-                                            <div class="invalid-feedback">Debe ingresar el correo personal</div>
+                                            <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Correo SENA o MiSENA</label>
                                             <input type="email" class="form-control" name="sicorsen" id="sicorsen" value="{{old('sicorsen')}}" required>
-                                            <div class="invalid-feedback">Debe ingresar el correo institucional</div>
+                                            <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Último grado de formación recibido</label>
+                                            <label>Último grado de formación</label>
                                             <select class="custom-select form-control" name="sigrafor" id="sigrafor" required>
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('sigrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
@@ -433,6 +433,13 @@
             language: 'es',
             autoclose: true,
         });
+        $('#sifecnac').datepicker().on('changeDate', function (e){
+            let sifecexp = $('#sifecexp').datepicker('getDate');
+            let sifecnac = $('#sifecnac').datepicker('getDate');
+            if(sifecexp < sifecnac) {
+                swal("¡Atención!", "La fecha de nacimiento debe ser inferior a la fecha de expedición del documento", "warning");
+            }
+        });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();
         $('#siregion').change(function(event){            
@@ -472,6 +479,13 @@
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
+                    let infecexp = $('#infecexp').datepicker('getDate');
+                    let infecnac = $('#infecnac').datepicker('getDate');
+                    if(infecexp < infecnac) {
+                        swal("¡Atención!", "La fecha de nacimiento debe ser inferior a la fecha de expedición del documento", "warning");
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
                     if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();

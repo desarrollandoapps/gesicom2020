@@ -18,6 +18,7 @@ class Giproinv extends Model
         'pinumrad',
         'pivalpre',
         'pianoeje',
-        'pilinpro'
+        'pilinpro',
+        'pienldri'
     ];
 }

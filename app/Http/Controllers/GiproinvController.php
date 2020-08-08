@@ -87,6 +87,8 @@ class GiproinvController extends Controller
                         ->withInput();
         }
 
+        
+
         $valor = str_replace(['$', '.'], ['',''], $request->pivalpre);
         $request->merge(['pivalpre' => $valor]);
 

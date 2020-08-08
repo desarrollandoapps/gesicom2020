@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'giseminv', 'titlePage' => __('Modificar Integrante de Semillero')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

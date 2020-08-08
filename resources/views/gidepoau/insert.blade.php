@@ -64,7 +64,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Artículo: </h5>
+                                    <h5>Ponencia: </h5>
                                 </div>
                                 <div class="col-md-5">
                                     <h5 class="lead">{{$ponencia->pititulo}}</h5>

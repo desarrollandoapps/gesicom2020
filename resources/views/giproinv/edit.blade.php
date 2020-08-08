@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'giproinv', 'titlePage' => __('Modificar Proyecto')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 
@@ -107,6 +107,10 @@
                                         <option value="{{$item->id}}" {{ $item->id == $proyecto->pilinpro ? 'selected' : '' }}>{{$item->lpnomlin}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" name="pienldri" value="{{$proyecto->pienldri}}">
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>

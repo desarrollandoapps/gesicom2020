@@ -104,47 +104,6 @@
                                             <div class="invalid-feedback">Debe seleccionar el año de publicación del libro</div>
                                         </div>
                                     </div>
-                                <!-- <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de inicio</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecini">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecini" value="{{old('pifecini')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de finalización</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecfin">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecfin" value="{{old('pifecfin')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Fecha de la ponencia</label>
-                                            <div class="input-group date" data-provide="datepicker" id="pifecpon">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-calendar-alt"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" name="pifecpon" value="{{old('pifecpon')}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
 
                                     <div class="col">
                                         <div class="form-group">
@@ -197,7 +156,12 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Medio de divulgación</label>
-                                            <input type="text" class="form-control" name="limeddiv" id="limeddiv" value="{{old('limeddiv')}}" required>
+                                            {{-- <input type="text" class="form-control" name="limeddiv" id="limeddiv" value="{{old('limeddiv')}}" required> --}}
+                                            <select name="limeddiv" class="custom-select form-control" required>
+                                                <option value="" disabled selected>Seleccione...</option>
+                                                <option value="Digital" {{ old('limeddiv') == "Digital" ? 'selected' : '' }}>Digital</option>
+                                                <option value="Físico" {{ old('limeddiv') == "Físico" ? 'selected' : '' }}>Físico</option>
+                                            </select>
                                             <div class="invalid-feedback">Debe ingresar el medio de divulgación del libro</div>
                                         </div>
                                     </div>

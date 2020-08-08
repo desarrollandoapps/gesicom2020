@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'giproinv', 'titlePage' => __('Detalle de Proyecto')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')
@@ -82,6 +82,16 @@
                                 </div>
                                 <div class="col-md-5">
                                     <h5 class="lead">{{$proyecto->linea}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Enlace a carpeta del proyecto: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">
+                                        <a href="{{$proyecto->pienldri}}" target="_blank">{{$proyecto->pienldri}}</a>
+                                    </h5>
                                 </div>
                             </div>
                             <hr>

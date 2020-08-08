@@ -50,8 +50,7 @@ class GisofinvController extends Controller
             'sititobr.required' => 'Debe ingresar el título de la obra.',
             'siprovin.required' => 'Debe seleccionar el proyecto vinculado.',
             'sifecrad.required' => 'Debe seleccionar la fecha de radicación.',
-            'siesttra.required' => 'Debe seleccionar el estado del trámite.',
-            'sinumreg.required' => 'Debe ingresar el número de registro.'
+            'siesttra.required' => 'Debe seleccionar el estado del trámite.'
         ];
 
         // Validar que los campos obligatorios tengan valor
@@ -60,8 +59,7 @@ class GisofinvController extends Controller
             'sititobr' => 'required',
             'sinumrad' => 'required|unique:gisofinv',
             'sifecrad' => 'required',
-            'siesttra' => 'required',
-            'sinumreg' => 'required',
+            'siesttra' => 'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -94,7 +92,12 @@ class GisofinvController extends Controller
                                     'gicenfor.cfnombre as centro', 'giregion.renombre as regional')
                                     ->where('gisofinv.id', $id)
                                     ->first();
-        return view('gisofinv.view', compact('software'));
+        $autores = App\Giinvest::join('gidesoau', 'giinvest.id', 'gidesoau.dsinvest')
+                                    ->join('gisofinv', 'gidesoau.dssofinv', 'gisofinv.id')
+                                    ->select('giinvest.*')
+                                    ->where('gisofinv.id', $id)
+                                    ->get();
+        return view('gisofinv.view', compact('software', 'autores'));
     }
 
     /**

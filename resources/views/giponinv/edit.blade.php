@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'giponinv', 'titlePage' => __('Modificar Ponencia')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

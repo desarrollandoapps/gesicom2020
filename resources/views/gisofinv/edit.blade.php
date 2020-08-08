@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'gisofinv', 'titlePage' => __('Modificar Software')])
 
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 

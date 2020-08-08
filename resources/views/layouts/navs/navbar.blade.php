@@ -19,8 +19,19 @@
       </div>
     </form>
 
-    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <div class="media">
+        <img src="images/sena.png" alt="SENA" class="navbar-nav ml-auto mr-3">
+      </div>
+      <div class="media">
+        <img src="images/sennova.png" alt="SENNOVA" class="navbar-nav ml-auto mr-3">
+      </div>
+      <div class="media">
+        <img src="images/gesicom.png" alt="GESICOM" class="navbar-nav ml-auto mr-3">
+      </div>
+    </ul>
+    <!-- Right navbar links -->
+    {{-- <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -111,6 +122,6 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
-    </ul>
+    </ul> --}}
   </nav>
   <!-- /.navbar -->

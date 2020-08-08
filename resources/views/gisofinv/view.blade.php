@@ -1,5 +1,5 @@
 @extends('layouts.app', ['activePage' => 'gisofinv', 'titlePage' => __('Detalle de Software')])
-@section('searchHidden')
+@section('hidden-search')
     hidden
 @endsection
 @section('content')
@@ -76,7 +76,17 @@
                                     <h5 class="lead">{{$software->sinumreg}}</h5>
                                 </div>
                             </div>
-
+                            <hr>
+                            <div class="row">
+                                <h5>Autores: </h5>
+                            </div>
+                            <div class="row">
+                                <ul>
+                                    @foreach ($autores as $item)
+                                        <li>{{$item->innombre}} <a href="{{route('giinvest.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             <br>
                             <div class="row">
                                 <a href="{{route('gisofinv.index')}}"><button class="btn btn-primary">Regresar</button></a>
