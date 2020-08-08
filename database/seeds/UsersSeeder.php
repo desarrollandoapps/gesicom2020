@@ -16,7 +16,8 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $rolAdmin = Role::where('nombre', 'Administrador')->first();
-        $rolUsuario = Role::where('nombre', 'Usuario')->first();
+        $rolLider = Role::where('nombre', 'Líder SENNOVA')->first();
+        $rolInvestigador = Role::where('nombre', 'Investigador')->first();
 
         $admin = User::create([
             'name' => 'Jose Oviedo',
@@ -26,15 +27,24 @@ class UsersSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        $usuario = User::create([
-            'name' => 'Usuario General',
-            'email' => 'usuario@gmail.com',
-            'password' => Hash::make('usuario'),
+        $lider = User::create([
+            'name' => 'Líder SENNOVA',
+            'email' => 'lider@material.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('secret'),
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        $investigador = User::create([
+            'name' => 'Investigador',
+            'email' => 'investigador@gmail.com',
+            'password' => Hash::make('investigador'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         $admin->roles()->attach($rolAdmin);
-        $usuario->roles()->attach($rolUsuario);
+        $lider->roles()->attach($rolLider);
+        $investigador->roles()->attach($rolInvestigador);
     }
 }

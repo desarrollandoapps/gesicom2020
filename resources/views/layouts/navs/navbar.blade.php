@@ -21,13 +21,13 @@
 
     <ul class="navbar-nav ml-auto">
       <div class="media">
-        <img src="images/sena.png" alt="SENA" class="navbar-nav ml-auto mr-3">
+        <img src="{{asset('images')}}/sena.png" alt="SENA" class="navbar-nav ml-auto mr-3">
       </div>
       <div class="media">
-        <img src="images/sennova.png" alt="SENNOVA" class="navbar-nav ml-auto mr-3">
+        <img src="{{asset('images')}}/sennova.png" alt="SENNOVA" class="navbar-nav ml-auto mr-3">
       </div>
       <div class="media">
-        <img src="images/gesicom.png" alt="GESICOM" class="navbar-nav ml-auto mr-3">
+        <img src="{{asset('images')}}/gesicom.png" alt="GESICOM" class="navbar-nav ml-auto mr-3">
       </div>
     </ul>
     <!-- Right navbar links -->

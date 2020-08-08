@@ -166,6 +166,15 @@
               </li>
             </ul>
           </li>
+          @can('presupuesto')
+            <hr>
+            <li class="nav-item">
+              <a href="{{ route('girubpre.index') }}"" class="nav-link{{ $activePage == 'girubpre' ? ' active' : '' }}">
+                  <i class="fas fa-money-bill-wave nav-icon"></i>
+                  <p>Rubros Presupuestales</p>
+              </a>
+          </li>
+          @endcan
           @can('administrar-usuario')
             <hr>
             <li class="nav-item">
@@ -173,12 +182,6 @@
                 <i class="fas fa-users nav-icon"></i>
                 <p>Usuarios</p>
               </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('girubpre.index') }}"" class="nav-link{{ $activePage == 'girubpre' ? ' active' : '' }}">
-                    <i class="fas fa-money-bill-wave nav-icon"></i>
-                    <p>Rubros Presupuestales</p>
-                </a>
             </li>
           @endcan
         </ul>
