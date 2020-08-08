@@ -14,9 +14,12 @@ class GiseminvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $semilleros = App\Giseminv::orderBy('sinombre', 'asc')->get();
+        $query = $request->buscar;
+        $semilleros = App\giseminv::where('sinombre', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'sinombre', 'asc' )
+                                ->get();
         return view('giseminv.index', compact( 'semilleros' ) );
     }
 

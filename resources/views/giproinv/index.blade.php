@@ -46,6 +46,12 @@
                                                         <input type="hidden" name="diproinv" value="{{$item->id}}">
                                                         <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar investigadores"><i class="fas fa-user-plus"></i></button>
                                                     </form>
+                                                    <form action="{{route('giproesp.create')}}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="hidden" name="dpproinv" value="{{$item->id}}">
+                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar productos"><i class="fas fa-book-reader"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

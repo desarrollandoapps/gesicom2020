@@ -16,7 +16,10 @@ class GisofinvController extends Controller
     public function index(Request $request)
     {
         $query = $request->buscar;
-        $softwares = App\Gisofinv::orderby('sititobr', 'asc')->get();
+        $softwares = App\Gisofinv::where('sititobr', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'sititobr', 'asc' )
+                                ->get();
+
         return view('gisofinv.index', compact('softwares'));
     }
 

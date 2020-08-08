@@ -78,6 +78,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/gidepaau/borrar/{id}','GidepaauController@borrar')->name('borrandoAutorPa');
     Route::resource('gidepaau', 'GidepaauController');
     Route::resource('girubpre', 'GirubpreController');
+    Route::resource('giproesp', 'GiproespController');
+	Route::post('/giproesp/asociar','GiproespController@asociarProducto')->name('asociarProductoEsperado');
+	Route::get('/giproesp/borrar/{id}','GiproespController@borrar')->name('borrandoProductoEsperado');
 });
 
 Route::group(['middleware' => 'auth'], function () {

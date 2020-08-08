@@ -13,9 +13,13 @@ class GilibinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $libros = App\Gilibinv::orderBy('linomlib', 'asc')->get();
+        $query = $request->buscar;
+        $libros = App\Gilibinv::where('linomlib', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'linomlib', 'asc' )
+                                ->get();
+
         return view('gilibinv.index', compact('libros'));
     }
 

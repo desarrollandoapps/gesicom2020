@@ -14,8 +14,17 @@ class GisemillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //Si se reciben datos de buscar
+        if( $request )
+        {
+            $query = $request->buscar;
+            $semilleros = App\Gisemill::where('senombre', 'LIKE', '%' . $query . '%')
+                                            ->orderby('senombre', 'asc')
+                                            ->get();
+            return view('gisemill.index', compact('semilleros', 'query'));
+        }
         $semilleros = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
                                     ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
                                     ->join('giregion', 'gicenfor.cfregion', 'giregion.id')

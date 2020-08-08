@@ -13,9 +13,13 @@ class GiponinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ponencias = App\Giponinv::orderBy('pititulo', 'asc')->get();
+        $query = $request->buscar;
+        $ponencias = App\Giponinv::where('pititulo', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'pititulo', 'asc' )
+                                ->get();
+
         return view('giponinv.index', compact('ponencias'));
     }
 

@@ -13,9 +13,12 @@ class GiartinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articulos = App\Giartinv::orderBy('aititulo', 'asc')->get();
+        $query = $request->buscar;
+        $articulos = App\Giartinv::where('aititulo', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'aititulo', 'asc' )
+                                ->get();
         return view('giartinv.index', compact('articulos'));
     }
 

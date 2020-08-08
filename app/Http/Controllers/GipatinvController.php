@@ -13,9 +13,13 @@ class GipatinvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $patentes = App\Gipatinv::orderBy('pititobr', 'asc')->get();
+        $query = $request->buscar;
+        $patentes = App\Gipatinv::where('pititobr', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'pititobr', 'asc' )
+                                ->get();
+
         return view('gipatinv.index', compact('patentes'));
     }
 

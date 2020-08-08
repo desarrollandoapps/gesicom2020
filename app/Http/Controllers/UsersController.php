@@ -21,9 +21,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('name', 'asc')->get();
+        $query = $request->buscar;
+        $users = User::where('name', 'LIKE', '%' . $query . '%')
+                                ->orderby( 'name', 'asc' )
+                                ->get();
+
         return view('users.index')->with('users', $users);
     }
 

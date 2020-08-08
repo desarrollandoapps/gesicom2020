@@ -16,7 +16,6 @@ class GilininvController extends Controller
      */
     public function index(Request $request)
     {
-
         $query = $request->buscar;
         $lineas = App\Gilininv::join('gigruinv', 'gilininv.licodgru', 'gigruinv.id')
                                 ->select('gilininv.*', 'gigruinv.ginombre as grupo')

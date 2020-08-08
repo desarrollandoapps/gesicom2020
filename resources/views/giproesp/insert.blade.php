@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'gideliau', 'titlePage' => __('gideliau')])
+@extends('layouts.app', ['activePage' => 'giproesp', 'titlePage' => __('giproesp')])
 
 @section('hidden-search')
     hidden
@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Autores asociados </h4>
+                            <h4 class="card-title">Productos asociados </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -19,21 +19,23 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Nombre</th>
+                                                <th>Descripción</th>
+                                                <th>Tipo</th>
                                                 <th class="text-right">Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($autores as $item)
+                                            @foreach ($productos as $item)
                                                 <tr>
-                                                    <td>{{$item->innombre}}</td>
+                                                    <td>{{$item->pedespro}}</td>
+                                                    <td>{{$item->petippro}}</td>
                                                     <td class="td-actions text-right">
-                                                        <form action="{{route('gideliau.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
+                                                        <form action="#" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <input type="hidden" name="dllibinv" value="{{$libro->id}}">
+                                                            <input type="hidden" name="id" value="{{$item->id}}">
                                                         </form>
-                                                        <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
+                                                        <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->id}})"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -49,7 +51,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{__('gideliau')}} </h4>
+                            <h4 class="card-title">{{__('giproesp')}} </h4>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -64,37 +66,34 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h5>Libro: </h5>
+                                    <h5>Proyecto: </h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$libro->linomlib}}</h5>
+                                    <h5 class="lead">{{$proyecto->pinompro}}</h5>
                                 </div>
                             </div>
                             <hr>
-                            <form action="{{route('gideliau.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
+                            <form action="{{route('giproesp.store')}}" class="needs-validation" method="POST" id="formAdd" novalidate>
                                 @csrf
                                 @method('POST')
-                                <input type="hidden" name="dllibinv" value="{{$libro->id}}">
+                                <input type="hidden" name="peproinv" value="{{$proyecto->id}}">
                                 <input type="hidden" id="token" value="{{csrf_token()}}">
                                 <div class="form-group">
-                                    <label>Regional</label>
-                                    {!! Form::select('liregion', $regionales, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'liregion', 'required']) !!}
-                                    <div class="invalid-feedback">Debe seleccionar la regional</div>
+                                    <label>Tipo de producto</label>
+                                    <select name="petippro" id="petippro" class="custom-select" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="Artículo" {{ old('petippro') == "Artículo" ? 'selected' : '' }}>Artículo</option>
+                                        <option value="Libro" {{ old('petippro') == "Libro" ? 'selected' : '' }}>Libro</option>
+                                        <option value="Patente" {{ old('petippro') == "Patente" ? 'selected' : '' }}>Patente</option>
+                                        <option value="Ponencia" {{ old('petippro') == "Ponencia" ? 'selected' : '' }}>Ponencia</option>
+                                        <option value="Software" {{ old('petippro') == "Software" ? 'selected' : '' }}>Software</option>
+                                    </select>
+                                    <div class="invalid-feedback">Debe seleccionar el tipo de producto</div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Centro de formación</label>
-                                    {!! Form::select('licenfor', $centros, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'licenfor', 'required']) !!}
-                                    <div class="invalid-feedback">Debe seleccionar el centro de formación</div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Grupo de investigación</label>
-                                    {!! Form::select('ligruinv', $grupos, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'ligruinv', 'required']) !!}
-                                    <div class="invalid-feedback">Debe seleccionar el grupo de investigación</div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Investigadores</label>
-                                    {!! Form::select('dlinvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'dainvest', 'required']) !!}
-                                    <div class="invalid-feedback">Debe seleccionar el investigador</div>
+                                    <label>Descripción del producto</label>
+                                    <input type="text" name="pedespro" id="pedespro" class="form-control" required>
+                                    <div class="invalid-feedback">Debe ingresar una descripción para el producto</div>
                                 </div>
                         
                                 <br>
@@ -111,40 +110,10 @@
 @section('scripts')
     <script>
         $('select option:first').attr('disabled', true);
-        $('#liregion').change(function(event){
-            $.get("../centros/" + event.target.value, function(response, centros){
-                $('#licenfor').empty();
-                $('#licenfor').append("<option value=''>Seleccione...</option>");
-                for(i = 0; i < response.length; i++)
-                {
-                    $('#licenfor').append("<option value='" + response[i].id + "'>" + response[i].cfnombre + "</option>");
-                }
-            });
-        });
-        $('#licenfor').change(function(event){
-            $.get("../grupos/" + event.target.value, function(response, grupos){
-                $('#ligruinv').empty();
-                $('#ligruinv').append("<option value=''>Seleccione...</option>");
-                for(i = 0; i < response.length; i++)
-                {
-                    $('#ligruinv').append("<option value='" + response[i].id + "'>" + response[i].ginombre + "</option>");
-                }
-            });
-        });
-        $('#ligruinv').change(function(event){
-            $.get("../investigadores/" + event.target.value, function(response, investigadores){
-                $('#dlinvest').empty();
-                $('#dlinvest').append("<option value=''>Seleccione...</option>");
-                for(i = 0; i < response.length; i++)
-                {
-                    $('#dlinvest').append("<option value='" + response[i].id + "'>" + response[i].innombre + "</option>");
-                }
-            });
-        });
 
         function asociar() {
             var form = $('#formAdd');
-            var ruta = "{{ route('asociarAutorLibro') }}";
+            var ruta = "{{ route('asociarProductoEsperado') }}";
             $.ajax({
                 url: ruta,
                 method: 'POST',
@@ -153,45 +122,45 @@
             }).then(function (datos){
                 swal({
                 title: "¡Hecho!",
-                text: "¡Autor asociado con éxito!",
+                text: "Producto asociado con éxito!",
                 type: "success"
                 }).then(function(e){
+                    $('#pedespro').val('');
                     location.reload();
                 })
             },
             function (){
-                swal("¡Atención!", "No se pudo asociar el autor", "warning");
+                swal("¡Atención!", "No se pudo asociar el producto", "warning");
             });
         }
 
         function desasociar(id) {
             swal({
-                title: "¿Desasociar?",
-                text: "¿Confirma la desasociación del autor?",
+                title: "Eliminar?",
+                text: "¿Confirma la eliminación del producto esperado?",
                 type: "warning",
                 showCancelButton: !0,
-                confirmButtonText: "Si, desasociar",
+                confirmButtonText: "Si, eliminar",
                 cancelButtonText: "No, cancelar",
                 reverseButtons: !0
             }).then(function(e) {
                 if (e.value === true) {
-                    var idunico = id;
-                    var rutamala = "{{ route('borrandoAutorLibro', "reempl") }}";
-                    var rutabuena = rutamala.replace('reempl',idunico);
+                    var rutamala = "{{ route('borrandoProductoEsperado', "reempl") }}";
+                    var rutabuena = rutamala.replace('reempl',id);
                     $.ajax({
                         url: rutabuena,
                         method: 'GET'
                     }).then(function (datos){
                         swal({
                             title: "¡Hecho!",
-                            text: "¡Se ha desasociado el autor con éxito!",
+                            text: "¡Se ha eliminado el producto esperado con éxito!",
                             type: "success"
                             }).then(function(e){
                                 location.reload();
                             })
                     },
                     function (){
-                        swal("¡Atención!", "No se pudo desasociar el autor", "error");
+                        swal("¡Atención!", "No se pudo eliminar el producto esperado", "error");
                     });
                 }
                 else {
