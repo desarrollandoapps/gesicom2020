@@ -50,7 +50,13 @@
                                                         @csrf
                                                         @method('GET')
                                                         <input type="hidden" name="dpproinv" value="{{$item->id}}">
-                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar productos"><i class="fas fa-book-reader"></i></button>
+                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Asociar productos esperados"><i class="fas fa-book-reader"></i></button>
+                                                    </form>
+                                                    <form action="{{route('gidepres.create')}}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="hidden" name="dpproinv" value="{{$item->id}}">
+                                                        <button type="submit" class="btn btn-light btn-circle" data-toggle="tooltip" data-placement="top" title="Crear seguimiento"><i class="fas fa-calendar-plus"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>

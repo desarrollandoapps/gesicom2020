@@ -22,9 +22,17 @@ class GidepresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $proyecto = App\Giproinv::findorfail($request->dpproinv);
+        $productos = App\Giproesp::join('giproinv', 'giproesp.peproinv', 'giproinv.id')
+                                    ->where('giproesp.peproinv', $request->dpproinv)
+                                    ->whereNull('giproesp.deleted_at')
+                                    ->select('giproinv.*', 'giproesp.*')
+                                    ->orderby('giproesp.pedespro')
+                                    ->pluck('pedespro', 'id')
+                                    ->all();
+        return view('gidepres.insert', compact('proyecto', 'productos'));
     }
 
     /**
@@ -35,7 +43,9 @@ class GidepresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        App\Gidepres::create($request->all());
+
+        // return view('gidepres.insert', compact('proyecto', 'productos'));
     }
 
     /**
@@ -81,5 +91,16 @@ class GidepresController extends Controller
     public function destroy(Gidepres $gidepres)
     {
         //
+    }
+
+    public function crearDetalle(Request $request)
+    {
+        App\Gidepres::create($request->all());
+
+        $producto = App\Giproesp::findOrFail($request->dpproesp);
+        $producto->update([
+            'peporava' => $request->dpporava
+        ]);
+        return response()->json(['success' => 'Avance registrado con éxito']);
     }
 }

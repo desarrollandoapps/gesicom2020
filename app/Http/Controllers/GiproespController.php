@@ -101,4 +101,11 @@ class GiproespController extends Controller
         $producto = App\Giproesp::findorfail( $id );
         $producto->delete();
     }
+
+    public function darPorcentajeProducto($id)
+    {
+        $producto = App\Giproesp::findorfail( $id );
+        return $producto->peporava;
+    }
+
 }

@@ -117,7 +117,12 @@ class GiproinvController extends Controller
                                 'gigruinv.ginombre as grupo')
                                 ->where('giproinv.id', $id)
                                 ->first();
-                                
+        
+        $productosEsperados = App\Giproesp::join('giproinv', 'giproesp.peproinv', 'giproinv.id')
+                                            ->select('giproesp.*')
+                                            ->where('giproinv.id', $id)
+                                            ->get();
+
         $investigadores = App\Giinvest::join('gidetinv', 'giinvest.id', 'gidetinv.diinvest')
                                         ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
                                         ->where('giproinv.id', $id)
@@ -151,7 +156,7 @@ class GiproinvController extends Controller
                                     ->get();
 
         return view( 'giproinv.view', compact('proyecto', 'investigadores', 'articulos', 'libros', 'patentes', 
-                                                'ponencias', 'software') );
+                                                'ponencias', 'software', 'productosEsperados') );
     }
 
     /**
@@ -273,5 +278,22 @@ class GiproinvController extends Controller
                          ->with( 'exito', 'Investigador asociado con éxito' );
         
         // echo $investigadores[$request->giinvest - 1]->innombre;
+    }
+
+    public function darProyecto($id)
+    {
+        $proyecto = App\Giproinv::findorfail($id);
+        return response()->json($proyecto);
+    }
+
+    public function darInvestigadoresProyecto($id)
+    {
+        $investigadores = App\Giinvest::join('gidetinv', 'giinvest.id', 'gidetinv.diinvest')
+                                        ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
+                                        ->where('giproinv.id', $id)
+                                        ->where('gidetinv.deleted_at', NULL)
+                                        ->select('giinvest.*')
+                                        ->get();
+        return response()->json($investigadores);
     }
 }

@@ -94,72 +94,122 @@
                                     </h5>
                                 </div>
                             </div>
-                            <hr>
+                            
                             <div class="row">
-                                <h5>Investigadores asociados: </h5>
+                                <div class="col-md-5">
+                                    <h5>Investigadores asociados: </h5>
+                                </div>
                             </div>
                             <div class="row">
-                                <ul>
-                                    @foreach ($investigadores as $item)
-                                        <li>{{$item->innombre}} <a href="{{route('giinvest.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
+                                <div class="col-md-5">
+                                    <ul>
+                                        @foreach ($investigadores as $item)
+                                            <li>{{$item->innombre}} <a href="{{route('giinvest.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <h5>Artículos asociados: </h5>
-                            </div>
-                            <div class="row">
-                                <ul>
-                                    @foreach ($articulos as $item)
-                                        <li>{{$item->aititulo}} <a href="{{route('giartinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <h5>Libros asociados: </h5>
-                            </div>
-                            <div class="row">
-                                <ul>
-                                    @foreach ($libros as $item)
-                                        <li>{{$item->linomlib}} <a href="{{route('gilibinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <h5>Patentes asociadas: </h5>
-                            </div>
-                            <div class="row">
-                                <ul>
-                                    @foreach ($patentes as $item)
-                                        <li>{{$item->pititobr}} <a href="{{route('gipatinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <h5>Ponencias asociadas: </h5>
-                            </div>
-                            <div class="row">
-                                <ul>
-                                    @foreach ($ponencias as $item)
-                                        <li>{{$item->pititulo}} <a href="{{route('giponinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <h5>Software asociado: </h5>
-                            </div>
-                            <div class="row">
-                                <ul>
-                                    @foreach ($software as $item)
-                                        <li>{{$item->sititobr}} <a href="{{route('gisofinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            @if ($productosEsperados != "[]")
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h4 class="text-muted">Productos esperados: </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            @foreach ($productosEsperados as $item)
+                                                <li>{{$item->pedespro}} - <span class="lead text-muted">{{$item->peporava}}%</span></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($articulos != "[]" || $libros != "[]" || $patentes != "[]" || $ponencias != "[]" || $software != "[]")
+                                <hr>
+                                <h4 class="text-muted">Productos terminados</h4>
+                            @endif
+                            @if ($articulos != "[]")
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Artículos: </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            @foreach ($articulos as $item)
+                                                <li>{{$item->aititulo}} <a href="{{route('giartinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($libros != "[]")
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Libros: </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            @foreach ($libros as $item)
+                                                <li>{{$item->linomlib}} <a href="{{route('gilibinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($patentes != "[]")
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Patentes: </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            @foreach ($patentes as $item)
+                                                <li>{{$item->pititobr}} <a href="{{route('gipatinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            @if ($ponencias != "[]")
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Ponencias: </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <ul>
+                                        <div class="col-md-5">
+                                            @foreach ($ponencias as $item)
+                                                <li>{{$item->pititulo}} <a href="{{route('giponinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                            @endforeach
+                                        </div>
+                                    </ul>
+                                </div>
+                            @endif
+                            @if ($software != "[]")
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5>Software: </h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            @foreach ($software as $item)
+                                                <li>{{$item->sititobr}} <a href="{{route('gisofinv.show', $item->id)}}">&nbsp&nbsp&nbsp&nbsp<i class="fas fa-eye"></i></a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
                             <br>
                             <div class="row">
                                 <a href="{{route('giproinv.index')}}"><button class="btn btn-primary">Regresar</button></a>

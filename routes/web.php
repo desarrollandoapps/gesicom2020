@@ -81,6 +81,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('giproesp', 'GiproespController');
 	Route::post('/giproesp/asociar','GiproespController@asociarProducto')->name('asociarProductoEsperado');
 	Route::get('/giproesp/borrar/{id}','GiproespController@borrar')->name('borrandoProductoEsperado');
+    Route::resource('gidepres', 'GidepresController');
+	Route::post('/giproesp/avancePrEs','GiproespController@asociarAvanceProductoEsperado')->name('asociarAvanceProductoEsperado');
+	Route::post('/gidepres/crear','GidepresController@crearDetalle')->name('crearDetalle');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -97,4 +100,7 @@ Route::get('investigadores/{grupo}', 'GiinvestController@darInvestigadores');
 Route::get('integrantesemillero/{grupo}', 'GiseminvController@darIntegrantesSemillero');
 Route::get('lineas/{grupo}', 'GilininvController@darLineas');
 Route::get('proyectos/{grupo}', 'GiproinvController@darProyectos');
+Route::get('proyecto/{id}', 'GiproinvController@darProyecto')->name('darProyecto');
+Route::get('proyecto/investigadores/{id}', 'GiproinvController@darInvestigadoresProyecto')->name('darInvestigadoresProyecto');
 Route::get('rubros/{grupo}', 'GirubpreController@darRubros');
+Route::get('porcentajeProducto/{id}', 'GiproespController@darPorcentajeProducto');

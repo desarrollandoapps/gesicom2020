@@ -23,7 +23,7 @@
                                                 <th class="text-right">Opciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="cuerpo">
                                             @foreach ($investigadoresAsociados as $item)
                                                 <tr>
                                                     <td>{{$item->innombre}}</td>
@@ -145,8 +145,6 @@
         });
 
         function asociar() {
-            var diinvest = $('#diinvest').val();
-            var diproinv = $('#diproinv').val();
             var form = $('#formAdd');
             var ruta = "{{ route('asociarInvestigador') }}";
             $.ajax({
@@ -160,11 +158,39 @@
                 text: "¡Investigador asociado con éxito!",
                 type: "success"
                 }).then(function(e){
-                    location.reload();
+                    mostrarInvestigadores();
                 })
             },
             function (){
                 swal("¡Atención!", "No se pudo asociar el investigador", "warning");
+            });
+        }
+
+        function mostrarInvestigadores( ) {
+            var id = "{{ $proyecto->id }}"
+            var rutamala = "{{ route('darInvestigadoresProyecto', "reempl") }}";
+            var ruta = rutamala.replace('reempl',id);
+            $.ajax({
+                url: ruta,
+                method: 'GET'
+            }).then(function (investigadores){
+                $('#cuerpo').empty();
+                for(i = 0; i < investigadores.length; i++)
+                {
+                    $('#cuerpo').append(
+                        "<tr>"+
+                            "<td>" + investigadores[i].innombre + "</td>" 
+                            "<td class='td-actions text-right'>" +
+                                "<form action='#' method='POST' class='d-inline'>" +
+                                    "@csrf" +
+                                    "@method('DELETE')" +
+                                    "<input type='hidden' name='diproinv' value='" + investigadores[i].id + "'>"
+                                "</form>" +
+                                "<button type='button' rel='tooltip' class='btn btn-danger btn-circle'><i class='fas fa-trash'></i></button>" +
+                            "</td>" +
+                        "</tr>"
+                    );
+                }
             });
         }
 

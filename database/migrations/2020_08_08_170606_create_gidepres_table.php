@@ -19,8 +19,9 @@ class CreateGidepresTable extends Migration
             $table->foreign('dpproinv')->references('id')->on('giproinv');
             $table->bigInteger('dpproesp')->unsigned();
             $table->foreign('dpproesp')->references('id')->on('giproesp');
-            $table->date('dpfecreg');
+            $table->string('dpfecreg');
             $table->decimal('dpporava', 5, 2);
+            $table->string('dpenlace');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -10,6 +10,7 @@ class gidepres extends Model
         'dpproinv',
         'dpproesp',
         'dpfecreg',
-        'dpporava'
+        'dpporava',
+        'dpenlace'
     ];
 }
