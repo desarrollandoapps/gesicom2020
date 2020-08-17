@@ -11,7 +11,7 @@
   
       <!-- Icon -->
       <div class="fadeIn first">
-        <img src="images/logo.png" id="icon" alt="Logo" class="mt-2 mb-2" />
+        <img src="images/logo.svg" id="icon" alt="Logo" class="mt-2 mb-2" />
       </div>
   
       <!-- Login Form -->
