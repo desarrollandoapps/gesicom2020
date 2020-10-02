@@ -36,7 +36,7 @@
                                                     <form action="{{route('giproinv.destroy', $item->id)}}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de la capacitación?')"><i class="fas fa-trash"></i></button>
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la eliminación de el proyecto?')"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
                                                 <td class="td-actions text-right">

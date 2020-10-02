@@ -33,8 +33,8 @@
                                                             @method('DELETE')
                                                             <input type="hidden" name="diproinv" value="{{$proyecto->id}}">
                                                             {{-- <button type="submit" rel="tooltip" class="btn btn-danger btn-circle" onclick="return confirm('¿Confirma la desasociación del investigador?')"><i class="fas fa-trash"></i></button> --}}
+                                                            <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
                                                         </form>
-                                                        <button type="button" rel="tooltip" class="btn btn-danger btn-circle" onclick="desasociar({{$item->idDetalle}})"><i class="fas fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -158,6 +158,7 @@
                 text: "¡Investigador asociado con éxito!",
                 type: "success"
                 }).then(function(e){
+                    // location.reload();
                     mostrarInvestigadores();
                 })
             },
@@ -178,15 +179,15 @@
                 for(i = 0; i < investigadores.length; i++)
                 {
                     $('#cuerpo').append(
-                        "<tr>"+
-                            "<td>" + investigadores[i].innombre + "</td>" 
+                        "<tr>" +
+                            "<td>" + investigadores[i].innombre + "</td>" +
                             "<td class='td-actions text-right'>" +
                                 "<form action='#' method='POST' class='d-inline'>" +
-                                    "@csrf" +
-                                    "@method('DELETE')" +
-                                    "<input type='hidden' name='diproinv' value='" + investigadores[i].id + "'>"
+                                    '@csrf' +
+                                    '@method("DELETE")' +
+                                    "<input type='hidden' name='diproinv' value='" + investigadores[i].id + "'>" +
+                                    "<button type='button' rel='tooltip' class='btn btn-danger btn-circle' onclick='desasociar({{$item->idDetalle}})'><i class='fas fa-trash'></i></button>" +
                                 "</form>" +
-                                "<button type='button' rel='tooltip' class='btn btn-danger btn-circle'><i class='fas fa-trash'></i></button>" +
                             "</td>" +
                         "</tr>"
                     );

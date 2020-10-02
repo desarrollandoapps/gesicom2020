@@ -116,7 +116,9 @@
                                     <h5>Código  DOI (Digital Object Identifier):</h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$articulo->aicoddoi}}</h5>
+                                    <h5 class="lead">
+                                        <a href="{{$articulo->aicoddoi}}" target="_blank">{{$articulo->aicoddoi}}</a>
+                                    </h5>
                                 </div>
                             </div>
 
@@ -125,7 +127,9 @@
                                     <h5>Página web de la revista:</h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$articulo->aisitweb}}</h5>
+                                    <h5 class="lead">
+                                        <a href="{{$articulo->aisitweb}}" target="_blank">{{$articulo->aisitweb}}</a>
+                                    </h5>
                                 </div>
                             </div>
 

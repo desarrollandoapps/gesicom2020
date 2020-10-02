@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center minh-100">
             <div class="col-lg-12">
                 <div>
-                    <img src="images/fondo-portada2.png" alt="Logo" class="img-fluid rounded mx-auto d-block elevation-2 rounded" alt="logo" width="70%" height="70%">
+                    <img src="images/fondo-portada2.png" alt="Logo" class="img-fluid rounded mx-auto d-block elevation-2 rounded" alt="logo" width="50%" height="50%">
                 </div>
                 <div class="d-flex justify-content-center">
                     @guest

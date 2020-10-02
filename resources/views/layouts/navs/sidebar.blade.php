@@ -5,7 +5,7 @@
       <img src="{{asset('images')}}/icono.svg"
            alt="Logo"
            class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+           style="opacity: .8; width: 15%">
       <span class="brand-text font-weight-light">{{ __('App name') }}</span>
     </a>
 
@@ -91,7 +91,7 @@
                 <a href="{{ route('gilinpro.index') }}"" class="nav-link{{ $activePage == 'gilinpro' ? ' active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ __('gilinpro') }}</p>
-                  <span class="right badge badge-danger">Ojo</span>
+                  {{-- <span class="right badge badge-danger">Ojo</span> --}}
                 </a>
               </li>
             </ul>

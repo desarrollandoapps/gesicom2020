@@ -73,7 +73,9 @@
                                     <h5>Página web del evento:</h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$ponencia->pipagweb}}</h5>
+                                    <h5 class="lead">
+                                        <a href="{{$ponencia->pipagweb}}" target="_blank">{{$ponencia->pipagweb}}</a>
+                                    </h5>
                                 </div>
                             </div>
                             <div class="row">

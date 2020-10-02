@@ -14,7 +14,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('adminlte')}}/dist/css/adminlte.min.css">
   <!-- Material -->
-  <link rel="stylesheet" href="{{asset('css')}}/estilos.css">
+  <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -63,6 +63,8 @@
       <b>Version</b> 1.0.0
     </div>
     <strong>Copyright &copy; 2020 <a href="http://gesicom.co">Grupo de Investigación GESICOM</a>.</strong>
+     .::. 
+    <span>Desarrollado por Andrés Arciniegas y Jose Oviedo</span>
   </footer>
 
   <!-- Control Sidebar -->

@@ -98,7 +98,9 @@
                                     <h5>Página web del libro:</h5>
                                 </div>
                                 <div class="col-md-5">
-                                    <h5 class="lead">{{$libro->lisitweb}}</h5>
+                                    <h5 class="lead">
+                                        <a href="{{$libro->lisitweb}}" target="_blank">{{$libro->lisitweb}}</a>
+                                    </h5>
                                 </div>
                             </div>
 

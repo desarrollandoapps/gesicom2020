@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Giartinv extends Model
 {
+    use SoftDeletes;
     protected $table = 'giartinv';
     protected $fillable = [
         'aititulo',

@@ -20,9 +20,14 @@ class GisemillController extends Controller
         if( $request )
         {
             $query = $request->buscar;
-            $semilleros = App\Gisemill::where('senombre', 'LIKE', '%' . $query . '%')
-                                            ->orderby('senombre', 'asc')
-                                            ->get();
+            $semilleros = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
+                                        ->join('gicenfor', 'gigruinv.gicenfor', 'gicenfor.id')
+                                        ->join('giregion', 'gicenfor.cfregion', 'giregion.id')
+                                        ->select('gisemill.*', 'gigruinv.ginombre as grupo', 
+                                        'gicenfor.cfnombre as centro', 'giregion.renombre as regional')
+                                        ->where('senombre', 'LIKE', '%' . $query . '%')
+                                        ->orderby('senombre', 'asc')
+                                        ->get();
             return view('gisemill.index', compact('semilleros', 'query'));
         }
         $semilleros = App\Gisemill::join('gigruinv', 'gisemill.segruinv', 'gigruinv.id')
@@ -31,6 +36,7 @@ class GisemillController extends Controller
                                     ->select('gisemill.*', 'gigruinv.ginombre as grupo', 
                                     'gicenfor.cfnombre as centro', 'giregion.renombre as regional')
                                     ->orderby('senombre', 'asc')->get();
+
         return view('gisemill.index', compact('semilleros'));
     }
 
