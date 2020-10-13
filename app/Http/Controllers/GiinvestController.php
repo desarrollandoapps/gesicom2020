@@ -99,16 +99,16 @@ class GiinvestController extends Controller
             'innombre' => 'required',
             'intipdoc' => 'required',
             'innumdoc' =>'required|unique:giinvest',
-            'infecexp' => 'required',
-            'inmunexp' => 'required',
-            'infecnac' => 'required',
+            // 'infecexp' => 'required',
+            // 'inmunexp' => 'required',
+            // 'infecnac' => 'required',
             'incorper' => 'required|email:rfc,dns',
             'incorsen' => 'required|email:rfc,dns',
             'innumcel' => 'required',
-            'ingrafor' => 'required',
-            'intitulo' => 'required',
-            'inprofes' => 'required',
-            'inniving' => 'required',
+            // 'ingrafor' => 'required',
+            // 'intitulo' => 'required',
+            // 'inprofes' => 'required',
+            // 'inniving' => 'required',
             'inregion' => 'required',
             'incenfor' => 'required',
             'ingruinv' => 'required',
@@ -118,12 +118,11 @@ class GiinvestController extends Controller
             'intipvin' => 'required',
             'incarinv' => 'required',
             'innumgra' => 'required',
-            'inporded' => 'required',
-            'inantsen' => 'required',
+            // 'inporded' => 'required',
             'inprofor' => 'required',
-            'inarecon' => 'required',
-            'inasimen' => 'required',
-            'innumcon' => 'required',
+            // 'inarecon' => 'required',
+            // 'inasimen' => 'required',
+            // 'innumcon' => 'required',
             'inestcon' => 'required'
         ], $mensajes);
 
@@ -132,9 +131,11 @@ class GiinvestController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-
-        $valor = str_replace(['$', '.'], ['',''], $request->inasimen);
-        $request->merge(['inasimen' => $valor]);
+        if ($request->inasimen)
+        {
+            $valor = str_replace(['$', '.'], ['',''], $request->inasimen);
+            $request->merge(['inasimen' => $valor]);
+        }
 
         App\Giinvest::create( $request->all() );
 

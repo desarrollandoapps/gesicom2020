@@ -68,7 +68,7 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                   </div>
-                                                <input type="text" class="form-control" name="sifecexp" value="{{old('sifecexp')}}" required>
+                                                <input type="text" class="form-control" name="sifecexp" value="{{old('sifecexp')}}" >
                                                 <div class="invalid-feedback">Debe seleccionar la fecha de expedición del documento</div>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Municipio de expedición</label>
-                                            <input type="text" class="form-control" name="simunexp" value="{{old('simunexp')}}" required>
+                                            <input type="text" class="form-control" name="simunexp" value="{{old('simunexp')}}" >
                                             <div class="invalid-feedback">Debe ingresar el municipio de expedición del documento</div>
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@
                                                     <i class="far fa-calendar-alt"></i>
                                                 </span>
                                               </div>
-                                            <input type="text" class="form-control" name="sifecnac" value="{{old('sifecnac')}}" required>
+                                            <input type="text" class="form-control" name="sifecnac" value="{{old('sifecnac')}}" >
                                             <div class="invalid-feedback">Debe seleccionar la fecha de nacimiento</div>
                                         </div>
                                     </div>
@@ -101,14 +101,14 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Correo personal</label>
-                                            <input type="email" class="form-control" name="sicorper" id="sicorper" value="{{old('sicorper')}}" required>
+                                            <input type="email" class="form-control" name="sicorper" id="sicorper" value="{{old('sicorper')}}" >
                                             <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Correo SENA o MiSENA</label>
-                                            <input type="email" class="form-control" name="sicorsen" id="sicorsen" value="{{old('sicorsen')}}" required>
+                                            <input type="email" class="form-control" name="sicorsen" id="sicorsen" value="{{old('sicorsen')}}" >
                                             <div class="invalid-feedback">Debe ingresar un correo válido</div>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Rol SENNOVA</label>
-                                            <select class="custom-select form-control" name="sirolsen" id="sirolsen" required>
+                                            <select class="custom-select form-control" name="sirolsen" id="sirolsen" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Aprendiz en grupo de investigación" {{ old('sirolsen') == "Aprendiz en grupo de investigación" ? 'selected' : '' }}>Aprendiz en grupo de investigación</option>
                                                 <option value="Aprendiz en semilleros" {{ old('sirolsen') == "Aprendiz en semilleros" ? 'selected' : '' }}>Aprendiz en semilleros</option>
@@ -129,7 +129,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tipo de vinculación</label>
-                                            <input type="text" class="form-control" name="sitipvin" value="{{old('sitipvin')}}" required>
+                                            <input type="text" class="form-control" name="sitipvin" value="{{old('sitipvin')}}" >
                                             <div class="invalid-feedback">Debe ingresar el tipo de vinculación</div>
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Último grado de formación</label>
-                                            <select class="custom-select form-control" name="sigrafor" id="sigrafor" required>
+                                            <select class="custom-select form-control" name="sigrafor" id="sigrafor" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('sigrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
                                                 <option value="Bachillerato" {{ old('sigrafor') == "Bachillerato" ? 'selected' : '' }}>Bachillerato</option>
@@ -158,21 +158,21 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre del último titulo obtenido</label>
-                                            <input type="text" class="form-control" name="sititulo" id="sititulo" value="{{old('sititulo')}}" required>
+                                            <input type="text" class="form-control" name="sititulo" id="sititulo" value="{{old('sititulo')}}" >
                                             <div class="invalid-feedback">Debe ingresar el nombre del último título obtenido</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Profesión</label>
-                                            <input type="text" class="form-control" name="siprofes" id="siprofes" value="{{old('siprofes')}}" required>
+                                            <input type="text" class="form-control" name="siprofes" id="siprofes" value="{{old('siprofes')}}" >
                                             <div class="invalid-feedback">Debe ingresar la profesión</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nivel de inglés</label>
-                                            <select class="custom-select form-control" name="siniving" id="siniving" required>
+                                            <select class="custom-select form-control" name="siniving" id="siniving" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Ninguno" {{ old('siniving') == "Ninguno" ? 'selected' : '' }}>Ninguno</option>
                                                 <option value="A1" {{ old('siniving') == "A1" ? 'selected' : '' }}>A1</option>
@@ -191,14 +191,14 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Teléfono celular</label>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' name="sinumcel" id="sinumcel" value="{{old('sinumcel')}}" data-mask required>
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' name="sinumcel" id="sinumcel" value="{{old('sinumcel')}}" data-mask >
                                             <div class="invalid-feedback">Debe ingresar el número de teléfono celular</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Teléfono fijo</label>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(9) 999-9999"' name="sitelfij" id="sitelfij" value="{{old('sitelfij')}}" data-mask required>
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(9) 999-9999"' name="sitelfij" id="sitelfij" value="{{old('sitelfij')}}" data-mask >
                                             <div class="invalid-feedback">Debe ingresar el número de teléfono fijo</div>
                                         </div>
                                     </div>
@@ -214,21 +214,21 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Titulación</label>
-                                            {!! Form::select('sititula', $programas, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'sititula', 'required']) !!}
+                                            {!! Form::select('sititula', $programas, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'sititula']) !!}
                                             <div class="invalid-feedback">Debe seleccionar la titulación</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de ficha</label>
-                                            <input type="number" class="form-control" name="sinumfic" id="sinumfic" value="{{old('sinumfic')}}" required>
+                                            <input type="number" class="form-control" name="sinumfic" id="sinumfic" value="{{old('sinumfic')}}" >
                                             <div class="invalid-feedback">Debe ingresar el número de ficha</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Instructor</label>
-                                            <input type="text" class="form-control" name="siinstru" id="siinstru" value="{{old('siinstru')}}" required>
+                                            <input type="text" class="form-control" name="siinstru" id="siinstru" value="{{old('siinstru')}}" >
                                             <div class="invalid-feedback">Debe ingresar el nombre del instructor</div>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Ambiente de formación</label>
-                                            <input type="text" class="form-control" name="siambfor" id="siambfor" value="{{old('siambfor')}}" required>
+                                            <input type="text" class="form-control" name="siambfor" id="siambfor" value="{{old('siambfor')}}" >
                                             <div class="invalid-feedback">Debe ingresar el código del ambiente de formación</div>
                                         </div>
                                     </div>
@@ -251,7 +251,7 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                   </div>
-                                                <input type="text" class="form-control" name="siterlec" value="{{old('siterlec')}}" required>
+                                                <input type="text" class="form-control" name="siterlec" value="{{old('siterlec')}}" >
                                                 <div class="invalid-feedback">Debe seleccionar la fecha de terminación de la etapa lectiva</div>
                                             </div>
                                         </div>
@@ -265,7 +265,7 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                   </div>
-                                                <input type="text" class="form-control" name="siterpro" value="{{old('siterpro')}}" required>
+                                                <input type="text" class="form-control" name="siterpro" value="{{old('siterpro')}}" >
                                                 <div class="invalid-feedback">Debe seleccionar la fecha de terminación de la etapa productiva</div>
                                             </div>
                                         </div>
@@ -273,17 +273,17 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="col">
+                                    {{-- <div class="col">
                                         <div class="form-group">
                                             <label>Antigüedad en el SENA en meses</label>
-                                            <input type="number" class="form-control" name="siantsen" value="{{old('siantsen')}}" required>
+                                            <input type="number" class="form-control" name="siantsen" value="{{old('siantsen')}}" >
                                             <div class="invalid-feedback">Debe seleccionar la antigüedad en el SENA</div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Área de conocimiento en que se desempeña</label>
-                                            <select class="custom-select form-control" name="siarecon" id="siarecon" required>
+                                            <select class="custom-select form-control" name="siarecon" id="siarecon" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Arte" {{ old('siarecon') == "Arte" ? 'selected' : '' }}>Arte</option>
                                                 <option value="Biología" {{ old('siarecon') == "Biología" ? 'selected' : '' }}>Biología</option>
@@ -356,7 +356,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Proyecto RedColSI</label>
-                                            <input type="text" class="form-control" name="siprored" value="{{old('siprored')}}" required>
+                                            <input type="text" class="form-control" name="siprored" value="{{old('siprored')}}" >
                                             <div class="invalid-feedback">Debe indicar el nombre del proyecto RedColSI o indicar si No Aplica</div>
                                         </div>
                                     </div>

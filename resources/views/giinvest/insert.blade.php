@@ -67,7 +67,7 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                   </div>
-                                                <input type="text" class="form-control" name="infecexp" value="{{old('infecexp')}}" required>
+                                                <input type="text" class="form-control" name="infecexp" value="{{old('infecexp')}}" >
                                                 <div class="invalid-feedback">Debe seleccionar la fecha de expedición del documento</div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Municipio de expedición</label>
-                                            <input type="text" class="form-control" name="inmunexp" value="{{old('inmunexp')}}" required>
+                                            <input type="text" class="form-control" name="inmunexp" value="{{old('inmunexp')}}" >
                                             <div class="invalid-feedback">Debe ingresar el municipio de expedición del documento</div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                                     <i class="far fa-calendar-alt"></i>
                                                 </span>
                                               </div>
-                                            <input type="text" class="form-control" name="infecnac" value="{{old('infecnac')}}" required>
+                                            <input type="text" class="form-control" name="infecnac" value="{{old('infecnac')}}" >
                                             <div class="invalid-feedback">Debe seleccionar la fecha de nacimiento</div>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Último grado de formación recibido</label>
-                                            <select class="custom-select form-control" name="ingrafor" id="ingrafor" required>
+                                            <select class="custom-select form-control" name="ingrafor" id="ingrafor" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Primaria" {{ old('ingrafor') == "Primaria" ? 'selected' : '' }}>Primaria</option>
                                                 <option value="Bachillerato" {{ old('ingrafor') == "Bachillerato" ? 'selected' : '' }}>Bachillerato</option>
@@ -159,21 +159,21 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nombre del último titulo obtenido</label>
-                                            <input type="text" class="form-control" name="intitulo" id="intitulo" value="{{old('intitulo')}}" required>
+                                            <input type="text" class="form-control" name="intitulo" id="intitulo" value="{{old('intitulo')}}" >
                                             <div class="invalid-feedback">Debe ingresar el nombre del último título obtenido</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Profesión</label>
-                                            <input type="text" class="form-control" name="inprofes" id="inprofes" value="{{old('inprofes')}}" required>
+                                            <input type="text" class="form-control" name="inprofes" id="inprofes" value="{{old('inprofes')}}" >
                                             <div class="invalid-feedback">Debe ingresar la profesión</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Nivel de inglés</label>
-                                            <select class="custom-select form-control" name="inniving" id="inniving" required>
+                                            <select class="custom-select form-control" name="inniving" id="inniving" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Ninguno" {{ old('inniving') == "Ninguno" ? 'selected' : '' }}>Ninguno</option>
                                                 <option value="A1" {{ old('inniving') == "A1" ? 'selected' : '' }}>A1</option>
@@ -267,17 +267,17 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Porcentaje de dedicación al grupo</label>
-                                            <input type="number" class="form-control" name="inporded" id="inporded" value="{{old('inporded')}}" required>
+                                            <input type="number" class="form-control" name="inporded" id="inporded" value="{{old('inporded')}}" >
                                             <div class="invalid-feedback">Debe ingresar el porcentaje de dedicación al grupo</div>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    {{-- <div class="col">
                                         <div class="form-group">
                                             <label>Antigüedad en el SENA en meses</label>
-                                            <input type="number" class="form-control" name="inantsen" value="{{old('inantsen')}}" required>
+                                            <input type="number" class="form-control" name="inantsen" value="{{old('inantsen')}}" >
                                             <div class="invalid-feedback">Debe ingresar la cantidad de meses de antigüedad en el SENA</div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div class="form-row">
@@ -291,7 +291,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Área de conocimiento en que se desempeña</label>
-                                            <select class="custom-select form-control" name="inarecon" id="inarecon" required>
+                                            <select class="custom-select form-control" name="inarecon" id="inarecon" >
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="Arte" {{ old('inarecon') == "Arte" ? 'selected' : '' }}>Arte</option>
                                                 <option value="Biología" {{ old('inarecon') == "Biología" ? 'selected' : '' }}>Biología</option>
@@ -319,14 +319,14 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Asignación salarial mensual</label>
-                                            <input type="text" data-inputmask='"mask": "$[9].999.999"' class="form-control" name="inasimen" id="inasimen" value="{{old('inasimen')}}" data-mask required>
+                                            <input type="text" data-inputmask='"mask": "$[9].999.999"' class="form-control" name="inasimen" id="inasimen" value="{{old('inasimen')}}" data-mask >
                                             <div class="invalid-feedback">Debe ingresar la asignación salarial mensual</div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Número de contrato</label>
-                                            <input type="text" class="form-control" name="innumcon" id="innumcon" value="{{old('innumcon')}}" required>
+                                            <input type="text" class="form-control" name="innumcon" id="innumcon" value="{{old('innumcon')}}" >
                                             <div class="invalid-feedback">Debe ingresar el número del contrato o indicar si No Aplica</div>
                                         </div>
                                     </div>
