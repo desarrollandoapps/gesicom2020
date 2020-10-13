@@ -17,7 +17,7 @@ class GiseminvController extends Controller
     public function index(Request $request)
     {
         $query = $request->buscar;
-        $semilleros = App\giseminv::where('sinombre', 'LIKE', '%' . $query . '%')
+        $semilleros = App\Giseminv::where('sinombre', 'LIKE', '%' . $query . '%')
                                 ->orderby( 'sinombre', 'asc' )
                                 ->get();
         return view('giseminv.index', compact( 'semilleros' ) );

@@ -14,5 +14,6 @@ class RolesTableSeeder extends Seeder
         Role::create(['nombre' => 'Administrador']);
         Role::create(['nombre' => 'Líder SENNOVA']);
         Role::create(['nombre' => 'Investigador']);
+        Role::create(['nombre' => 'Usuario']);
     }
 }

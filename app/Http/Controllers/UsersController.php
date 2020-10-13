@@ -76,8 +76,8 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $rol = Role::select('id')->where('nombre', 'Investigador')->first();
-
+        // $rol = Role::select('id')->where('nombre', 'Usuario')->first();
+        $rol = 4;
         $usuario->roles()->attach($rol);
 
         // Redireccionar a la página principal con mensaje de éxito

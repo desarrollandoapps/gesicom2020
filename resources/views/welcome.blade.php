@@ -9,7 +9,11 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     @guest
+                    <div>
                         <a href="{{ route('login') }}" class="btn btn-primary btn-sm mx-auto mt-4">{{ __('Iniciar Sesión') }}</a>
+                        <br>
+                        <a href="{{ route('register') }}" class="mt-2 d-flex justify-content-center"><small>{{ __('Register')}}</small></a>
+                    </div>
                     @endguest
                 </div>
                 <div>

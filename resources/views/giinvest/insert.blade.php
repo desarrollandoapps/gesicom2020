@@ -45,7 +45,7 @@
                                             <select class="custom-select form-control" name="intipdoc" id="intipdoc" required>
                                                 <option selected value="">{{__('seleccione')}}</option>
                                                 <option value="C.C." {{ old('intipdoc') == "C.C." ? 'selected' : '' }}>Cédula de ciudadanía</option>
-                                                <option value="C.C." {{ old('intipdoc') == "C.C." ? 'selected' : '' }}>Cédula de extrangería</option>
+                                                <option value="C.C." {{ old('intipdoc') == "C.C." ? 'selected' : '' }}>Cédula de extranjería</option>
                                                 <option value="Pasaporte" {{ old('intipdoc') == "Pasaporte" ? 'selected' : '' }}>Pasaporte</option>
                                             </select>
                                             <div class="invalid-feedback">Debe seleccionar el tipo de documento</div>
