@@ -129,7 +129,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Tipo de vinculación</label>
-                                            <input type="text" class="form-control" name="sitipvin" value="{{old('sitipvin')}}" >
+                                            {{-- <input type="text" class="form-control" name="sitipvin" value="{{old('sitipvin')}}" > --}}
+                                            <select class="custom-select form-control" name="sitipvin" id="sitipvin" >
+                                                <option selected value="">{{__('seleccione')}}</option>
+                                                <option value="Monitor" {{ old('sitipvin') == "Monitor" ? 'selected' : '' }}>Monitor</option>
+                                                <option value="Contrato de aprendizaje" {{ old('sitipvin') == "Contrato de aprendizaje" ? 'selected' : '' }}>Contrato de aprendizaje</option>
+                                                <option value="Ninguna" {{ old('sitipvin') == "Ninguna" ? 'selected' : '' }}>Ninguna</option>
+                                            </select>
                                             <div class="invalid-feedback">Debe ingresar el tipo de vinculación</div>
                                         </div>
                                     </div>
@@ -343,7 +349,7 @@
 
                                 <div class="form-group">
                                     <label>Proyecto vinculado</label>
-                                    <select class="custom-select form-control" name="siproyec" id="siproyec" required>
+                                    <select class="custom-select form-control js-example-basic-single" name="siproyec" id="siproyec" required>
                                         <option selected value="">{{__('seleccione')}}</option>
                                         @foreach ($proyectos as $item)
                                             <option value="{{$item->id}}" {{old('siproyec') == $item->id ? 'selected' : '' }}>{{$item->pinompro}}</option>
@@ -495,5 +501,8 @@
                 });
             }, false);
         })();
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
     </script>
 @endsection

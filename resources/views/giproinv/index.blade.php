@@ -21,7 +21,8 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
+                                            <th class="prim-col-proy">Nombre</th>
+                                            <th class="text-center">Año Ejecución</th>
                                             <th class="text-right">Opciones</th>
                                             <th class="text-right"></th>
                                         </tr>
@@ -30,6 +31,7 @@
                                         @foreach ($proyectos as $item)
                                             <tr>
                                                 <td> {{$item->pinompro}}</td>
+                                                <td class="text-center"> {{$item->pianoeje}}</td>
                                                 <td class="td-actions text-right">
                                                     <a href="{{route('giproinv.show', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></button></a>
                                                     <a href="{{route('giproinv.edit', $item->id)}}"><button type="button" rel="tooltip" class="btn btn-success btn-circle"><i class="fas fa-edit"></i></button></a>
@@ -63,6 +65,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                {{ $proyectos->links() }}
+                                
                                 <div class="row">
                                     <a href="{{route('giproinv.create')}} "><button class="btn btn-primary">Crear {{ __('giproinv') }}</button></a>
                                 </div>

@@ -12,6 +12,7 @@ class Gisemill extends Model
     protected $fillable = [
         'seidsemi',
         'segruinv',
-        'senombre'
+        'senombre',
+        'seenldoc'
     ];
 }

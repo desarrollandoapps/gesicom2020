@@ -22,6 +22,7 @@ class CreateGigruinvTable extends Migration
             $table->string('ginombre');
             $table->string('gimescre');
             $table->integer('gianocre');
+            $table->string('gienldoc');
             $table->timestamps();
             $table->softDeletes();
         });

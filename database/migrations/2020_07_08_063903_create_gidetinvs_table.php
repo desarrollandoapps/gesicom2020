@@ -15,6 +15,9 @@ class CreateGidetinvsTable extends Migration
     {
         Schema::create('gidetinv', function (Blueprint $table) {
             $table->id();
+            $table->string('difecvin');
+            $table->string('difecdes');
+            $table->string('dirolinv');
             $table->bigInteger('diinvest')->unsigned();
             $table->foreign('diinvest')->references('id')->on('giinvest');
             $table->bigInteger('diproinv')->unsigned();

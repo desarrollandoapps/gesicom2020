@@ -17,6 +17,7 @@ class CreateGisemillTable extends Migration
             $table->id();
             $table->string('seidsemi');
             $table->string('senombre');
+            $table->string('seenldoc');
             $table->bigInteger('segruinv')->unsigned();
             $table->foreign('segruinv')->references('id')->on('gigruinv');
             $table->timestamps();

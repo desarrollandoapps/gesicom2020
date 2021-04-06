@@ -9,5 +9,5 @@ class Gigruinv extends Model
 {
     use SoftDeletes;
     protected $table = "gigruinv";
-    protected $fillable = ['gicodgru', 'giregpnd', 'giregion', 'gicenfor', 'ginombre', 'gimescre', 'gianocre', 'giestado'];
+    protected $fillable = ['gicodgru', 'giregpnd', 'giregion', 'gicenfor', 'ginombre', 'gimescre', 'gianocre', 'giestado', 'gienldoc'];
 }

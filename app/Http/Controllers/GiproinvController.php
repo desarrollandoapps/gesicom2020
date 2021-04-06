@@ -20,15 +20,15 @@ class GiproinvController extends Controller
         {
             $query = $request->buscar;
             $proyectos = App\Giproinv::where('pinompro', 'LIKE', '%' . $query . '%')
-                                        ->orderby('pianofor', 'desc')
+                                        ->orderby('pianoeje', 'desc')
                                         ->orderby('pinompro', 'asc')
-                                        ->get();
+                                        ->paginate(20);
             return view('giproinv.index', compact('proyectos', 'query'));
         }
 
-        $proyectos = App\Giproinv::orderby('pianofor', 'desc')
+        $proyectos = App\Giproinv::orderby('pianoeje', 'desc')
                                 ->orderby('pinompro', 'asc')
-                                ->get();
+                                ->paginate(20);
         return view('giproinv.index', compact('proyectos'));
     }
 

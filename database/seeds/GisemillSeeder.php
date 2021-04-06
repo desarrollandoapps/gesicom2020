@@ -14,8 +14,9 @@ class GisemillSeeder extends Seeder
     {
         Gisemill::create([ 
             'seidsemi' => 129,
-            'segruinv' => 1,
-            'senombre' => 'SI.GESICOM'
+            'senombre' => 'SI.GESICOM',
+            'seenldoc' => '',
+            'segruinv' => 1
         ]);
     }
 }

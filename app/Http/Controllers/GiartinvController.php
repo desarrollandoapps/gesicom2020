@@ -79,8 +79,8 @@ class GiartinvController extends Controller
             'aiserrev' => 'required',
             'aiciupub' => 'required',
             'aimeddiv' => 'required',
-            'aicoissn' => 'required',
-            'aicoddoi' => 'required'
+            'aicoissn' => 'required'
+            // 'aicoddoi' => 'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -185,8 +185,8 @@ class GiartinvController extends Controller
             'aiserrev' => 'required',
             'aiciupub' => 'required',
             'aimeddiv' => 'required',
-            'aicoissn' => 'required',
-            'aicoddoi' => 'required'
+            'aicoissn' => 'required'
+            // 'aicoddoi' => 'required'
         ], $mensajes);
 
         if ($validator->fails()) {

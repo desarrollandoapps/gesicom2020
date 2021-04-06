@@ -62,7 +62,8 @@ class GigruinvController extends Controller
             'gicenfor.required' => 'Debe ingresar el centro de formación.',
             'ginombre.required' => 'Debe ingresar el nombre del grupo.',
             'gimescre.required' => 'Debe selecionar el mes de creación.',
-            'gianocre.required' => 'Debe ingresar el año de creación.'
+            'gianocre.required' => 'Debe ingresar el año de creación.',
+            'gienldoc.required' => 'Debe ingresar el enlace a la carpeta.'
         ];
 
         // Validar que los campos obligatorios tengan valor
@@ -73,7 +74,8 @@ class GigruinvController extends Controller
             'gicenfor'=>'required', 
             'ginombre'=>'required', 
             'gimescre'=>'required', 
-            'gianocre'=>'required'
+            'gianocre'=>'required',
+            'gienldoc'=>'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -144,7 +146,8 @@ class GigruinvController extends Controller
             'gicenfor.required' => 'Debe ingresar el centro de formación.',
             'ginombre.required' => 'Debe ingresar el nombre del grupo.',
             'gimescre.required' => 'Debe selecionar el mes de creación.',
-            'gianocre.required' => 'Debe ingresar el año de creación.'
+            'gianocre.required' => 'Debe ingresar el año de creación.',
+            'gienldoc.required' => 'Debe ingresar el enlace a la carpeta.'
         ];
         $request->validate( [
             'gicodgru'=>'required',
@@ -153,7 +156,8 @@ class GigruinvController extends Controller
             'gicenfor'=>'required', 
             'ginombre'=>'required', 
             'gimescre'=>'required', 
-            'gianocre'=>'required' 
+            'gianocre'=>'required',
+            'gienldoc'=>'required' 
         ], $mensajes);
 
         $grupo = App\Gigruinv::findorfail( $id );

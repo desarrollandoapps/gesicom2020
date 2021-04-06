@@ -9,8 +9,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Detalle del Grupo de Investigación</h4>
-                            <h4 class="card-title">{{$grupo->ginombre}}</h4>
+                            <h4 class="card-title">Detalle del Grupo de Investigación {{$grupo->ginombre}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -67,6 +66,18 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <h5 class="lead">{{$grupo->gianocre}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h5>Enlace a carpeta de grupo: </h5>
+                                </div>
+                                <div class="col-md-5">
+                                    <h5 class="lead">
+                                        <a href="{{$grupo->gienldoc}}" target="_blank">
+                                            {{$grupo->gienldoc}}
+                                        </a>
+                                    </h5>
                                 </div>
                             </div>
                             <br>

@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('investigador', function($user) {
+            return $user->hasAnyRol(['Administrador', 'Líder SENNOVA', 'Investigador']);
+        });
+
         Gate::define('administrar-usuario', function($user) {
             return $user->hasRol('Administrador');
         });

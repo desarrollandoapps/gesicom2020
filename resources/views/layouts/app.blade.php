@@ -22,6 +22,8 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Select -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
   @yield('estilos')
 </head>
 
@@ -66,7 +68,7 @@
     </div>
     <strong>Copyright &copy; 2020 <a href="http://gesicom.co">Grupo de Investigación GESICOM</a>.</strong>
      .::. 
-    <span>Desarrollado por Andrés Arciniegas y Jose Oviedo</span>
+    <span>Desarrollado por Jose A. Oviedo y Andrés M. Arciniegas</span>
   </footer>
 
   <!-- Control Sidebar -->
@@ -85,6 +87,8 @@
 <script src="{{asset('adminlte')}}/dist/js/adminlte.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+<!-- Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 @yield('scripts')
 </body>

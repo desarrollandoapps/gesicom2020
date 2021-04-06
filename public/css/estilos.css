@@ -1098,3 +1098,29 @@ hr {
 .sidebar {
   font-size:0.9rem !important;
 }
+
+/***************/
+.prim-col-proy {
+  max-width: 60%;
+  width: 60%;
+}
+.col-nombre-inv {
+  min-width: 20%;
+  width: 20%;
+}
+.col-region-inv {
+  min-width: 8%;
+  width: 8%;
+}
+.col-cenfor-inv {
+  min-width: 30%;
+  width: 30%;
+}
+.col-grupo-inv {
+  min-width: 30%;
+  width: 30%;
+}
+.col-opciones {
+  min-width: 12%;
+  width: 12%;
+}

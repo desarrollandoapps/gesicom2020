@@ -4,6 +4,10 @@
     hidden
 @endsection
 
+@section('estilos')
+    <link rel="stylesheet" href="{{asset('datepicker')}}/bootstrap-datepicker.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -20,6 +24,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
+                                                <th>Fecha vinculación</th>
+                                                <th>Fecha desvinculación</th>
+                                                <th>Rol</th>
                                                 <th class="text-right">Opciones</th>
                                             </tr>
                                         </thead>
@@ -27,6 +34,9 @@
                                             @foreach ($investigadoresAsociados as $item)
                                                 <tr>
                                                     <td>{{$item->innombre}}</td>
+                                                    <td>{{$item->difecvin}}</td>
+                                                    <td>{{$item->difecdes}}</td>
+                                                    <td>{{$item->dirolinv}}</td>
                                                     <td class="td-actions text-right">
                                                         <form action="{{route('gidetinv.destroy', $item->idDetalle)}}" method="POST" class="d-inline">
                                                             @csrf
@@ -97,6 +107,39 @@
                                     {!! Form::select('diinvest', $investigadores, null, ['placeholder' => 'Seleccione...', 'class' => 'custom-select form-control', 'id' => 'diinvest', 'required']) !!}
                                     <div class="invalid-feedback">Debe seleccionar el investigador</div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Fecha de vinculación</label>
+                                    <div class="input-group date" data-provide="datepicker" id="difecvin">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                          </div>
+                                        <input type="text" class="form-control" name="difecvin" value="{{old('difecvin')}}" >
+                                        <div class="invalid-feedback">Debe seleccionar la fecha de vinculación al proyecto</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Fecha de desvinculación</label>
+                                    <div class="input-group date" data-provide="datepicker" id="difecdes">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                          </div>
+                                        <input type="text" class="form-control" name="difecdes" value="{{old('difecdes')}}" >
+                                        <div class="invalid-feedback">Debe seleccionar la fecha de vinculación al proyecto</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Rol en el proyecto</label>
+                                    <select class="custom-select form-control" name="dirolinv" id="dirolinv" required>
+                                        <option selected value="">{{__('seleccione')}}</option>
+                                        <option value="Investigador principal" {{ old('dirolinv') == "Investigador principal" ? 'selected' : '' }}>Investigador principal</option>
+                                        <option value="Coinvestigador" {{ old('dirolinv') == "Coinvestigador" ? 'selected' : '' }}>Coinvestigador</option>
+                                    </select>
+                                </div>
                         
                                 <br>
                                 <!-- <button type="submit" class="btn btn-primary">Asociar</button> -->
@@ -111,7 +154,13 @@
     
 @endsection
 @section('scripts')
+    <script src="{{asset('datepicker')}}/bootstrap-datepicker.min.js"></script>
     <script>
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'es',
+            autoclose: true,
+        });
         $('select option:first').attr('disabled', true);
         $('#diregion').change(function(event){
             $.get("../centros/" + event.target.value, function(response, centros){
@@ -158,40 +207,11 @@
                 text: "¡Investigador asociado con éxito!",
                 type: "success"
                 }).then(function(e){
-                    // location.reload();
-                    mostrarInvestigadores();
+                    location.reload();
                 })
             },
             function (){
                 swal("¡Atención!", "No se pudo asociar el investigador", "warning");
-            });
-        }
-
-        function mostrarInvestigadores( ) {
-            var id = "{{ $proyecto->id }}"
-            var rutamala = "{{ route('darInvestigadoresProyecto', "reempl") }}";
-            var ruta = rutamala.replace('reempl',id);
-            $.ajax({
-                url: ruta,
-                method: 'GET'
-            }).then(function (investigadores){
-                $('#cuerpo').empty();
-                for(i = 0; i < investigadores.length; i++)
-                {
-                    $('#cuerpo').append(
-                        "<tr>" +
-                            "<td>" + investigadores[i].innombre + "</td>" +
-                            "<td class='td-actions text-right'>" +
-                                "<form action='#' method='POST' class='d-inline'>" +
-                                    '@csrf' +
-                                    '@method("DELETE")' +
-                                    "<input type='hidden' name='diproinv' value='" + investigadores[i].id + "'>" +
-                                    "<button type='button' rel='tooltip' class='btn btn-danger btn-circle' onclick='desasociar({{$item->idDetalle}})'><i class='fas fa-trash'></i></button>" +
-                                "</form>" +
-                            "</td>" +
-                        "</tr>"
-                    );
-                }
             });
         }
 

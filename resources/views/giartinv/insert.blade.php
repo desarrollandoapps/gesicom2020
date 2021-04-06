@@ -193,7 +193,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Código  DOI (Digital Object Identifier)</label>
-                                            <input type="text" class="form-control" name="aicoddoi" id="aicoddoi" value="{{old('aicoddoi')}}" required>
+                                            <input type="text" class="form-control" name="aicoddoi" id="aicoddoi" value="{{old('aicoddoi')}}" >
                                             <div class="invalid-feedback">Debe ingresar el código DOI del artículo</div>
                                         </div>
                                     </div>

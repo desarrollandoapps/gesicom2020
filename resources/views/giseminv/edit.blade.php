@@ -121,7 +121,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Tipo de vinculación</label>
-                                        <input type="text" class="form-control" name="sitipvin" value="{{$semillero->sitipvin}}">
+                                        {{-- <input type="text" class="form-control" name="sitipvin" value="{{$semillero->sitipvin}}"> --}}
+                                        <select class="custom-select form-control" name="sitipvin" id="sitipvin" >
+                                            <option selected value="">{{__('seleccione')}}</option>
+                                            <option value="Monitor" {{ $semillero->sitipvin == "Monitor" ? 'selected' : '' }}>Monitor</option>
+                                            <option value="Contrato de aprendizaje" {{ $semillero->sitipvin == "Contrato de aprendizaje" ? 'selected' : '' }}>Contrato de aprendizaje</option>
+                                            <option value="Ninguna" {{ $semillero->sitipvin == "Ninguna" ? 'selected' : '' }}>Ninguna</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +305,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Semillero de investigación vinculado</label>
-                                        <select class="custom-select form-control" name="sisemill" id="sisemill" value="{{$semillero->sisemill}}">
+                                        <select class="custom-select form-control js-example-basic-single" name="sisemill" id="sisemill" value="{{$semillero->sisemill}}">
                                             <option selected value="">{{__('seleccione')}}</option>
                                             @foreach ($semilleros as $item)
                                                 <option value="{{$item->id}}" {{$semillero->sisemill == $item->id ? 'selected' : '' }}>{{$item->senombre}}</option>
@@ -405,5 +411,8 @@
         });
         $('#sinumcel').inputmask();
         $('#sitelfij').inputmask();
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
     </script>
 @endsection

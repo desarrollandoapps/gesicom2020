@@ -86,6 +86,13 @@
                                     @endfor
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label>Enlace a carpeta</label>
+                                <input type="text" class="form-control" name="gienldoc"  value="{{$grupo->gienldoc}}" placeholder="http://drive.google.com" required>
+                                <div class="invalid-feedback">Debe ingresar el enlace a la carpeta del grupo</div>
+                            </div>
+
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         

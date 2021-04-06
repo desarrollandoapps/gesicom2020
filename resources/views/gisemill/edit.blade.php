@@ -49,6 +49,11 @@
                                 <label>Nombre del semillero</label>
                                 <input type="text" class="form-control" name="senombre" value="{{$semillero->senombre}}">
                             </div>
+                            <div class="form-group">
+                                <label>Enlace a carpeta</label>
+                                <input type="text" class="form-control" name="seenldoc"  value="{{$semillero->seenldoc}}" placeholder="http://drive.google.com" required>
+                                <div class="invalid-feedback">Debe ingresar el enlace a la carpeta del semillero</div>
+                            </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>

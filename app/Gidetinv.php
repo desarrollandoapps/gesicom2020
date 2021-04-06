@@ -11,6 +11,9 @@ class Gidetinv extends Model
     protected $table = 'gidetinv';
     protected $fillable = [
         'diinvest', 
-        'diproinv'
+        'diproinv',
+        'difecvin',
+        'difecdes',
+        'dirolinv'
     ];
 }

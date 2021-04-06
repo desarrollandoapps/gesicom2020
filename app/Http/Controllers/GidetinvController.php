@@ -31,7 +31,7 @@ class GidetinvController extends Controller
                                         ->join('giproinv', 'gidetinv.diproinv', 'giproinv.id' )
                                         ->where('giproinv.id', $request->diproinv)
                                         ->whereNull('gidetinv.deleted_at')
-                                        ->select('giinvest.*', 'gidetinv.id as idDetalle')
+                                        ->select('giinvest.*', 'gidetinv.id as idDetalle', 'gidetinv.*')
                                         ->get();
 
         $proyecto = App\Giproinv::findorfail($request->diproinv);

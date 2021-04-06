@@ -19,7 +19,8 @@ class GigruinvSeeder extends Seeder
             'gicenfor' => 105, 
             'ginombre' => 'GESICOM', 
             'gimescre' => 'Agosto',
-            'gianocre' => 2014
+            'gianocre' => 2014,
+            'gienldoc' => ''
         ]);
     }
 }

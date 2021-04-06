@@ -68,14 +68,16 @@ class GisemillController extends Controller
             'seidsemi.unique' => 'Ya hay un semillero con el código que intenta asignar.',
             'segruinv.required' => 'Debe seleccionar el grupo de investigación.',
             'senombre.required' => 'Debe ingresar el nombre del semillero.',
-            'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.'
+            'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.',
+            'seenldoc.required' => 'Debe ingresar el enlace a la carpeta.'
         ];
 
         // Validar que los campos obligatorios tengan valor
         $validator = Validator::make($request->all(), [
             'seidsemi'=>'required|unique:gisemill',
             'senombre'=>'required|unique:gisemill',
-            'segruinv'=>'required'
+            'segruinv'=>'required',
+            'seenldoc'=>'required'
         ], $mensajes);
 
         if ($validator->fails()) {
@@ -148,14 +150,16 @@ class GisemillController extends Controller
             'seidsemi.unique' => 'Ya hay un semillero con el código que intenta asignar.',
             'segruinv.required' => 'Debe seleccionar el grupo de investigación.',
             'senombre.required' => 'Debe ingresar el nombre del semillero.',
-            'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.'
+            'senombre.unique' => 'Ya hay un semillero con el nombre que intenta asignar.',
+            'seenldoc.required' => 'Debe ingresar el enlace a la carpeta.'
         ];
 
         // Validar que los campos obligatorios tengan valor
         $request->validate( [
             'seidsemi'=>'required',
             'senombre'=>'required',
-            'segruinv'=>'required'
+            'segruinv'=>'required',
+            'seenldoc'=>'required'
         ], $mensajes);
 
         $semillero = App\Gisemill::findorfail($id);

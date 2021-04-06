@@ -21,11 +21,11 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Regional</th>
-                                            <th>Centro de Formación</th>
-                                            <th>Grupo de investigación</th>
-                                            <th class="text-right">Opciones</th>
+                                            <th class="col-nombre-inv">Nombre</th>
+                                            <th class="col-region-inv">Regional</th>
+                                            <th class="col-cenfor-inv">Centro de Formación</th>
+                                            <th class="col-grupo-inv">Grupo de investigación</th>
+                                            <th class="text-right col-opciones">Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,6 +48,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                {{ $investigadores->links() }}
                                 <div class="row">
                                     <a href="{{route('giinvest.create')}} "><button class="btn btn-primary">Crear {{__('giinvest')}}</button></a>
                                 </div>
